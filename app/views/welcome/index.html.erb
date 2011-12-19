@@ -26,7 +26,7 @@
         var circles = [
             "",
             <% @specials.each do |special| %>
-            "<%= raw("<img src=#{special.preview.url(:special)} />") %>"<%= ", " if @specials.last != special  %>
+            "<%= raw("<img src=#{special.preview.url(:original)} />") %>"<%= ", " if @specials.last != special  %>
             <% end %>
         ];
 
