@@ -1,0 +1,8 @@
+.bundle
+.idea
+db/*.sqlite3
+db/schema.rb
+log/*.log
+tmp/**/*
+Gemfile.lock
+.sass-cache

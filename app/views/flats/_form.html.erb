@@ -1,0 +1,111 @@
+<%= form_for(@flat, :builder => StarsFormBuilder) do |f| %>
+    <%= render 'shared/error_messages', :target => @flat %>
+
+    <div class="field">
+      <%= f.label I18n.t('activerecord.attributes.flat.approved') %>
+      <br/>
+      <%= f.check_box :approved %>
+    </div>
+
+    <div class="field">
+      <%= f.label I18n.t('activerecord.attributes.flat.rooms_count') %>
+      <br/>
+      <%#= f.number_field :rooms_count %>
+      <%= f.collection_select(:rooms_count, RoomCount.collection, :cut, :name, :prompt => true) %>
+    </div>
+    <div class="field">
+      <%= f.label I18n.t('activerecord.attributes.flat.rent_period') %>
+      <br/>
+      <%#= f.number_field :rent_period %>
+      <%= f.collection_select(:rent_period, RentPeriod.collection, :cut, :name, :prompt => true) %>
+    </div>
+    <div class="field">
+      <%= f.label I18n.t('activerecord.attributes.flat.price') %>
+      <br/>
+      <%= f.text_field :price %>
+    </div>
+    <div class="field">
+      <%= f.label I18n.t('activerecord.attributes.flat.prepayment') %>
+      <br/>
+      <%#= f.number_field :prepayment %>
+      <%= f.collection_select(:prepayment, Prepayment.collection, :cut, :name, :prompt => true) %>
+    </div>
+    <div class="field">
+      <%= f.label I18n.t('activerecord.attributes.flat.metro') %>
+      <br/>
+      <%= f.text_field :metro %>
+    </div>
+    <div class="field">
+      <%= f.label I18n.t('activerecord.attributes.flat.address') %>
+      <br/>
+      <%= f.text_field :address %>
+    </div>
+    <div class="field">
+      <%= f.label I18n.t('activerecord.attributes.flat.remote_time') %>
+      <br/>
+      <%= f.number_field :remote_time %>
+    </div>
+    <div class="field">
+      <%= f.label I18n.t('activerecord.attributes.flat.remote_type') %>
+      <br/>
+      <%#= f.number_field :remote_type %>
+      <%= f.collection_select(:remote_type, RemoteType.collection, :cut, :name, :prompt => true) %>
+    </div>
+    <div class="field">
+      <%= f.label I18n.t('activerecord.attributes.flat.balkon') %>
+      <br/>
+      <%= f.collection_select(:balkon, Balkon.collection, :cut, :name, :prompt => true) %>
+      <%#= f.number_field :balkon %>
+    </div>
+    <div class="field">
+      <%= f.label I18n.t('activerecord.attributes.flat.living_space') %>
+      <br/>
+      <%= f.text_field :living_space %>
+    </div>
+    <div class="field">
+      <%= f.label I18n.t('activerecord.attributes.flat.floor') %>
+      <br/>
+      <%= f.number_field :floor %>
+    </div>
+    <div class="field">
+      <%= f.label I18n.t('activerecord.attributes.flat.floor_count') %>
+      <br/>
+      <%= f.number_field :floor_count %>
+    </div>
+    <div class="field">
+      <%= f.label I18n.t('activerecord.attributes.flat.description') %>
+      <br/>
+      <%= f.text_area :description %>
+    </div>
+
+    <div class="field">
+      <%= f.label I18n.t('activerecord.attributes.flat.flat_images') %>
+      <br/>
+      <% @flat.flat_images.each do |image| %>
+          <p id="flat_image_<%= image.id %>">
+            <%= image_tag image.image.url(:list) %>
+            <%= link_to "Удалить",
+                        flat_image_path(:id => image.id, :authenticity_token => form_authenticity_token),
+                        :confirm => "Вы уверены?", :method => :delete, :remote => true %>
+          </p>
+      <% end %>
+      <div><%= f.file_field :flat_images, :multiple => true %></div>
+    </div>
+
+    <!--<div class="field">-->
+      <!--<%#= f.label I18n.t('activerecord.attributes.flat.rent_type') %>-->
+      <!--<br/>-->
+      <!--<%#= f.number_field :rent_type %>-->
+    <!--</div>-->
+
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+<% end %>
+
+
+<script type="text/javascript">
+    $(function () {
+        $("textarea").aloha();
+    })
+</script>

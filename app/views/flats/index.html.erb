@@ -1,0 +1,45 @@
+<div id="inner-content" class="li-no-style">
+  <%= title(t('flats.index.title')) %>
+
+  <table>
+    <tr>
+      <th><%= t('activerecord.attributes.flat.photo') %></th>
+      <th><%= t('activerecord.attributes.flat.rooms_count') %></th>
+      <!--<th><%#= t('activerecord.attributes.flat.rent_period') %></th>-->
+      <th><%= t('activerecord.attributes.flat.price') %></th>
+      <th><%= t('activerecord.attributes.flat.prepayment') %></th>
+      <th><%= t('activerecord.attributes.flat.address') %></th>
+      <th><%= t('activerecord.attributes.flat.remote_type') %></th>
+      <th><%= t('activerecord.attributes.flat.remote_time') %></th>
+      <!--<th><%#= t('activerecord.attributes.flat.balkon') %></th>-->
+      <!--<th><%#= t('activerecord.attributes.flat.living_space') %></th>-->
+      <!--<th><%#= t('activerecord.attributes.flat.floor') %></th>-->
+      <!--<th><%#= t('activerecord.attributes.flat.description') %></th>-->
+      <!--<th><%#= t('activerecord.attributes.flat.rent_type') %></th>-->
+      <th></th>
+    </tr>
+
+    <% @flats.each do |flat| %>
+        <tr <%= "style='approved'" if flat.approved? %>>
+          <td><%= raw flat.flat_images.size > 0 ? "<img src='#{flat.flat_images.first.image.url(:list)}'/>" : "" %></td>
+          <td><%= flat.rooms_count %></td>
+          <!--<td><%#= flat.rent_period %></td>-->
+          <td><%= flat.price %></td>
+          <td><%= flat.prepayment %></td>
+          <td><%= flat.address %></td>
+          <td><%= flat.remote_type %></td>
+          <td><%= flat.remote_time %></td>
+          <!--<td><%#= flat.balkon %></td>-->
+          <!--<td><%#= flat.living_space %></td>-->
+          <!--<td><%#= flat.floor %></td>-->
+          <!--<td><%#= flat.description %></td>-->
+          <!--<td><%#= flat.rent_type %></td>-->
+          <!--<td><%#= link_to(t('backend.actions.show'), flat) if can?(:show, flat) %></td>-->
+          <td><%= link_to(t('backend.actions.edit'), edit_flat_path(flat)) if can?(:edit, flat) %><%= link_to(t('backend.actions.destroy'), flat, :confirm => t('backend.actions.are_you_sure'), :method => :delete) if can?(:destroy, flat) %></td>
+        </tr>
+    <% end %>
+  </table>
+
+  <p><%= link_to(t('helpers.submit.create', :model => t('activerecord.models.flat')), new_flat_path) if can?(:create, Flat) %></p>
+
+</div>

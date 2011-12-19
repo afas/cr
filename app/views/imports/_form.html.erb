@@ -1,0 +1,13 @@
+<%= form_for(@import, :builder => StarsFormBuilder, :html => {:multipart => true}) do |f| %>
+    <%= render 'shared/error_messages', :target => @import %>
+
+    <div class="field">
+      <%= f.label :file %>
+      <br/>
+      <%= f.file_field :file %>
+    </div>
+
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+<% end %>

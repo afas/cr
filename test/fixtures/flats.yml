@@ -1,0 +1,41 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+one:
+  rooms_count: 1
+  rent_period: 1
+  rent_type: 1
+  price: 1.5
+  prepayment: 1
+  metro: MyString
+  address: 
+  remote_type: 1
+  remote_time: 1
+  balkon: 1
+  living_space: 1.5
+  floor: 1
+  floor_count: 1
+  description: MyText
+  approved: false
+  latitude: 1.5
+  longitude: 1.5
+  gmaps: false
+
+two:
+  rooms_count: 1
+  rent_period: 1
+  rent_type: 1
+  price: 1.5
+  prepayment: 1
+  metro: MyString
+  address: 
+  remote_type: 1
+  remote_time: 1
+  balkon: 1
+  living_space: 1.5
+  floor: 1
+  floor_count: 1
+  description: MyText
+  approved: false
+  latitude: 1.5
+  longitude: 1.5
+  gmaps: false

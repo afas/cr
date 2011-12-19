@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+one:
+  title: MyString
+  content: MyText
+  parent_id: 1
+  short_url: MyString
+  seo_title: MyString
+  seo_keywords: MyString
+  seo_description: MyString
+
+two:
+  title: MyString
+  content: MyText
+  parent_id: 1
+  short_url: MyString
+  seo_title: MyString
+  seo_keywords: MyString
+  seo_description: MyString

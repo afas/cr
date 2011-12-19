@@ -1,0 +1,30 @@
+<div id="Header">
+  <div class="header-holder">
+    <div id="Logo"><a href="/">Classic Rent</a></div>
+    <div id="Strip">
+      <div class="strip-links">
+        <p>
+          <% if can?(:create, Static) %>
+              <%= link_to "Акции", "/special" %>
+          <% end %>
+          <% if can?(:create, WelcomeImage) %>
+              <%= link_to "Фон", new_welcome_image_path %>
+          <% end %>
+          <% if can?(:create, Import) %>
+              <%= link_to "Импорт", new_import_path %>
+          <% end %>
+          <% @about_menu.each do |static| %>
+              <%= link_to static.title, "/#{static.short_url}" %>
+          <% end %>
+        </p>
+      </div>
+    </div>
+    <ul id="Navigation">
+      <% @services_menu.each do |static| %>
+          <li class="nav-item">
+            <%= link_to static.title, "/#{static.short_url}" %>
+          </li>
+      <% end %>
+    </ul>
+  </div>
+</div>

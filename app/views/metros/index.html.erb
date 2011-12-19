@@ -1,0 +1,23 @@
+<div id="inner-content" class="li-no-style">
+  <%= title(t('metros.index.title')) %>
+
+  <table>
+    <tr>
+      <th><%= t('activerecord.attributes.metro.name') %></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+
+    <% @metros.each do |metro| %>
+        <tr>
+          <td><%= metro.name %></td>
+          <td><%= link_to(t('backend.actions.show'), metro) if can?(:show, metro) %></td>
+          <td><%= link_to(t('backend.actions.edit'), edit_metro_path(metro)) if can?(:edit, metro) %></td>
+          <td><%= link_to(t('backend.actions.destroy'), metro, :confirm => t('backend.actions.are_you_sure'), :method => :delete) if can?(:destroy, metro) %></td>
+        </tr>
+    <% end %>
+  </table>
+
+  <p><%= link_to(t('helpers.submit.create', :model => t('activerecord.models.metro')), new_metro_path) if can?(:create, Metro) %></p>
+</div>

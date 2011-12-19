@@ -1,0 +1,21 @@
+<div id="inner-content" class="li-no-style">
+  <%= title(t('imports.index.title')) %>
+
+  <table>
+    <tr>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+
+    <% @imports.each do |import| %>
+        <tr>
+          <td><%= link_to(t('backend.actions.show'), import) if can?(:show, import) %></td>
+          <td><%= link_to(t('backend.actions.edit'), edit_import_path(import)) if can?(:edit, import) %></td>
+          <td><%= link_to(t('backend.actions.destroy'), import, :confirm => t('backend.actions.are_you_sure'), :method => :delete) if can?(:destroy, import) %></td>
+        </tr>
+    <% end %>
+  </table>
+
+  <p><%= link_to(t('helpers.submit.create', :model => t('activerecord.models.import')), new_import_path) if can?(:create, Import) %></p>
+</div>

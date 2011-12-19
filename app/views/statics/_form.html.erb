@@ -1,0 +1,90 @@
+<%= form_for(@static, :builder => StarsFormBuilder, :html => {:multipart => true}) do |f| %>
+    <%= render 'shared/error_messages', :target => @static %>
+
+    <% if @static.preview_file_name? %>
+        <%= image_tag @static.preview.url(:list) %>
+    <% end %>
+    <div class="field">
+      <%= f.label :title %>
+      <br/>
+      <%= f.text_field :title %>
+    </div>
+    <div class="field">
+      <%= f.label :content %>
+      <br/>
+      <%= f.text_area :content %>
+    </div>
+    <div class="field">
+      <%= f.label :preview %>
+      <br/>
+      <%= f.file_field :preview %>
+    </div>
+
+    <% if @static.menu? %>
+        <div class="field">
+          <%= f.label :menu %>
+          <br/>
+          <%= f.text_field :menu %>
+        </div>
+    <% end %>
+    <!--<div class="field">-->
+    <!--<%#= f.label :parent_id %>-->
+    <!--<br/>-->
+    <!--<%#= f.number_field :parent_id %>-->
+    <!--</div>-->
+    <!--<div class="field">-->
+    <!--<%#= f.label :short_url %>-->
+    <!--<br/>-->
+    <!--<%#= f.text_field :short_url %>-->
+    <!--</div>-->
+    <div class="field">
+      <%= f.label :static_image %>
+      <br/>
+      <% @static.static_images.each do |image| %>
+          <p id="static_image_<%= image.id %>">
+            <%= image_tag image.image.url(:list) %>
+            <%= link_to "Удалить",
+                        static_image_path(:id => image.id, :authenticity_token => form_authenticity_token),
+                        :confirm => "Вы уверены?", :method => :delete, :remote => true %>
+          </p>
+      <% end %>
+      <div><%= f.file_field :static_images, :multiple => true %></div>
+    </div>
+    <div class="field">
+      <%= f.label :static_file %>
+      <br/>
+      <% @static.static_files.each do |file| %>
+          <p id="static_file_<%= file.id %>">
+            <%= file.file_file_name %>
+            <%= link_to "Удалить",
+                        static_file_path(:id => file.id, :authenticity_token => form_authenticity_token),
+                        :confirm => "Вы уверены?", :method => :delete, :remote => true %>
+          </p>
+      <% end %>
+      <div><%= f.file_field :static_files, :multiple => true %></div>
+    </div>
+    <div class="field">
+      <%= f.label :seo_title %>
+      <br/>
+      <%= f.text_field :seo_title %>
+    </div>
+    <div class="field">
+      <%= f.label :seo_keywords %>
+      <br/>
+      <%= f.text_field :seo_keywords %>
+    </div>
+    <div class="field">
+      <%= f.label :seo_description %>
+      <br/>
+      <%= f.text_field :seo_description %>
+    </div>
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+<% end %>
+
+<script type="text/javascript">
+    $(function () {
+        $("textarea").aloha();
+    })
+</script>

@@ -1,0 +1,10 @@
+<%= title(t('metros.show.title')) %>
+
+<p>
+  <b><%= t('activerecord.attributes.metro.name') %>:</b>
+  <%= @metro.name %>
+</p>
+
+
+<%= link_to t('backend.actions.edit'), edit_metro_path(@metro) %> |
+<%= link_to t('backend.actions.back'), metros_path %>

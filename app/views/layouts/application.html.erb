@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html class="cufon-active cufon-ready" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <title><%= yield(:title).blank? ? '' : "#{yield(:title)} :: " %><%= t('site_name') %></title>
+
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="title" content="<%= yield(:title).blank? ? '' : "#{yield(:title)} :: " %><%= t('site_name') %>">
+  <meta name="robots" content="index, follow">
+  <meta name="language" content="ru">
+
+  <%= stylesheet_link_tag :application %>
+  <%= javascript_include_tag :application %>
+
+  <%= csrf_meta_tag %>
+
+  <%= yield(:head) %>
+</head>
+<body class="home">
+<%= hidden_div_if(alert, :id => 'alert') { alert } %>
+<%= hidden_div_if(notice, :id => 'notice') { notice } %>
+
+
+<div id="Wrapper">
+  <%= render "layouts/header" %>
+  <div id="Body">
+    <%= yield %>
+  </div>
+  <%= render "layouts/footer" %>
+</div>
+
+<script type="text/javascript">
+//    var _gaq = _gaq || [];
+//    _gaq.push(['_setAccount', 'UA-26395458-1']);
+//    _gaq.push(['_trackPageview']);
+//    (function() {
+//        var ga = document.createElement('script');
+//        ga.type = 'text/javascript';
+//        ga.async = true;
+//        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+//        var s = document.getElementsByTagName('script')[0];
+//        s.parentNode.insertBefore(ga, s);
+//    })();
+</script>
+
+
+<div style="display: none;" id="lbOverlay"></div>
+<div style="display: none;" id="lbCenter">
+  <div id="lbImage">
+    <div style="position: relative;"><a id="lbPrevLink" href="#"></a><a id="lbNextLink" href="#"></a></div>
+  </div>
+</div>
+<div style="display: none;" id="lbBottomContainer">
+  <div id="lbBottom"><a id="lbCloseLink" href="#"></a>
+
+    <div id="lbCaption"></div>
+    <div id="lbNumber"></div>
+    <div style="clear: both;"></div>
+  </div>
+</div>
+<%= yield :scripts %>
+</body>
+</html>

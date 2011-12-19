@@ -1,0 +1,29 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+one:
+  rooms_count: 1
+  leasing_period: 1
+  price: 1.5
+  prepayment: 1
+  address: MyString
+  remote_type: 1
+  remote_time: 2011-11-01 21:03:37
+  balkon: 1
+  living_space: 1.5
+  floor: 1
+  description: MyText
+  rent_type: 1
+
+two:
+  rooms_count: 1
+  leasing_period: 1
+  price: 1.5
+  prepayment: 1
+  address: MyString
+  remote_type: 1
+  remote_time: 2011-11-01 21:03:37
+  balkon: 1
+  living_space: 1.5
+  floor: 1
+  description: MyText
+  rent_type: 1

@@ -1,0 +1,22 @@
+<div id="inner-content" class="li-no-style">
+  <%= title(t('welcome_images.index.title')) %>
+
+  <table>
+    <tr>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+
+    <% @welcome_images.each do |welcome_image| %>
+        <tr>
+          <%= image_tag welcome_image.image.url(:list) %>
+          <td><%= link_to(t('backend.actions.show'), welcome_image) if can?(:show, welcome_image) %></td>
+          <td><%= link_to(t('backend.actions.edit'), edit_welcome_image_path(welcome_image)) if can?(:edit, welcome_image) %></td>
+          <td><%= link_to(t('backend.actions.destroy'), welcome_image, :confirm => t('backend.actions.are_you_sure'), :method => :delete) if can?(:destroy, welcome_image) %></td>
+        </tr>
+    <% end %>
+  </table>
+
+  <p><%= link_to(t('helpers.submit.create', :model => t('activerecord.models.welcome_image')), new_welcome_image_path) if can?(:create, WelcomeImage) %></p>
+</div>

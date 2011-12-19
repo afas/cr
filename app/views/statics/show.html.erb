@@ -1,0 +1,47 @@
+<%#= @static.seo_title %>
+<%#= @static.seo_keywords %>
+<%#= @static.seo_description %>
+<div id="inner-content" class="li-no-style">
+  <%= title(@static.title) %>
+
+  <%= link_to t('backend.actions.edit'), edit_static_path(@static) if can?(:edit, @static) %>
+  <%= raw "<br/>" if can?(:edit, @static) %>
+
+  <p>
+    <%= raw @static.content %>
+  </p>
+
+  <% if @static.static_files.size > 0 %>
+      <h2>Документы</h2>
+      <ul class="files">
+        <% @static.static_files.each do |file| %>
+            <li>
+              <%= link_to image_tag("/images/file-icon.png"), file.file.url %>
+              <%= link_to file.file_file_name.split('.')[0], file.file.url, :class => "files-description" %>
+              <!--<br/>-->
+              <!--<%#= file.file_file_size / 1024 %>KB, <%#= file.file_updated_at.strftime("%e %b %Y") %>-->
+            </li>
+        <% end %>
+      </ul>
+      <div class="g-clearfix"></div>
+  <% end %>
+
+  <% if @static.static_images.size > 0 %>
+      <h2>Фотогалерея</h2>
+      <% @static.static_images.each do |image| %>
+          <%= link_to (image_tag image.image.url(:list)), image.image.url(:gallery), :rel => 'gallery', :class => "gallery-list" %>
+      <% end %>
+      <div class="g-clearfix"></div>
+  <% end %>
+</div>
+
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("a[rel=gallery]").fancybox({
+            'transitionIn'      : 'none',
+            'transitionOut'     : 'none',
+            'titlePosition'     : 'over'
+        });
+    });
+</script>
