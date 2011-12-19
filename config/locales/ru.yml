@@ -65,6 +65,7 @@ ru:
     models:
       user: "пользователя"
       flat: "квартира"
+      welcome_image: "фон для главной страницы"
 
     attributes:
       user:

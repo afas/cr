@@ -8,7 +8,7 @@
               <%= link_to "Акции", "/special" %>
           <% end %>
           <% if can?(:create, WelcomeImage) %>
-              <%= link_to "Фон", new_welcome_image_path %>
+              <%= link_to "Фон", welcome_images_path %>
           <% end %>
           <% if can?(:create, Import) %>
               <%= link_to "Импорт", new_import_path %>
