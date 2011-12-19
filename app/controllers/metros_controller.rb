@@ -1,6 +1,19 @@
 class MetrosController < ApplicationController
   load_and_authorize_resource
 
+  def by_metro
+    @tags = Metro.where("UPPER(name) like UPPER('#{params[:term]}%') OR UPPER(name) like UPPER('%#{params[:term]}%')")
+    @results = Array.new
+    @tags.each do |t|
+      @results << {:id => t.id, :value => t.name, :object => t.class.to_s}
+    end
+
+    respond_to do |format|
+      format.json { render :json => @results }
+    end
+  end
+
+
   # GET /metros
   # GET /metros.xml
   def index

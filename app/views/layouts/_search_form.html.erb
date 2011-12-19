@@ -1,3 +1,8 @@
+<% content_for(:head) do %>
+    <%= javascript_include_tag 'jquery-ui-1.8.16.custom.min' %>
+    <%= stylesheet_link_tag 'jquery-ui-1.8.16.custom' %>
+<% end %>
+
 <H3>Найти</H3>
 
 <form class="q-search" action="/search">
@@ -5,20 +10,51 @@
 
   <div class="rooms">
     <label for="rooms">Комнат</label><br/>
-    <input type="text" name="rooms" placeholder="3" value="">
+    <input type="text" name="rooms" placeholder="2" value="">
   </div>
 
   <div class="metro">
     <label for="metro">Метро</label><br/>
-    <input type="text" name="metro" placeholder="Баррикадная" value="" size="15">
+    <input type="text" name="metro" placeholder="Метро" value="" id="metro" size="15">
   </div>
 
   <div class="price">
     <label for="price">Цена</label><br/>
-    <input type="text" name="price" placeholder="50000" value="" size="6">
+    <input type="text" name="price" placeholder="34000" value="" size="6">
   </div>
 
   <center>
     <input type="submit" value="Показать" class="q-search-submit"></input>
   </center>
 </form>
+
+<script type="text/javascript">
+    function split(val) {
+        return val.split(/,\s*/);
+    }
+    function extractLast(term) {
+        return split(term).pop();
+    }
+    $("#metro")
+            .autocomplete({
+                source: function(request, response) {
+                    $.getJSON("/metros/by_metro", {
+                        term: extractLast(request.term)
+                    }, response);
+                },
+                search: function() {
+                    var term = extractLast(this.value);
+                    if (term.length < 2) {
+                        return false;
+                    }
+                },
+                select: function(event, ui) {
+                    var terms = split(this.value);
+                    terms.pop();
+                    this.value = ui.item.value;
+                    $(this).attr("object_name", ui.item.object);
+                    $(this).attr("object_id", ui.item.id);
+                    return false;
+                }
+            });
+</script>

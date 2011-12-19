@@ -1,5 +1,10 @@
 Classicrent::Application.routes.draw do
 
+  resources :metros do
+    collection do
+      get 'by_metro'
+    end
+  end
   resources :metros
 
   resources :welcome_images
