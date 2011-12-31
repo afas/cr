@@ -18,7 +18,7 @@
 
     <div id="s2" class="slideshow">
       <% @backgrounds.each_with_index do |image, i| %>
-          <%= image_tag image.image.url(:welcome), :id => "img#{i}", :rel => "s2img", :rel => "#{i}" %>
+          <%= image_tag image.image.url(:original), :id => "img#{i}", :rel => "s2img", :rel => "#{i}" %>
       <% end %>
     </div>
 
