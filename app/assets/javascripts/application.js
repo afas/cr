@@ -4,7 +4,7 @@
 //= require_tree
 //= require aloha
 
-//= require gmaps4rails/snow.js
+//= require snow.js
 //= require gmaps4rails/bing.js
 //= require gmaps4rails/googlemaps.js
 //= require gmaps4rails/mapquest.js
