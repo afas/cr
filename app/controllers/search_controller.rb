@@ -12,7 +12,8 @@ class SearchController < ApplicationController
     end
 
     respond_to do |format|
-      format.html { render :layout => "search"}
+      format.html
+      #{ render :layout => "search"}
       format.json do
         @data = @flats.collect do |f|
           {
