@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+one:
+  name: MyString
+  phone: MyString
+  rooms_count: 1
+  metro: 1
+  price: 1.5
+  operation: 1
+  description: MyText
+
+two:
+  name: MyString
+  phone: MyString
+  rooms_count: 1
+  metro: 1
+  price: 1.5
+  operation: 1
+  description: MyText

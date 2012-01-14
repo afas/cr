@@ -1,9 +1,9 @@
 <div id="inner-content" class="li-no-style">
-  <%= title(t('flats.index.title')) %>
+  <%= title("Квартиры") %>
 
-  <table>
+  <table width="100%">
     <tr>
-      <th><%= t('activerecord.attributes.flat.photo') %></th>
+      <th></th>
       <th><%= t('activerecord.attributes.flat.rooms_count') %></th>
       <!--<th><%#= t('activerecord.attributes.flat.rent_period') %></th>-->
       <th><%= t('activerecord.attributes.flat.price') %></th>
@@ -21,7 +21,7 @@
 
     <% @flats.each do |flat| %>
         <tr <%= "style='approved'" if flat.approved? %>>
-          <td><%= raw flat.flat_images.size > 0 ? "<img src='#{flat.flat_images.first.image.url(:list)}'/>" : "" %></td>
+          <td><%= raw flat.flat_images.size > 0 ? "<a href='flats/#{flat.id}'><img src='#{flat.flat_images.first.image.url(:list)}'/></a>" : "" %></td>
           <td><%= flat.rooms_count %></td>
           <!--<td><%#= flat.rent_period %></td>-->
           <td><%= flat.price %></td>
@@ -40,6 +40,6 @@
     <% end %>
   </table>
 
-  <p><%= link_to(t('helpers.submit.create', :model => t('activerecord.models.flat')), new_flat_path) if can?(:create, Flat) %></p>
+  <p><%= link_to("Создать квартиру", new_flat_path) if can?(:create, Flat) %></p>
 
 </div>

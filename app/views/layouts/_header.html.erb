@@ -13,6 +13,9 @@
           <% if can?(:create, Import) %>
               <%= link_to "Импорт", new_import_path %>
           <% end %>
+          <% if can?(:destroy, Tender) %>
+              <%= link_to "Заявки", "/tenders" %>
+          <% end %>
           <% @about_menu.each do |static| %>
               <%= link_to static.title, "/#{static.short_url}" %>
           <% end %>

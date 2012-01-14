@@ -1,0 +1,40 @@
+<div id="inner-content" class="li-no-style">
+  <%= title("Заявка") %>
+
+  <p>
+    <b><%= "Имя" %>:</b>
+    <%= @tender.name %>
+  </p>
+
+  <p>
+    <b><%= "Контактный телефон" %>:</b>
+    <%= @tender.phone %>
+  </p>
+
+  <p>
+    <b><%= "Количество комнат" %>:</b>
+    <%= @tender.rooms_count %>
+  </p>
+
+  <p>
+    <b><%= "Метро" %>:</b>
+    <%= @tender.metro %>
+  </p>
+
+  <p>
+    <b><%= "Стоимость аренды" %>:</b>
+    <%= @tender.price %>
+  </p>
+
+  <p>
+    <b><%= "Тип заявки" %>:</b>
+    <%= TenderOperation.by_id(@tender.operation) %>
+  </p>
+
+  <p>
+    <b><%= "Описание" %>:</b>
+    <%= @tender.description %>
+  </p>
+
+  <%= link_to t('backend.actions.edit'), edit_tender_path(@tender) %>
+</div>

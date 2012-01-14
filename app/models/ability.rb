@@ -11,6 +11,9 @@ class Ability
     else
       #can :manage, :all
       can :read, :all
+      can :create, Flat
+      can :create, Tender
+      can :by_metro, Metro
     end
     #
     # The first argument to `can` is the action you are giving the user permission to do.

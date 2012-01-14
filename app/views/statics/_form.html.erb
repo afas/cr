@@ -5,28 +5,28 @@
         <%= image_tag @static.preview.url(:list) %>
     <% end %>
     <div class="field">
-      <%= f.label :title %>
+      <%= f.label "Заголовок" %>
       <br/>
       <%= f.text_field :title %>
     </div>
     <div class="field">
-      <%= f.label :content %>
+      <%= f.label "Текстовое содержимое страницы" %>
       <br/>
       <%= f.text_area :content %>
     </div>
     <div class="field">
-      <%= f.label :preview %>
+      <%= f.label "Изображение/превью" %>
       <br/>
       <%= f.file_field :preview %>
     </div>
 
-    <% if @static.menu? %>
-        <div class="field">
-          <%= f.label :menu %>
-          <br/>
-          <%= f.text_field :menu %>
-        </div>
-    <% end %>
+    <%# if @static.menu? %>
+        <!--<div class="field">-->
+          <%#= f.label :menu %>
+          <!--<br/>-->
+          <%#= f.text_field :menu %>
+        <!--</div>-->
+    <%# end %>
     <!--<div class="field">-->
     <!--<%#= f.label :parent_id %>-->
     <!--<br/>-->
@@ -38,7 +38,7 @@
     <!--<%#= f.text_field :short_url %>-->
     <!--</div>-->
     <div class="field">
-      <%= f.label :static_image %>
+      <%= f.label "Фотографии" %>
       <br/>
       <% @static.static_images.each do |image| %>
           <p id="static_image_<%= image.id %>">
@@ -51,7 +51,7 @@
       <div><%= f.file_field :static_images, :multiple => true %></div>
     </div>
     <div class="field">
-      <%= f.label :static_file %>
+      <%= f.label "Прикрепленные файлы" %>
       <br/>
       <% @static.static_files.each do |file| %>
           <p id="static_file_<%= file.id %>">
@@ -63,6 +63,7 @@
       <% end %>
       <div><%= f.file_field :static_files, :multiple => true %></div>
     </div>
+    <br/>
     <div class="field">
       <%= f.label :seo_title %>
       <br/>
@@ -78,8 +79,9 @@
       <br/>
       <%= f.text_field :seo_description %>
     </div>
+    <br/>
     <div class="actions">
-      <%= f.submit %>
+      <%= f.submit "Сохранить страницу" %>
     </div>
 <% end %>
 

@@ -1,5 +1,7 @@
 Classicrent::Application.routes.draw do
 
+  resources :tenders
+
   resources :metros do
     collection do
       get 'by_metro'

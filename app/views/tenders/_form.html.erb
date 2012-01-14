@@ -1,0 +1,74 @@
+<%= form_for(@tender, :builder => StarsFormBuilder) do |f| %>
+    <%= render 'shared/error_messages', :target => @tender %>
+
+    <div class="field">
+      <%= f.label "Представьтесь" %>
+      <br/>
+      <%= f.text_field :name %>
+    </div>
+    <div class="field">
+      <%= f.label "Контактный телефон/телефоны" %>
+      <br/>
+      <%= f.text_field :phone %>
+    </div>
+    <div class="field">
+      <%= f.label "Количество комнат" %>
+      <br/>
+      <%= collection_select(:tender, :rooms_count, RoomCount.collection, :cut, :name, :prompt => true) %>
+    </div>
+    <div class="field">
+      <%= f.label "Метро" %>
+      <br/>
+      <input type="number" size="30" name="tender[metro]" id="tender_metro">
+    </div>
+    <div class="field">
+      <%= f.label "Стоимость аренды" %>
+      <br/>
+      <%= f.text_field :price %>
+    </div>
+    <div class="field">
+      <%= f.label "Тип заявки" %>
+      <br/>
+      <%= collection_select(:tender, :operation, TenderOperation.collection, :cut, :name, :prompt => true) %>
+    </div>
+    <div class="field">
+      <%= f.label "Описание, комментарии" %>
+      <br/>
+      <%= f.text_area :description, :cols => 55, :rows => 5 %>
+    </div>
+    <br/>
+    <div class="actions">
+      <%= f.submit "Отправить заявку" %>
+    </div>
+<% end %>
+
+<script type="text/javascript">
+    function split(val) {
+        return val.split(/,\s*/);
+    }
+    function extractLast(term) {
+        return split(term).pop();
+    }
+    $("#tender_metro")
+            .autocomplete({
+                source: function(request, response) {
+                    $.getJSON("/metros/by_metro", {
+                        term: extractLast(request.term)
+                    }, response);
+                },
+                search: function() {
+                    var term = extractLast(this.value);
+                    if (term.length < 2) {
+                        return false;
+                    }
+                },
+                select: function(event, ui) {
+                    var terms = split(this.value);
+                    terms.pop();
+                    this.value = ui.item.value;
+                    $(this).attr("object_name", ui.item.object);
+                    $(this).attr("object_id", ui.item.id);
+                    return false;
+                }
+            });
+</script>
