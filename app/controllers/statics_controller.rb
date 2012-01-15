@@ -25,7 +25,7 @@ class StaticsController < ApplicationController
   def show
     @static = Static.find_by_short_url(params[:short_url]) if params[:short_url]
 
-    if @static.short_url == "about" || @static.short_url == "services" || @static.short_url == "vacancies"
+    if @static.short_url == "about" || @static.short_url == "services" || @static.short_url == "vacancies" || @static.short_url == "why" || @static.short_url == "feedback" || @static.short_url == "faq"
       render :action => "with-adwert"
     else
       respond_to do |format|
@@ -48,6 +48,7 @@ class StaticsController < ApplicationController
 
   # GET /statics/1/edit
   def edit
+    render :layout => "with_aloha"
   end
 
   # POST /statics

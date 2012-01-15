@@ -24,9 +24,8 @@
 
     <script language="javascript">
         var circles = [
-            "",
             <% @specials.each do |special| %>
-            "<%= raw("<img src=#{special.preview.url(:original)} onclick='window.locate=blablabla' />") %>"<%= ", " if @specials.last != special  %>
+            "<%= raw("<img src='#{special.preview.url(:original)}' onclick='goSpecial(#{special.id})' />") %>"<%= ", " if @specials.last != special  %>
             <% end %>
         ];
 
@@ -63,6 +62,10 @@
         $("#headernav").click(function() {
             $('#s2').cycle('pause');
         });
+
+        function goSpecial(id) {
+            window.location = '/statics/' + id;
+        }
     </script>
   </div>
 </div>

@@ -7,3 +7,6 @@
 //= require gmaps4rails/openlayers.js
 //= require gmaps4rails/all_apis.js
 
+//= require jquery-easing
+//= require jquery-fancybox
+//= require jquery-mousewheel

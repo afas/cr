@@ -1,10 +1,15 @@
 <div>
-  <%= gmaps({"map_options" => {
-          "zoom" => 13,
-          "auto_adjust" => true,
-          "detect_location" => true,
-          "center_on_user" => true},
-             "markers" => {"data" => @flats}}) %>
+  <%= gmaps({
+                    "map_options" => {
+                            "zoom" => 13,
+                            "auto_adjust" => true,
+                            "detect_location" => true,
+                            "center_on_user" => true
+                    },
+                    "markers" => {
+                            "data" => @flats
+                    }
+            }) %>
 
   <%= render "small_search" %>
 </div>

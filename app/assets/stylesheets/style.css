@@ -112,6 +112,10 @@ h3 {
     border-right: 1px solid #38393A;
 }
 
+.strip-links a.last {
+    border-right: none !important;
+}
+
 .strip-links a:hover {
     color: #69A501;
 }
@@ -348,6 +352,10 @@ h3 {
     height: 330px;
     float: right;
     overflow: hidden;
+}
+
+#firstline img {
+    cursor: pointer;
 }
 
 #secondline {
@@ -1907,7 +1915,9 @@ form .actions input {
 }
 
 .files {
-    list-style: none;
+    list-style: none outside none;
+    margin: 0;
+    padding: 0;
 }
 
 .files-description {

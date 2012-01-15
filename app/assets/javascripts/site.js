@@ -8,10 +8,7 @@ function hide(obj) {
     el.style.display = 'none';
 }
 
-
 $(document).ready(function() {
-
-
     $(".buildings a").hover(
         function () {
             $(".building-num").fadeIn("fast");
@@ -32,7 +29,6 @@ $(document).ready(function() {
     );
 
     //LocalNavigation is absolute positioned
-
     var subnavElement = document.getElementById('LocalNavigation');
 
     if (subnavElement) {
@@ -43,13 +39,11 @@ $(document).ready(function() {
         }
     }
 
-
     EnlargeImage();
     function EnlargeImage() {
         $('#Content.building-page').animate({
             height: "53px"
         }, 500);
-
 
         $(".building #LocalNavigation").css("display", "none");
 
@@ -71,8 +65,6 @@ $(document).ready(function() {
     }
 
     //tooltip
-
-
     $(".opencontent").click(function() {
         if ($(".opencontent").hasClass("opened")) {
             ShowContent();

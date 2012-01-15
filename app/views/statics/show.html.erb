@@ -16,8 +16,8 @@
       <ul class="files">
         <% @static.static_files.each do |file| %>
             <li>
-              <%= link_to image_tag("/images/file-icon.png"), file.file.url %>
-              <%= link_to file.file_file_name.split('.')[0], file.file.url, :class => "files-description" %>
+              <%= link_to image_tag('file-icon.png'), file.file.url, :target => "_blank" %>
+              <%= link_to file.file_file_name.split('.')[0], file.file.url, :class => "files-description", :target => "_blank" %>
               <!--<br/>-->
               <!--<%#= file.file_file_size / 1024 %>KB, <%#= file.file_updated_at.strftime("%e %b %Y") %>-->
             </li>
