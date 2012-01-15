@@ -1,31 +1,75 @@
-<div id="Content" class="grid-12 boxes">
-  <h2>Edit <%= resource_name.to_s.humanize %></h2>
+<div id="inner-content" class="li-no-style">
+  <h2>Мой профиль</h2>
 
   <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => {:method => :put}) do |f| %>
       <%= devise_error_messages! %>
 
-      <div><%= f.label :email %>
+      <div>
+        <%= f.label :email %>
         <br/>
-        <%= f.email_field :email %></div>
+        <%= f.email_field :email %>
+      </div>
 
-      <div><%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br/>
-        <%= f.password_field :password %></div>
-
-      <div><%= f.label :password_confirmation %>
+      <div>
+        <%= f.label "Имя" %>
         <br/>
-        <%= f.password_field :password_confirmation %></div>
+        <%= f.text_field :name %>
+      </div>
+      <div>
+        <%= f.label "Фамилия" %>
+        <br/>
+        <%= f.text_field :surname %>
+      </div>
+      <div>
+        <%= f.label "Телефон" %>
+        <br/>
+        <%= f.text_field :phone %>
+      </div>
+      <div>
+        <%= f.label "Расскажите о себе" %>
+        <br/>
+        <%= f.text_area :about, :cols => 55, :rows => 5 %>
+      </div>
+      <div>
+        <%= f.label "Роль в системе" %>
+        <br/>
+        <%= f.collection_select(:role_id, Role.collection, :cut, :name, :prompt => true) %>
+      </div>
+      <div>
+        <%= f.label "Организация" %>
+        <br/>
+        <%= f.text_field :organization %>
+      </div>
+      <!--<div>-->
+        <!--<%#= f.label "Внутренний работник" %>-->
+        <!--<br/>-->
+        <!--<%#= f.check_box :internal %>-->
+      <!--</div>-->
 
-      <div><%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br/>
-        <%= f.password_field :current_password %></div>
+      <div>
+        <%= f.label :password %> <i>(не нужно заполнять если вы не хотите внести изменения в профиль)</i><br/>
+        <%= f.password_field :password %>
+      </div>
 
-      <div><%= f.submit "Update" %></div>
+      <div>
+        <%= f.label :password_confirmation %>
+        <br/>
+        <%= f.password_field :password_confirmation %>
+      </div>
+
+      <div>
+        <%= f.label :current_password %> <i>(введите для сохранения профиля)</i><br/>
+        <%= f.password_field :current_password %>
+      </div>
+
+      <br/>
+
+      <div>
+        <%= f.submit "Сохранить изменения" %>
+      </div>
   <% end %>
 
-  <h3>Cancel my account</h3>
-
-  <p>Unhappy? <%= link_to "Cancel my account", registration_path(resource_name), :confirm => "Are you sure?", :method => :delete %>
-    .</p>
-
-  <%= link_to "Back", :back %>
-
+  <p>
+    <%= link_to "Удалить мой аккаунт", registration_path(resource_name), :confirm => "Are you sure?", :method => :delete %>
+  </p>
 </div>

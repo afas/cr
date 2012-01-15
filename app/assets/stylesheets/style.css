@@ -70,7 +70,7 @@ h3 {
 }
 
 #Strip {
-    font-size: 12px;
+    font-size: 13px;
     width: 760px;
     overflow: hidden;
     float: right
@@ -150,7 +150,7 @@ h3 {
 }
 
 #Navigation {
-    font: bold 13px Tahoma, Geneva, sans-serif;
+    /*font: bold 13px Tahoma, Geneva, sans-serif;*/
     text-transform: uppercase;
     margin: 4px -490px 0 0;
     padding: 0;
@@ -172,9 +172,9 @@ h3 {
     color: #FFFFFF;
     display: block;
     float: left;
-    font-size: 14px;
+    font-size: 12px;
     font-weight: bold;
-    padding: 42px 16px;
+    padding: 43px 34px;
     text-align: center;
     text-decoration: none;
 }
@@ -186,6 +186,11 @@ h3 {
 #Navigation a.active {
     color: #1F2122;
     background: url(current-nav.png) no-repeat center center;
+    min-width: 100px;
+}
+
+#Navigation a.separator {
+    padding:  43px 16px 43px 0;
 }
 
 #Body {
@@ -208,8 +213,8 @@ h3 {
 
 #Content ul li {
     margin: 0;
-    padding: 2px 0 2px 14px;
-    background: url(arrow.png) no-repeat 0 4px;
+    /*padding: 2px 0 2px 14px;*/
+    background: url(arrow.png) no-repeat 0px 6px;
 }
 
 .li-no-style ul li {
@@ -287,6 +292,7 @@ h3 {
     color: #1F2122;
     text-decoration: none;
     border-bottom: 1px solid #B0CD7B;
+    line-height: 26px;
 }
 
 .boxes a:hover {
@@ -1919,4 +1925,16 @@ form .actions input {
 
 #inner-content a {
     color: #fff;
+}
+
+.content-left {
+    float: left;
+    width: 690px;
+    padding-right: 20px;
+}
+
+.content-right {
+    float: left;
+    width: 250px;
+    margin-top: 75px;
 }

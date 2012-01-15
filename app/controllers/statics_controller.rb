@@ -6,7 +6,7 @@ class StaticsController < ApplicationController
   def index
     respond_to do |format|
       format.html # index.html.erb
-      format.xml  { render :xml => @statics }
+      format.xml { render :xml => @statics }
     end
   end
 
@@ -16,7 +16,7 @@ class StaticsController < ApplicationController
     @specials = Static.find_all_by_menu("special")
     respond_to do |format|
       format.html # index.html.erb
-      format.xml  { render :xml => @statics }
+      format.xml { render :xml => @statics }
     end
   end
 
@@ -24,10 +24,16 @@ class StaticsController < ApplicationController
   # GET /statics/1.xml
   def show
     @static = Static.find_by_short_url(params[:short_url]) if params[:short_url]
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @static }
+
+    if @static.short_url == "about" || @static.short_url == "services" || @static.short_url == "vacancies"
+      render :action => "with-adwert"
+    else
+      respond_to do |format|
+        format.html # show.html.erb
+        format.xml { render :xml => @static }
+      end
     end
+
   end
 
   # GET /statics/new
@@ -36,7 +42,7 @@ class StaticsController < ApplicationController
     @static.menu = params[:menu] if params[:menu]
     respond_to do |format|
       format.html # new.html.erb
-      format.xml  { render :xml => @static }
+      format.xml { render :xml => @static }
     end
   end
 
@@ -52,10 +58,10 @@ class StaticsController < ApplicationController
         format.html { redirect_to(@static,
                                   :notice => I18n.t('backend.actions.success_create',
                                                     :model => I18n.t('activerecord.capitalized_models.static'))) }
-        format.xml  { render :xml => @static, :status => :created, :location => @static }
+        format.xml { render :xml => @static, :status => :created, :location => @static }
       else
         format.html { render :action => "new" }
-        format.xml  { render :xml => @static.errors, :status => :unprocessable_entity }
+        format.xml { render :xml => @static.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -68,10 +74,10 @@ class StaticsController < ApplicationController
         format.html { redirect_to(@static,
                                   :notice => I18n.t('backend.actions.success_update',
                                                     :model => I18n.t('activerecord.capitalized_models.static'))) }
-        format.xml  { head :ok }
+        format.xml { head :ok }
       else
         format.html { render :action => "edit" }
-        format.xml  { render :xml => @static.errors, :status => :unprocessable_entity }
+        format.xml { render :xml => @static.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -85,7 +91,7 @@ class StaticsController < ApplicationController
       format.html { redirect_to(statics_url,
                                 :notice => I18n.t('backend.actions.success_destroy',
                                                   :model => I18n.t('activerecord.capitalized_models.static'))) }
-      format.xml  { head :ok }
+      format.xml { head :ok }
     end
   end
 end

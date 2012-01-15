@@ -10,9 +10,6 @@
           <% if can?(:create, WelcomeImage) %>
               <%= link_to "Фон", welcome_images_path %>
           <% end %>
-          <% if can?(:create, Import) %>
-              <%= link_to "Импорт", new_import_path %>
-          <% end %>
           <% if can?(:destroy, Tender) %>
               <%= link_to "Заявки", "/tenders" %>
           <% end %>
@@ -25,7 +22,8 @@
     <ul id="Navigation">
       <% @services_menu.each do |static| %>
           <li class="nav-item">
-            <%= link_to static.title, "/#{static.short_url}" %>
+            <%= link_to static.title, "/#{static.short_url}", :class => ("active" if !@static.nil? && @static == static )%>
+            <%#= raw "<a class='separator'>/</a>" if static != @services_menu.last %>
           </li>
       <% end %>
     </ul>

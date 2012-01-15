@@ -1,14 +1,13 @@
-<div id="Footer">
-  <p>
-    <% if user_signed_in? %>
-        Вы вошли как <%= current_user.email %>. Не вы?
-        <%= link_to "Выйти", destroy_user_session_path, :method => :delete %>
-    <% else %>
-        <%#= link_to "Sign up", new_user_registration_path %>
-        <%= link_to "Войти", new_user_session_path %>
-    <% end %>
-    <br/>
-    &copy; 2011 Classic Rent. Все права защищены. Сделано в
-    <a href="http://black-sheep.ru" target="_blank">Black Sheep</a>
-  </p>
-</div>
+<p>
+  <% if user_signed_in? %>
+      Вы вошли как <%= current_user.email %>. Не вы?
+      <%= link_to "Мой профиль", "/users/edit" %> / <%= link_to "Выйти", destroy_user_session_path, :method => :delete %>
+  <% else %>
+      <%#= link_to "Sign up", new_user_registration_path %>
+      <%= link_to "Войти", new_user_session_path %>
+  <% end %>
+  <br/>
+  &copy; 2011 Classic Rent. Все права защищены. Сделано в
+  <a href="http://black-sheep.ru" target="_blank">Black Sheep</a>
+</p>
+
