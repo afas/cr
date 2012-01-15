@@ -5,9 +5,6 @@
     <tr>
       <th><%= "Имя" %></th>
       <th><%= "Телефон" %></th>
-      <th><%= "Кол-во комнат" %></th>
-      <th><%= "Метро" %></th>
-      <th><%= "Стоимость" %></th>
       <th><%= "Тип" %></th>
       <th></th>
       <th></th>
@@ -18,9 +15,6 @@
     <tr>
       <td><%= tender.name %></td>
       <td><%= tender.phone %></td>
-      <td><%= RoomCount.by_id(tender.rooms_count) %></td>
-      <td><%= tender.metro %></td>
-      <td><%= tender.price %></td>
       <td><%= TenderOperation.by_id(tender.operation) %></td>
       <td><%= link_to(t('backend.actions.show'), tender) if can?(:show, tender) %></td>
       <td><%= link_to(t('backend.actions.edit'), edit_tender_path(tender))  if can?(:edit, tender) %></td>

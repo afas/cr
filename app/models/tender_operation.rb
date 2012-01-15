@@ -6,7 +6,9 @@ class TenderOperation
   def self.collection
     [
         TenderOperation.new(:name => 'Сдать', :cut => '0'),
-        TenderOperation.new(:name => 'Снять', :cut => '1')
+        TenderOperation.new(:name => 'Снять', :cut => '1'),
+        TenderOperation.new(:name => 'Купить', :cut => '2'),
+        TenderOperation.new(:name => 'Продать', :cut => '3')
     ]
   end
 
