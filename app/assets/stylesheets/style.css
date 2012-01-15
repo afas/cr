@@ -190,7 +190,7 @@ h3 {
 }
 
 #Navigation a.separator {
-    padding:  43px 16px 43px 0;
+    padding: 43px 16px 43px 0;
 }
 
 #Body {
@@ -1937,4 +1937,9 @@ form .actions input {
     float: left;
     width: 250px;
     margin-top: 75px;
+}
+
+.social-links {
+    float: right;
+    padding: 1px 0 0 8px;
 }

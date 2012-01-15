@@ -1,3 +1,8 @@
+<p class="social-links">
+  <%= link_to image_tag("vk.png", :alt => "#{t('site_name')} Группа в контакте"), "http://vkontakte.ru/classicrent" %>
+  <%= link_to image_tag("fb.png", :alt => "#{t('site_name')} Группа в Facebook"), "http://facebook.com/classicrent" %>
+</p>
+
 <p>
   <% if user_signed_in? %>
       Вы вошли как <%= current_user.email %>. Не вы?
@@ -7,7 +12,7 @@
       <%= link_to "Войти", new_user_session_path %>
   <% end %>
   <br/>
-  &copy; 2011 Classic Rent. Все права защищены. Сделано в
-  <a href="http://black-sheep.ru" target="_blank">Black Sheep</a>
+  &copy; 2011 Classic Rent. Все права защищены. Сделано в <a href="http://black-sheep.ru" target="_blank">Black Sheep</a>
 </p>
+
 
