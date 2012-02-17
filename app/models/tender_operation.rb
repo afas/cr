@@ -19,7 +19,7 @@ class TenderOperation
 
   def self.by_id(id)
     collection.each do |value|
-      return value.name if value.cut == id
+      return value.name if value.cut.to_i == id
     end
     false
   end

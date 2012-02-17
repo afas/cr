@@ -13,6 +13,7 @@ class FlatsController < ApplicationController
   # GET /flats/1
   # GET /flats/1.xml
   def show
+    @flats_to_map = Flat.approved.to_gmaps4rails
     respond_to do |format|
       format.html { render :layout => "with_gmaps" }
       format.xml { render :xml => @flat }

@@ -98,13 +98,26 @@
 
 </div>
 
+<%= gmaps({
+                  "map_options" => {
+                          "zoom" => 13
+                  },
+                  "markers" => {
+                          "data" => @flats_to_map
+                  }
+          }) %>
 
 <script type="text/javascript">
-    $(document).ready(function() {
+    $(document).ready(function () {
+        var centerpoint = new google.maps.LatLng(<%= @flat.latitude %>, <%= @flat.longitude %>);
+
+        Gmaps.map.setCenter(centerpoint);
+//        Gmaps4Rails.map.setCenter(centerpoint);
+
         $("a[rel=gallery]").fancybox({
-            'transitionIn'      : 'none',
-            'transitionOut'     : 'none',
-            'titlePosition'     : 'over'
+            'transitionIn':'none',
+            'transitionOut':'none',
+            'titlePosition':'over'
         });
     });
 </script>
