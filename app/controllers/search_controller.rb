@@ -71,12 +71,13 @@ class SearchController < ApplicationController
       where += (where != "" ? " AND price <= #{params[:price_to]}" : "price <= #{params[:price_to]}")
     end
 
+    @flats = Flat.all.to_gmaps4rails
 
-    if user_signed_in?
-      where != "" ? @flats = Flat.approved.where(where).to_gmaps4rails : Flat.approved.to_gmaps4rails
-    else
-      @flats = Flat.all.to_gmaps4rails
-    end
+    #if user_signed_in?
+      #where != "" ? @flats = Flat.where(where).to_gmaps4rails : Flat.to_gmaps4rails
+    #else
+      #where != "" ? @flats = Flat.approved.where(where).to_gmaps4rails : Flat.approved.to_gmaps4rails
+    #end
 
     respond_to do |format|
       format.html { render :layout => "with_gmaps" }
