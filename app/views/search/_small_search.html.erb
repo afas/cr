@@ -21,7 +21,7 @@
 
   <div class="address">
     <label for="address">Улица</label><br/>
-    <input type="text" name="address" placeholder="" value="">
+    <input type="text" name="address" placeholder="" id="address" value="">
   </div>
 
   <div class="balkon">
@@ -31,13 +31,13 @@
 
   <div class="living_space">
     <label for="living_space">Площадь</label><br/>
-    <input type="text" name="living_space" placeholder="" value="">
+    <input type="text" name="living_space" placeholder="" id="living_space" value="">
   </div>
 
   <div class="price">
     <label for="price">Цена</label><br/>
-    <input type="text" name="price_from" placeholder="от" value="" size="6">
-    <input type="text" name="price_to" placeholder="до" value="" size="6">
+    <input type="text" name="price_from" id="price_from" placeholder="от" value="" size="6">
+    <input type="text" name="price_to" id="price_to" placeholder="до" value="" size="6">
   </div>
 
   <br/>
@@ -47,16 +47,36 @@
 </div>
 
 <script type="text/javascript">
-    function searchResults() {
-        var params = ""
-        flat_rooms_count = $("#flat_rooms_count").val();
-        if (flat_rooms_count) {
+
+    function validateAndGet(name, params) {
+
+        if (name != "metro") {
+            value = $("#" + name).val();
+        } else {
+            value = $("#" + name).attr("object_id");
+        }
+
+        if (value && value != "undefined" && value != "") {
             if (params != "") {
-                params = params + "&flat_rooms_count=" + flat_rooms_count
+                params = params + "&" + name + "=" + value
             } else {
-                params = params + "flat_rooms_count=" + flat_rooms_count
+                params = name + "=" + value
             }
         }
+        return params;
+    }
+
+    function searchResults() {
+        var params = "";
+        params = validateAndGet("flat_rooms_count", params);
+        params = validateAndGet("flat_rent_period", params);
+        params = validateAndGet("flat_prepayment", params);
+        params = validateAndGet("metro", params);
+        params = validateAndGet("address", params);
+        params = validateAndGet("flat_balkon", params);
+        params = validateAndGet("living_space", params);
+        params = validateAndGet("price_from", params);
+        params = validateAndGet("price_to", params);
 
         if (params != "") {
             $.get('/search.json/?' + params, function(newItemData) {
@@ -71,23 +91,25 @@
     function split(val) {
         return val.split(/,\s*/);
     }
+
     function extractLast(term) {
         return split(term).pop();
     }
+
     $("#metro")
             .autocomplete({
-                source: function(request, response) {
+                source:function (request, response) {
                     $.getJSON("/metros/by_metro", {
-                        term: extractLast(request.term)
+                        term:extractLast(request.term)
                     }, response);
                 },
-                search: function() {
+                search:function () {
                     var term = extractLast(this.value);
                     if (term.length < 2) {
                         return false;
                     }
                 },
-                select: function(event, ui) {
+                select:function (event, ui) {
                     var terms = split(this.value);
                     terms.pop();
                     this.value = ui.item.value;
@@ -96,4 +118,5 @@
                     return false;
                 }
             });
+
 </script>

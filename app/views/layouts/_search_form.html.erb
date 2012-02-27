@@ -8,7 +8,7 @@
 
   <div class="metro">
     <label for="metro">Метро</label><br/>
-    <input type="text" name="metro" placeholder="Метро" value="" id="metro" size="15">
+    <input type="text" name="metro" placeholder="Баррикадная" value="" id="metro" size="15">
   </div>
 
   <div class="price">
@@ -28,6 +28,7 @@
     function extractLast(term) {
         return split(term).pop();
     }
+
     $("#metro")
             .autocomplete({
                 source: function(request, response) {

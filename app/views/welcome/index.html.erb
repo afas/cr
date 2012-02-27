@@ -22,51 +22,6 @@
       <% end %>
     </div>
 
-    <script language="javascript">
-        var circles = [
-            <% @specials.each do |special| %>
-            "<%= raw("<img src='#{special.preview.url(:original)}' onclick='goSpecial(#{special.id})' />") %>"<%= ", " if @specials.last != special  %>
-            <% end %>
-        ];
-
-        $('#s2')
-                .before('<div id="headernav">')
-                .cycle({
-                    fx:     'fade',
-                    speed:   800,
-                    timeout: 10000,
-                    pager:  '#headernav',
-                    slideResize: 0,
-                    fit: 1,
-                    before:  onBefore,
-                    after:  onAfter
-                });
-
-        function onBefore() {
-            var selector = '#' + $(this).attr('id');
-
-            $("#s2").backgroundScale({
-                imageSelector: selector,
-                centerAlign: false,
-                containerPadding: 80
-            });
-
-            $("#headertxt").fadeOut();
-        }
-
-        function onAfter() {
-            $("#firstline").html(circles[$(this).attr('rel')]);
-            $("#headertxt").fadeIn();
-        }
-
-        $("#headernav").click(function() {
-            $('#s2').cycle('pause');
-        });
-
-        function goSpecial(id) {
-            window.location = '/statics/' + id;
-        }
-    </script>
   </div>
 </div>
 
@@ -114,3 +69,50 @@
 <div id="Footer" style="position: fixed;">
   <%= render "layouts/footer" %>
 </div>
+
+
+<script type="text/javascript">
+    var circles = [
+        <% @specials.each do |special| %>
+        "<%= raw("<img src='#{special.preview.url(:original)}' onclick='goSpecial(#{special.id})' />") %>"<%= ", " if @specials.last != special  %>
+        <% end %>
+    ];
+
+    $('#s2')
+            .before('<div id="headernav">')
+            .cycle({
+                fx:'fade',
+                speed:800,
+                timeout:10000,
+                pager:'#headernav',
+                slideResize:0,
+                fit:1,
+                before:onBefore,
+                after:onAfter
+            });
+
+    function onBefore() {
+        var selector = '#' + $(this).attr('id');
+
+        $("#s2").backgroundScale({
+            imageSelector:selector,
+            centerAlign:false,
+            containerPadding:80
+        });
+
+        $("#headertxt").fadeOut();
+    }
+
+    function onAfter() {
+        $("#firstline").html(circles[$(this).attr('rel')]);
+        $("#headertxt").fadeIn();
+    }
+
+    $("#headernav").click(function () {
+        $('#s2').cycle('pause');
+    });
+
+    function goSpecial(id) {
+        window.location = '/statics/' + id;
+    }
+</script>

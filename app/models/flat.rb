@@ -1,11 +1,11 @@
 # encoding: utf-8
 class Flat < ActiveRecord::Base
-  acts_as_gmappable
+  acts_as_gmappable :check_process => false
   has_many :flat_images
 
   default_scope order("id DESC")
 
-  scope :approved, where(:approved => true).order("id DESC")
+  scope :approved, where(:approved => true)
 
   def flat_images=(flat_images_array)
     flat_images_array.each do |flat_image|

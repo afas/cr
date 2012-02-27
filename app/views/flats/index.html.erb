@@ -1,26 +1,21 @@
 <div id="inner-content" class="li-no-style">
-  <%= title("Квартиры") %>
+  <% title("Квартиры") %>
 
-  <p><%= link_to("Создать квартиру", new_flat_path) if can?(:create, Flat) %></p>
+  <h1>Квартиры<small><%= link_to("+разместить квартиру", new_flat_path) if can?(:create, Flat) %></small></h1>
 
-  <table width="100%">
-    <tr>
-      <!--<th><%#= t('activerecord.attributes.flat.rent_period') %></th>-->
-      <!--<th><%#= t('activerecord.attributes.flat.prepayment') %></th>-->
-      <!--<th><%#= t('activerecord.attributes.flat.balkon') %></th>-->
-      <!--<th><%#= t('activerecord.attributes.flat.description') %></th>-->
-      <!--<th><%#= t('activerecord.attributes.flat.rent_type') %></th>-->
+  <table class="flats" cellspacing="0">
+    <tr class='even'>
       <th width="11%"></th>
       <th width="25%"><%= t('activerecord.attributes.flat.metro') %> / <%= t('activerecord.attributes.flat.address') %></th>
-      <th width="12%"><%= t('activerecord.attributes.flat.rooms_count') %></th>
-      <th width="15%"><%= t('activerecord.attributes.flat.remote_type') %> / <%= t('activerecord.attributes.flat.remote_time') %></th>
-      <th width="9%"><%= t('activerecord.attributes.flat.floor') %> / <%= t('activerecord.attributes.flat.floor_count') %></th>
+      <th width="12%"><%= t('activerecord.base.rooms') %></th>
+      <th width="15%"><%= t('activerecord.attributes.flat.remote_type') %>, <%= t('activerecord.base.minutes') %></th>
+      <th width="9%"><%= t('activerecord.attributes.flat.floor') %>(<%= t('activerecord.attributes.flat.floor_count') %>)</th>
       <th width="15%"><%= t('activerecord.attributes.flat.living_space') %></th>
       <th width="13%"><%= t('activerecord.attributes.flat.price') %>, руб</th>
     </tr>
 
-    <% @flats.each do |flat| %>
-        <tr <%= "style='approved'" if flat.approved? %>>
+    <% @flats.each_with_index do |flat, i| %>
+        <tr <%= "class='even'" if i%2!=0 %>>
           <td><%= raw flat.flat_images.size > 0 ? "<a href='flats/#{flat.id}'><img src='#{flat.flat_images.first.image.url(:list)}'/></a>" : "" %></td>
           <td>
             <b><%= flat.metro %></b><br/><%= flat.address %>

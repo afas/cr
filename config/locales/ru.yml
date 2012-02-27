@@ -92,3 +92,6 @@ ru:
         description: "Комментарии"
         flat_images: "Фотографии квартиры"
         rent_type: "Тип аренды"
+    base:
+      minutes: "минут"
+      rooms: "Комнат"

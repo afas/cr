@@ -51,15 +51,9 @@
         </p>
     <% end %>
 
-    <% if RemoteType.by_id(@flat.remote_type) %>
+    <% if RemoteType.by_id(@flat.remote_type) && @flat.remote_time %>
         <p>
-          <b><%= t('activerecord.attributes.flat.remote_type') %>:</b> <%= RemoteType.by_id(@flat.remote_type) %>
-        </p>
-    <% end %>
-
-    <% if RoomCount.by_id(@flat.remote_type) %>
-        <p>
-          <b><%= t('activerecord.attributes.flat.remote_time') %>:</b> <%= @flat.remote_type %>
+          <b><%= t('activerecord.attributes.flat.remote_type') %>:</b> <%= "#{RemoteType.by_id(@flat.remote_type)}, #{@flat.remote_time} минут" %>
         </p>
     <% end %>
 
@@ -77,7 +71,7 @@
 
     <% if @flat.floor? %>
         <p>
-          <b><%= t('activerecord.attributes.flat.floor') %>:</b> <%= @flat.floor %>
+          <b><%= t('activerecord.attributes.flat.floor') %>:</b> <%= @flat.floor %> (<%= @flat.floor_count %>)
         </p>
     <% end %>
 
@@ -95,17 +89,17 @@
     <% end %>
   </div>
 
+  <%= gmaps({
+                    "map_options" => {
+                            "zoom" => 13
+                    },
+                    "markers" => {
+                            "data" => @flats_to_map
+                    }
+            }) %>
+
 
 </div>
-
-<%= gmaps({
-                  "map_options" => {
-                          "zoom" => 13
-                  },
-                  "markers" => {
-                          "data" => @flats_to_map
-                  }
-          }) %>
 
 <script type="text/javascript">
     $(document).ready(function () {

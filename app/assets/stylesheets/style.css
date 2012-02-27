@@ -1953,3 +1953,23 @@ form .actions input {
     float: right;
     padding: 1px 0 0 8px;
 }
+
+table.flats {
+    width: 100%;
+}
+
+table.flats th {
+    height: 65px;
+}
+
+table.flats img {
+    margin: 5px;
+}
+
+tr.even {
+    background-color: rgba(255,255,255, 0.3)
+}
+
+h1 small {
+    float: right;
+}

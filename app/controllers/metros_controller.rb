@@ -2,7 +2,8 @@ class MetrosController < ApplicationController
   load_and_authorize_resource
 
   def by_metro
-    @tags = Metro.where("UPPER(name) like UPPER('#{params[:term]}%') OR UPPER(name) like UPPER('%#{params[:term]}%')")
+    metro_name = params[:term].to_s.capitalize
+    @tags = Metro.where("name LIKE '#{metro_name}%'")
     @results = Array.new
     @tags.each do |t|
       @results << {:id => t.id, :value => t.name, :object => t.class.to_s}
