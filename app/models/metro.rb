@@ -4,7 +4,7 @@ class Metro < ActiveRecord::Base
 
   def self.import
     Spreadsheet.client_encoding = 'UTF-8'
-    @workbook = Spreadsheet.open "#{Dir.getwd}/public/metro.xls"
+    @workbook = Spreadsheet.open "#{Dir.getwd}/public/metros.xls"
 
     @workbook.worksheets[0].each_with_index do |row, i|
       if row[0]

@@ -5,7 +5,7 @@ class Prepayment
 
   def self.collection
     [
-        Prepayment.new(:name => 'Не имеет значение', :cut => '0'),
+        #Prepayment.new(:name => 'Не имеет значение', :cut => '0'),
         Prepayment.new(:name => '1 месяц', :cut => '1'),
         Prepayment.new(:name => '2 месяца', :cut => '2'),
         Prepayment.new(:name => '6 месяцев', :cut => '3'),

@@ -86,7 +86,7 @@ ru:
 #        remote_time: "Время в минутах"
         remote_type: "От метро"
 #        remote_type: "От метро, Транспортом/пешком"
-        living_space: "Жилая площадь"
+        living_space: "Жил. площадь"
         floor: "Этаж"
         floor_count: "Этажность"
         description: "Комментарии"

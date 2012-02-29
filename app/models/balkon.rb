@@ -5,7 +5,7 @@ class Balkon
 
   def self.collection
     [
-        Balkon.new(:name => 'Не важно', :cut => '0'),
+        #Balkon.new(:name => 'Не важно', :cut => '0'),
         Balkon.new(:name => 'Без балкона', :cut => '1'),
         Balkon.new(:name => 'Лоджея', :cut => '2'),
         Balkon.new(:name => '1', :cut => '3'),

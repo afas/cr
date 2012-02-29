@@ -1970,6 +1970,10 @@ tr.even {
     background-color: rgba(255,255,255, 0.3)
 }
 
+tr.even-first {
+    background-color: rgba(255,255,255, 0.5)
+}
+
 h1 small {
     float: right;
 }

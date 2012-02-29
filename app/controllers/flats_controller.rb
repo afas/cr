@@ -4,6 +4,60 @@ class FlatsController < ApplicationController
   # GET /flats
   # GET /flats.xml
   def index
+
+    conditions = ""
+
+    if (params[:flat_rooms_count])
+      conditions += (conditions != "" ? " AND rooms_count = #{params[:flat_rooms_count]}" : "rooms_count = #{params[:flat_rooms_count]}")
+    end
+
+    if (params[:flat_rent_period])
+      conditions += (conditions != "" ? " AND rent_period = #{params[:flat_rent_period]}" : "rent_period = #{params[:flat_rent_period]}")
+    end
+
+    if (params[:flat_prepayment])
+      conditions += (conditions != "" ? " AND prepayment = #{params[:flat_prepayment]}" : "prepayment = #{params[:flat_prepayment]}")
+    end
+
+    if (params[:metro])
+      conditions += (conditions != "" ? " AND metro = '#{params[:metro]}'" : "metro = '#{params[:metro]}'")
+    end
+
+    if (params[:address])
+      conditions += (conditions != "" ? " AND address = #{params[:address]}" : "address = #{params[:address]}")
+    end
+
+    if (params[:flat_balkon])
+      conditions += (conditions != "" ? " AND balkon = #{params[:flat_balkon]}" : "balkon = #{params[:flat_balkon]}")
+    end
+
+    if (params[:living_space])
+      conditions += (conditions != "" ? " AND living_space = #{params[:living_space]}" : "living_space = #{params[:living_space]}")
+    end
+
+    if (params[:price_from])
+      conditions += (conditions != "" ? " AND price >= #{params[:price_from]}" : "price >= #{params[:price_from]}")
+    end
+
+    if (params[:price_to])
+      conditions += (conditions != "" ? " AND price <= #{params[:price_to]}" : "price <= #{params[:price_to]}")
+    end
+
+    if (params[:price_to])
+      conditions += (conditions != "" ? " AND price <= #{params[:price_to]}" : "price <= #{params[:price_to]}")
+    end
+
+    order = "id DESC"
+    if (params[:flat_flats_order])
+      order = "#{params[:flat_flats_order]}"
+    end
+
+    if user_signed_in?
+      @flats = conditions != "" ? Flat.where(conditions).order(order) : Flat.all.order(order)
+    else
+      @flats = conditions != "" ? Flat.approved.where(conditions).order(order) : Flat.approved.order(order)
+    end
+
     respond_to do |format|
       format.html # index.html.erb
       format.xml { render :xml => @flats }

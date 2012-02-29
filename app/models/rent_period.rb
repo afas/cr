@@ -5,7 +5,7 @@ class RentPeriod
 
   def self.collection
     [
-        RentPeriod.new(:name => 'Любой срок', :cut => '0'),
+        #RentPeriod.new(:name => 'Любой срок', :cut => '0'),
         RentPeriod.new(:name => 'Посуточная', :cut => '1'),
         RentPeriod.new(:name => 'Сезонная сдача(несколько месяцев)', :cut => '2'),
         RentPeriod.new(:name => 'Длительный срок(от года)', :cut => '3'),

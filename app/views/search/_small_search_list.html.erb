@@ -1,0 +1,134 @@
+<div class="small-search">
+  <div class="rooms">
+    <label for="rooms_count">Комнат</label><br/>
+    <%= collection_select(:flat, :rooms_count, RoomCount.collection, :cut, :name, { :prompt => true, :selected => params[:flat_rooms_count] }) %>
+  </div>
+
+  <div class="rent_period">
+    <label for="rent_period">Срок аренды</label><br/>
+    <%= collection_select(:flat, :rent_period, RentPeriod.collection, :cut, :name, { :prompt => true, :selected => params[:flat_rent_period] }) %>
+  </div>
+
+  <div class="prepayment">
+    <label for="prepayment">Предоплата</label><br/>
+    <%= collection_select(:flat, :prepayment, Prepayment.collection, :cut, :name, { :prompt => true, :selected => params[:flat_prepayment] }) %>
+  </div>
+
+  <div class="metro">
+    <label for="metro">Метро</label><br/>
+    <input type="text" name="metro" placeholder="Баррикадная" id="metro" value="<%= params[:metro] %>">
+  </div>
+
+  <div class="address">
+    <label for="address">Улица</label><br/>
+    <input type="text" name="address" placeholder="" id="address" value="<%= params[:address] %>">
+  </div>
+
+  <div class="balkon">
+    <label for="balkon">Балкон</label><br/>
+    <%= collection_select(:flat, :balkon, Balkon.collection, :cut, :name, { :prompt => true, :selected => params[:flat_balkon] }) %>
+  </div>
+
+  <div class="living_space">
+    <label for="living_space">Площадь</label><br/>
+    <input type="text" name="living_space" placeholder="" id="living_space" value="<%= params[:living_space] %>">
+  </div>
+
+  <div class="price">
+    <label for="price">Цена</label><br/>
+    <input type="text" name="price_from" id="price_from" placeholder="от" value="<%= params[:price_from] %>" size="6">
+    <input type="text" name="price_to" id="price_to" placeholder="до" value="<%= params[:price_to] %>" size="6">
+  </div>
+
+  <div class="flats_order">
+    <label for="flats_order">Порядок выдачи</label><br/>
+    <%= collection_select(:flat, :flats_order, FlatsOrder.collection, :cut, :name, { :prompt => true, :selected => params[:flat_flats_order] }) %>
+  </div>
+
+  <input type="submit" value="Показать на карте" class="q-search-submit" onclick="searchResults()"></input>
+  <br/>
+  <input type="submit" value="Показать списком" class="q-search-submit" onclick="searchResultsList()"></input>
+</div>
+
+<script type="text/javascript">
+
+    function validateAndGet(name, params) {
+        value = $("#" + name).val();
+
+        if (value && value != "undefined" && value != "") {
+            if (params != "") {
+                params = params + "&" + name + "=" + value
+            } else {
+                params = name + "=" + value
+            }
+        }
+        return params;
+    }
+
+    function searchResults() {
+        var params = "";
+        params = validateAndGet("flat_rooms_count", params);
+        params = validateAndGet("flat_rent_period", params);
+        params = validateAndGet("flat_prepayment", params);
+        params = validateAndGet("metro", params);
+        params = validateAndGet("address", params);
+        params = validateAndGet("flat_balkon", params);
+        params = validateAndGet("living_space", params);
+        params = validateAndGet("price_from", params);
+        params = validateAndGet("price_to", params);
+        params = validateAndGet("flat_flats_order", params);
+
+        if (params != "") {
+            window.location = "/search?" + params;
+        }
+    }
+    function searchResultsList() {
+        var params = "";
+        params = validateAndGet("flat_rooms_count", params);
+        params = validateAndGet("flat_rent_period", params);
+        params = validateAndGet("flat_prepayment", params);
+        params = validateAndGet("metro", params);
+        params = validateAndGet("address", params);
+        params = validateAndGet("flat_balkon", params);
+        params = validateAndGet("living_space", params);
+        params = validateAndGet("price_from", params);
+        params = validateAndGet("price_to", params);
+        params = validateAndGet("flat_flats_order", params);
+
+        if (params != "") {
+            window.location = "/flats?" + params;
+        }
+
+    }
+    function split(val) {
+        return val.split(/,\s*/);
+    }
+
+    function extractLast(term) {
+        return split(term).pop();
+    }
+
+    $("#metro")
+            .autocomplete({
+                source:function (request, response) {
+                    $.getJSON("/metros/by_metro", {
+                        term:extractLast(request.term)
+                    }, response);
+                },
+                search:function () {
+                    var term = extractLast(this.value);
+                    if (term.length < 2) {
+                        return false;
+                    }
+                },
+                select:function (event, ui) {
+                    var terms = split(this.value);
+                    terms.pop();
+                    this.value = ui.item.value;
+                    $(this).attr("object_name", ui.item.object);
+                    $(this).attr("object_id", ui.item.id);
+                    return false;
+                }
+            });
+
+</script>
