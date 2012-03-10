@@ -1,6 +1,8 @@
 # encoding: utf-8
 class Flat < ActiveRecord::Base
+
   acts_as_gmappable :check_process => false
+
   has_many :flat_images
 
   #default_scope order("id DESC")

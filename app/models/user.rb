@@ -7,4 +7,13 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me, :name, :surname, :phone, :about, :role_id, :organization, :internal
+
+  def admin?
+    if self.role_id == 0
+      return true
+    else
+      return false
+    end
+  end
+
 end
