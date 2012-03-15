@@ -28,6 +28,7 @@ class Ability
         can [:create, :index, :show], Flat
         can [:create, :show], Tender
         can :by_metro, Metro
+        can :read, Static
     end
   end
 end
