@@ -59,9 +59,9 @@ class FlatsController < ApplicationController
     end
 
     if !current_user.nil? && (current_user.manager?)
-      @flats = conditions != "" ? Flat.where(conditions).to_gmaps4rails : Flat.all.to_gmaps4rails
+      @flats = conditions != "" ? Flat.where(conditions) : Flat.all
     else
-      @flats = conditions != "" ? Flat.approved.where(conditions).to_gmaps4rails : Flat.approved.to_gmaps4rails
+      @flats = conditions != "" ? Flat.approved.where(conditions) : Flat.approved
     end
 
     respond_to do |format|
