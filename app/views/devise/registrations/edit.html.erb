@@ -33,7 +33,7 @@
       <div>
         <%= f.label "Роль в системе" %>
         <br/>
-        <%= f.collection_select(:role_id, Role.collection, :cut, :name, :prompt => true) %>
+        <%= f.collection_select(:role_id, Role.collection(current_user.admin? || current_user.id == 1), :cut, :name, :prompt => true) %>
       </div>
       <div>
         <%= f.label "Организация" %>
@@ -41,9 +41,9 @@
         <%= f.text_field :organization %>
       </div>
       <!--<div>-->
-        <!--<%#= f.label "Внутренний работник" %>-->
-        <!--<br/>-->
-        <!--<%#= f.check_box :internal %>-->
+      <!--<%#= f.label "Внутренний работник" %>-->
+      <!--<br/>-->
+      <!--<%#= f.check_box :internal %>-->
       <!--</div>-->
 
       <div>
@@ -62,6 +62,13 @@
         <%= f.password_field :current_password %>
       </div>
 
+      <br/>
+      <div>
+        <% if current_user.admin? || current_user.id == 1 %>
+            <%= link_to 'Управление пользователями', "/user" %>
+        <% end %>
+      </div>
+      <br/>
       <br/>
 
       <div>

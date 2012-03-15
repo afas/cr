@@ -1,0 +1,22 @@
+<div id="inner-content" class="li-no-style">
+  <% title("Зарегистрированные пользователи") %>
+
+  <h1>Зарегистрированные пользователи</h1>
+  <% if @users.size > 0 %>
+      <table class="users" cellspacing="0">
+        <tr class='even-first'>
+          <th width="60%"><%= "ФИО" %></th>
+          <th width="20%"><%= "Телефон" %></th>
+          <th width="20%"><%= "Роль в системе" %></th>
+        </tr>
+
+        <% @users.each_with_index do |user, i| %>
+            <tr <%= "class='even'" if i%2!=0 %>>
+              <td><%= link_to raw("#{user.name}<br/>#{user.surname}"), "/user/#{user.id}/edit" %></td>
+              <td><%= "#{user.phone}" %></td>
+              <td><%= Role.by_id(user.role_id) %></td>
+            </tr>
+        <% end %>
+      </table>
+  <% end %>
+</div>

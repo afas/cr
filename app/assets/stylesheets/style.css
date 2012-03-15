@@ -1954,6 +1954,16 @@ form .actions input {
     padding: 1px 0 0 8px;
 }
 
+table.users {
+    width: 100%;
+
+}
+
+table.users th {
+    height: 65px;
+    text-align: left;
+}
+
 table.flats {
     width: 100%;
 }

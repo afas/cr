@@ -1,5 +1,8 @@
 Classicrent::Application.routes.draw do
 
+  devise_for :users
+  resources :user, :controller => "user"
+
   resources :tenders
 
   resources :metros do
@@ -12,8 +15,6 @@ Classicrent::Application.routes.draw do
   resources :welcome_images
 
   resources :flats
-
-  devise_for :users
 
   resources :flat_images
 

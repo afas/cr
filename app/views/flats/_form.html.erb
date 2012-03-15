@@ -1,11 +1,13 @@
 <%= form_for(@flat, :builder => StarsFormBuilder) do |f| %>
     <%= render 'shared/error_messages', :target => @flat %>
 
-    <div class="field">
-      <%= f.label I18n.t('activerecord.attributes.flat.approved') %>
-      <br/>
-      <%= f.check_box :approved %>
-    </div>
+    <% if !current_user.nil? && (current_user.manager? || @flat.agent_id == current_user.id) %>
+        <div class="field">
+          <%= f.label I18n.t('activerecord.attributes.flat.approved') %>
+          <br/>
+          <%= f.check_box :approved %>
+        </div>
+    <% end %>
 
     <div class="field">
       <%= f.label I18n.t('activerecord.attributes.flat.rooms_count') %>
@@ -41,15 +43,15 @@
       <%= f.text_field :address %>
     </div>
     <div class="field">
-      <%= f.label I18n.t('activerecord.attributes.flat.remote_time') %>
-      <br/>
-      <%= f.number_field :remote_time %>
-    </div>
-    <div class="field">
       <%= f.label I18n.t('activerecord.attributes.flat.remote_type') %>
       <br/>
       <%#= f.number_field :remote_type %>
       <%= f.collection_select(:remote_type, RemoteType.collection, :cut, :name, :prompt => true) %>
+    </div>
+    <div class="field">
+      <%= f.label I18n.t('activerecord.attributes.flat.remote_time') %>
+      <br/>
+      <%= f.number_field :remote_time %>
     </div>
     <div class="field">
       <%= f.label I18n.t('activerecord.attributes.flat.balkon') %>
@@ -75,7 +77,7 @@
     <div class="field">
       <%= f.label I18n.t('activerecord.attributes.flat.description') %>
       <br/>
-      <%= f.text_area :description %>
+      <%= f.text_area :description, :cols => 55, :rows => 13 %>
     </div>
 
     <div class="field">
@@ -93,10 +95,11 @@
     </div>
 
     <!--<div class="field">-->
-      <!--<%#= f.label I18n.t('activerecord.attributes.flat.rent_type') %>-->
-      <!--<br/>-->
-      <!--<%#= f.number_field :rent_type %>-->
+    <!--<%#= f.label I18n.t('activerecord.attributes.flat.rent_type') %>-->
+    <!--<br/>-->
+    <!--<%#= f.number_field :rent_type %>-->
     <!--</div>-->
+    <br/>
 
     <div class="actions">
       <%= f.submit "Сохранить" %>
@@ -105,7 +108,35 @@
 
 
 <script type="text/javascript">
-    $(function () {
-        $("textarea").aloha();
-    })
+    function split(val) {
+        return val.split(/,\s*/);
+    }
+
+    function extractLast(term) {
+        return split(term).pop();
+    }
+
+    $("#flat_metro")
+            .autocomplete({
+                source:function (request, response) {
+                    $.getJSON("/metros/by_metro", {
+                        term:extractLast(request.term)
+                    }, response);
+                },
+                search:function () {
+                    var term = extractLast(this.value);
+                    if (term.length < 2) {
+                        return false;
+                    }
+                },
+                select:function (event, ui) {
+                    var terms = split(this.value);
+                    terms.pop();
+                    this.value = ui.item.value;
+                    $(this).attr("object_name", ui.item.object);
+                    $(this).attr("object_id", ui.item.id);
+                    return false;
+                }
+            });
+
 </script>

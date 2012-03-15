@@ -16,4 +16,20 @@ class User < ActiveRecord::Base
     end
   end
 
+  def manager?
+    if self.role_id == 1 || self.role_id == 0
+      return true
+    else
+      return false
+    end
+  end
+
+  def rentor?
+    if self.role_id == 2
+      return true
+    else
+      return false
+    end
+  end
+
 end

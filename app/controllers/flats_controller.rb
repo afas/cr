@@ -1,6 +1,12 @@
 class FlatsController < ApplicationController
   load_and_authorize_resource
 
+  before_filter :auth_user, :only => "new"
+
+  def auth_user
+    redirect_to new_user_session_path if current_user.nil?
+  end
+
   # GET /flats
   # GET /flats.xml
   def index
@@ -52,10 +58,10 @@ class FlatsController < ApplicationController
       order = "#{params[:flat_flats_order]}"
     end
 
-    if user_signed_in?
-      @flats = conditions != "" ? Flat.where(conditions).order(order) : Flat.all.order(order)
+    if !current_user.nil? && (current_user.manager?)
+      @flats = conditions != "" ? Flat.where(conditions).to_gmaps4rails : Flat.all.to_gmaps4rails
     else
-      @flats = conditions != "" ? Flat.approved.where(conditions).order(order) : Flat.approved.order(order)
+      @flats = conditions != "" ? Flat.approved.where(conditions).to_gmaps4rails : Flat.approved.to_gmaps4rails
     end
 
     respond_to do |format|
@@ -68,6 +74,7 @@ class FlatsController < ApplicationController
   # GET /flats/1.xml
   def show
     @flats_to_map = Flat.approved.to_gmaps4rails
+
     respond_to do |format|
       format.html { render :layout => "with_gmaps" }
       format.xml { render :xml => @flat }
@@ -78,7 +85,7 @@ class FlatsController < ApplicationController
   # GET /flats/new.xml
   def new
     respond_to do |format|
-      format.html # new.html.erb
+      format.html { render :layout => "with_gmaps" }
       format.xml { render :xml => @flat }
     end
   end
@@ -98,7 +105,7 @@ class FlatsController < ApplicationController
                                                     :model => I18n.t('activerecord.capitalized_models.flat'))) }
         format.xml { render :xml => @flat, :status => :created, :location => @flat }
       else
-        format.html { render :action => "new" }
+        format.html { render :action => "new", :layout => "with_gmaps" }
         format.xml { render :xml => @flat.errors, :status => :unprocessable_entity }
       end
     end
@@ -114,7 +121,7 @@ class FlatsController < ApplicationController
                                                     :model => I18n.t('activerecord.capitalized_models.flat'))) }
         format.xml { head :ok }
       else
-        format.html { render :action => "edit" }
+        format.html { render :action => "edit", :layout => "with_gmaps" }
         format.xml { render :xml => @flat.errors, :status => :unprocessable_entity }
       end
     end

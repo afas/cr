@@ -1,4 +1,7 @@
 class FlatImage < ActiveRecord::Base
+
+  belongs_to :flat
+
   has_attached_file :image,
                     :styles => {
                         :list => '89x89#',

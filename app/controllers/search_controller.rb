@@ -4,7 +4,7 @@ class SearchController < ApplicationController
 
     conditions = ""
 
-    if (params[:flat_rooms_count])
+    if (params[:flat_rooms_count] && params[:flat_rooms_count] != '')
       conditions += (conditions != "" ? " AND rooms_count = #{params[:flat_rooms_count]}" : "rooms_count = #{params[:flat_rooms_count]}")
     end
 
@@ -16,7 +16,7 @@ class SearchController < ApplicationController
       conditions += (conditions != "" ? " AND prepayment = #{params[:flat_prepayment]}" : "prepayment = #{params[:flat_prepayment]}")
     end
 
-    if (params[:metro])
+    if (params[:metro] && params[:metro] != '')
       conditions += (conditions != "" ? " AND metro = '#{params[:metro]}'" : "metro = '#{params[:metro]}'")
     end
 
@@ -44,7 +44,11 @@ class SearchController < ApplicationController
       conditions += (conditions != "" ? " AND price <= #{params[:price_to]}" : "price <= #{params[:price_to]}")
     end
 
-    if user_signed_in?
+    if (params[:price] && params[:price] != '')
+      conditions += (conditions != "" ? " AND price > #{params[:price].to_f * 0.8} AND price < #{params[:price].to_f * 1.3}" : "price > #{params[:price].to_f * 0.8} AND price < #{params[:price].to_f * 1.3}")
+    end
+
+    if !current_user.nil? && (current_user.manager?)
       @flats = conditions != "" ? Flat.where(conditions).to_gmaps4rails : Flat.all.to_gmaps4rails
     else
       @flats = conditions != "" ? Flat.approved.where(conditions).to_gmaps4rails : Flat.approved.to_gmaps4rails
