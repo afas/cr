@@ -4,6 +4,10 @@
     <div id="Strip">
       <div class="strip-links">
         <p>
+          <% @about_menu.each do |static| %>
+              <%= link_to static.title, "/#{static.short_url}" %>
+          <% end %>
+
           <% if can?(:create, Static) %>
               <%= link_to "Акции", "/special" %>
           <% end %>
@@ -13,8 +17,8 @@
           <% if can?(:destroy, Tender) %>
               <%= link_to "Заявки", "/tenders" %>
           <% end %>
-          <% @about_menu.each do |static| %>
-              <%= link_to static.title, "/#{static.short_url}" %>
+          <% if can?(:create, Import) %>
+              <%= link_to "Импорт", new_import_path %>
           <% end %>
         </p>
       </div>
@@ -22,7 +26,7 @@
     <ul id="Navigation">
       <% @services_menu.each do |static| %>
           <li class="nav-item">
-            <%= link_to static.title, "/#{static.short_url}", :class => ("active" if !@static.nil? && @static == static )%>
+            <%= link_to static.title, "/#{static.short_url}", :class => ("active" if !@static.nil? && @static == static) %>
             <%#= raw "<a class='separator'>/</a>" if static != @services_menu.last %>
           </li>
       <% end %>

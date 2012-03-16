@@ -1,27 +1,34 @@
+<p><%= link_to("Создать заявку", new_tender_path) if can?(:create, Tender) %></p>
+
 <div id="inner-content" class="li-no-style">
   <%= title("Входящие заявки") %>
 
-  <table width="100%">
-    <tr>
-      <th><%= "Имя" %></th>
-      <th><%= "Телефон" %></th>
-      <th><%= "Тип" %></th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-
-  <% @tenders.each do |tender| %>
-    <tr>
-      <td><%= tender.name %></td>
-      <td><%= tender.phone %></td>
-      <td><%= TenderOperation.by_id(tender.operation) %></td>
-      <td><%= link_to(t('backend.actions.show'), tender) if can?(:show, tender) %></td>
-      <td><%= link_to(t('backend.actions.edit'), edit_tender_path(tender))  if can?(:edit, tender) %></td>
-      <td><%= link_to(t('backend.actions.destroy'), tender, :confirm => t('backend.actions.are_you_sure'), :method => :delete) if can?(:destroy, tender) %></td>
-    </tr>
+  <% if @tenders.size > 0 %>
+      <table class="users" cellspacing="0">
+        <tr class='even-first'>
+          <th width="20%"><%= "ФИО" %></th>
+          <th width="20%"><%= "Телефон" %></th>
+          <th width="13%"><%= "Тип заявки" %></th>
+          <th width="34%"><%= "Описание" %></th>
+        </tr>
+        <% @tenders.each_with_index do |tender, i| %>
+            <tr <%= "class='even'" if i%2!=0 %>>
+              <td>
+                <%= link_to raw("<b>#{tender.name}</b>"), tender %>
+                <br/>
+                <%= link_to(t('backend.actions.edit'), edit_tender_path(tender)) if can?(:edit, tender) %><%= link_to(t('backend.actions.destroy'), tender, :confirm => t('backend.actions.are_you_sure'), :method => :delete) if can?(:destroy, tender) %>
+              </td>
+              <td><%= tender.phone %></td>
+              <td><%= TenderOperation.by_id(tender.operation) %></td>
+              <td>
+                <%= raw "<b>Метро:</b> #{tender.metro}." if tender.metro != "" %>
+                <br/>
+                <%= raw "<b>Комнат:</b> #{tender.rooms_count}." if tender.rooms_count != "" %>
+                <br/>
+                <%= raw "<b>Ориентировочная стоимость:</b> #{tender.price}." if tender.price != "" %>
+              </td>
+            </tr>
+        <% end %>
+      </table>
   <% end %>
-  </table>
-
-  <p><%= link_to("Создать заявку", new_tender_path) if can?(:create, Tender) %></p>
 </div>

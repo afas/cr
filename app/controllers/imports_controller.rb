@@ -42,7 +42,6 @@ class ImportsController < ApplicationController
           @import.import
         end
 
-
         format.html { redirect_to(@import,
                                   :notice => I18n.t('backend.actions.success_create',
                                                     :model => I18n.t('activerecord.capitalized_models.import'))) }

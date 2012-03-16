@@ -2,12 +2,12 @@
     <%= render 'shared/error_messages', :target => @import %>
 
     <div class="field">
-      <%= f.label :file %>
+      <%= f.label "Выберите файл для импорта" %>
       <br/>
       <%= f.file_field :file %>
     </div>
-
+    <br/>
     <div class="actions">
-      <%= f.submit %>
+      <%= f.submit "Начать импорт" %>
     </div>
 <% end %>

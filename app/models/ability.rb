@@ -7,8 +7,10 @@ class Ability
     case user.role_id
       when 0
         #admin
-        can :index, User
         can :manage, :all
+
+      #can :index, User
+      #can :create, :Import
       when 1
         #manager
         can :create, Flat
