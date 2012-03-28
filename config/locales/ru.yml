@@ -75,6 +75,7 @@ ru:
         current_password: "Текущий пароль"
       flat:
         approved: "Проверена"
+        lot_number: "Номер лота"
         rooms_count: "Количество комнат"
         rent_period: "Срок аренды"
         price: "Стоимость"

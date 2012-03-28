@@ -9,6 +9,14 @@
         </div>
     <% end %>
 
+    <% if !current_user.nil? && (current_user.manager? || @flat.agent_id == current_user.id) %>
+        <div class="field">
+          <%= f.label I18n.t('activerecord.attributes.flat.approved') %>
+          <br/>
+          <%= f.check_box :approved %>
+        </div>
+    <% end %>
+
     <div class="field">
       <%= f.label I18n.t('activerecord.attributes.flat.rooms_count') %>
       <br/>
@@ -80,6 +88,11 @@
       <%= f.text_area :description, :cols => 55, :rows => 13 %>
     </div>
 
+    <!--add_column :flats, :kitch_space, :float-->
+    <!--add_column :flats, :full_space, :float-->
+    <!--add_column :flats, :wc, :integer-->
+    <!--add_column :flats, :renter_info, :string-->
+
     <div class="field">
       <%= f.label I18n.t('activerecord.attributes.flat.flat_images') %>
       <br/>
@@ -93,6 +106,15 @@
       <% end %>
       <div><%= f.file_field :flat_images, :multiple => true %></div>
     </div>
+
+    <% if current_user.manager? || current_user.id == 1 %>
+        <div>
+          <%= f.label "Работник Классик рент?" %>
+          <br/>
+          <%= f.check_box :internal %>
+        </div>
+    <% end %>
+
 
     <!--<div class="field">-->
     <!--<%#= f.label I18n.t('activerecord.attributes.flat.rent_type') %>-->

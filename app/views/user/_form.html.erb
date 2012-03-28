@@ -36,6 +36,14 @@
         <br/>
         <%= f.text_field :organization %>
       </div>
+
+      <% if current_user.admin? || current_user.id == 1 %>
+          <div>
+            <%= f.label "Работник Классик рент?" %>
+            <br/>
+            <%= f.check_box :internal %>
+          </div>
+      <% end %>
       <br/>
       <div>
         <%= f.submit "Сохранить изменения" %>

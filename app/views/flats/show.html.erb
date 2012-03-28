@@ -21,6 +21,10 @@
     <%= link_to t('backend.actions.edit'), edit_flat_path(@flat) if can?(:edit, @flat) %>
     <%= raw "<br/>" if can?(:edit, @flat) %>
 
+        <p>
+          <b><%= t('activerecord.attributes.flat.lot_number') %>:</b> <%= @flat.id %>
+        </p>
+
     <% if RoomCount.by_id(@flat.rooms_count) %>
         <p>
           <b><%= t('activerecord.attributes.flat.rooms_count') %>:</b> <%= RoomCount.by_id(@flat.rooms_count) %>
@@ -48,6 +52,12 @@
     <% if @flat.address? %>
         <p>
           <b><%= t('activerecord.attributes.flat.address') %>:</b> <%= @flat.address %>
+        </p>
+    <% end %>
+
+    <% if @flat.metro? %>
+        <p>
+          <b><%= t('activerecord.attributes.flat.metro') %>:</b> <%= @flat.metro %>
         </p>
     <% end %>
 
