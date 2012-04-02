@@ -61,8 +61,18 @@ class FlatsController < ApplicationController
     if !current_user.nil? && (current_user.manager?)
       @flats = conditions != "" ? Flat.where(conditions) : Flat.all
     else
-      @flats = conditions != "" ? Flat.approved.where(conditions) : Flat.approved
+      if !current_user.nil?
+        @flats = conditions != "" ? Flat.where(conditions).where("approved = ? || agent_id = ?", true, current_user.id) : Flat.where("approved = ? || agent_id = ?", true, current_user.id)
+      else
+        @flats = conditions != "" ? Flat.approved.where(conditions) : Flat.approved
+      end
     end
+
+    #if !current_user.nil? && (current_user.manager?)
+    #  @flats = conditions != "" ? Flat.where(conditions) : Flat.all
+    #else
+    #  @flats = conditions != "" ? Flat.approved.where(conditions) : Flat.approved
+    #end
 
     respond_to do |format|
       format.html # index.html.erb

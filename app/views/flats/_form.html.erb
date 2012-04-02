@@ -1,11 +1,11 @@
 <%= form_for(@flat, :builder => StarsFormBuilder) do |f| %>
     <%= render 'shared/error_messages', :target => @flat %>
 
-    <% if !current_user.nil? && (current_user.manager? || @flat.agent_id == current_user.id) %>
+    <% if !current_user.nil? && (current_user.manager?) %>
         <div class="field">
-          <%= f.label I18n.t('activerecord.attributes.flat.approved') %>
+          <%= f.label I18n.t('activerecord.attributes.flat.agent_id') %>
           <br/>
-          <%= f.check_box :approved %>
+          <%= f.collection_select(:agent_id, User.only_internal, :id, :email, :promt => true )  %>
         </div>
     <% end %>
 
@@ -67,10 +67,34 @@
       <%= f.collection_select(:balkon, Balkon.collection, :cut, :name, :prompt => true) %>
       <%#= f.number_field :balkon %>
     </div>
+    <!--add_column :flats, :kitch_space, :float-->
+    <!--add_column :flats, :full_space, :float-->
+    <!--add_column :flats, :wc, :integer-->
+    <!--add_column :flats, :renter_info, :string-->
     <div class="field">
       <%= f.label I18n.t('activerecord.attributes.flat.living_space') %>
       <br/>
       <%= f.text_field :living_space %>
+    </div>
+    <div class="field">
+      <%= f.label I18n.t('activerecord.attributes.flat.full_space') %>
+      <br/>
+      <%= f.text_field :full_space %>
+    </div>
+    <div class="field">
+      <%= f.label I18n.t('activerecord.attributes.flat.kitch_space') %>
+      <br/>
+      <%= f.text_field :kitch_space %>
+    </div>
+    <div class="field">
+      <%= f.label I18n.t('activerecord.attributes.flat.wc') %>
+      <br/>
+      <%= f.collection_select(:balkon, WC.collection, :cut, :name, :prompt => true) %>
+    </div>
+    <div class="field">
+      <%= f.label I18n.t('activerecord.attributes.flat.renter_info') %>
+      <br/>
+      <%= f.text_field :renter_info %>
     </div>
     <div class="field">
       <%= f.label I18n.t('activerecord.attributes.flat.floor') %>
@@ -87,12 +111,6 @@
       <br/>
       <%= f.text_area :description, :cols => 55, :rows => 13 %>
     </div>
-
-    <!--add_column :flats, :kitch_space, :float-->
-    <!--add_column :flats, :full_space, :float-->
-    <!--add_column :flats, :wc, :integer-->
-    <!--add_column :flats, :renter_info, :string-->
-
     <div class="field">
       <%= f.label I18n.t('activerecord.attributes.flat.flat_images') %>
       <br/>
@@ -106,14 +124,6 @@
       <% end %>
       <div><%= f.file_field :flat_images, :multiple => true %></div>
     </div>
-
-    <% if current_user.manager? || current_user.id == 1 %>
-        <div>
-          <%= f.label "Работник Классик рент?" %>
-          <br/>
-          <%= f.check_box :internal %>
-        </div>
-    <% end %>
 
 
     <!--<div class="field">-->

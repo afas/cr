@@ -73,15 +73,37 @@
         </p>
     <% end %>
 
+    <% if WC.by_id(@flat.wc) %>
+        <p>
+          <b><%= t('activerecord.attributes.flat.wc') %>:</b> <%= WC.by_id(@flat.wc) %>
+        </p>
+    <% end %>
+
+    <% if @flat.full_space? %>
+        <p>
+          <b><%= t('activerecord.attributes.flat.full_space') %>:</b> <%= @flat.full_space %>
+        </p>
+    <% end %>
     <% if @flat.living_space? %>
         <p>
           <b><%= t('activerecord.attributes.flat.living_space') %>:</b> <%= @flat.living_space %>
+        </p>
+    <% end %>
+    <% if @flat.kitch_space? %>
+        <p>
+          <b><%= t('activerecord.attributes.flat.kitch_space') %>:</b> <%= @flat.kitch_space %>
         </p>
     <% end %>
 
     <% if @flat.floor? %>
         <p>
           <b><%= t('activerecord.attributes.flat.floor') %>:</b> <%= @flat.floor %> (<%= @flat.floor_count %>)
+        </p>
+    <% end %>
+
+    <% if @flat.renter_info && !current_user.nil? && (current_user.manager? || @flat.agent_id == current_user.id) %>
+        <p>
+          <b><%= t('activerecord.attributes.flat.renter_info') %>:</b> <%= @flat.renter_info %>
         </p>
     <% end %>
 

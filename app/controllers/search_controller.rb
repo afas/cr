@@ -51,7 +51,11 @@ class SearchController < ApplicationController
     if !current_user.nil? && (current_user.manager?)
       @flats = conditions != "" ? Flat.where(conditions).to_gmaps4rails : Flat.all.to_gmaps4rails
     else
-      @flats = conditions != "" ? Flat.approved.where(conditions).to_gmaps4rails : Flat.approved.to_gmaps4rails
+      if !current_user.nil?
+        @flats = conditions != "" ? Flat.where(conditions).where("approved = ? || agent_id = ?", true, current_user.id).to_gmaps4rails : Flat.where("approved = ? || agent_id = ?", true, current_user.id).to_gmaps4rails
+      else
+        @flats = conditions != "" ? Flat.approved.where(conditions).to_gmaps4rails : Flat.approved.to_gmaps4rails
+      end
     end
 
     respond_to do |format|

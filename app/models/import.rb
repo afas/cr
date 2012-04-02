@@ -19,7 +19,8 @@ class Import < ActiveRecord::Base
         rooms_count = row[8]
         floor = row[18]
         floor_count = row[19]
-        description = "#{row[38]} #{row[36]}<br/>#{row[6]} минут #{row[7]}(выставь значение в селекторе выше)<br/>Мебель #{row[28]}"
+        description = "#{row[6]} минут #{row[7]}(выставь значение в селекторе выше)<br/>Мебель #{row[28]}"
+        renter_info = "#{row[38]} #{row[36]}"
 
         Flat.create(
             :address => address,
@@ -28,7 +29,8 @@ class Import < ActiveRecord::Base
             :remote_time => remote_time,
             :floor => floor,
             :floor_count => floor_count,
-            :description => description
+            :description => description,
+            :renter_info => renter_info
         )
 
         #rent_period

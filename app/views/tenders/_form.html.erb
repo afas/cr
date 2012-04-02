@@ -29,7 +29,7 @@
     <div class="field">
       <%= f.label "Тип заявки" %>
       <br/>
-      <%= collection_select(:tender, :operation, TenderOperation.collection, :cut, :name, :prompt => true) %>
+      <%= collection_select(:tender, :operation, TenderOperation.collection, :cut, :name, :prompt => false) %>
     </div>
     <div class="field">
       <%= f.label "Описание, комментарии" %>
