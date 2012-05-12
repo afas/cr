@@ -10,4 +10,5 @@
 
 //= require jquery-ui
 //= require slimbox
+//= require cookies
 //= require site

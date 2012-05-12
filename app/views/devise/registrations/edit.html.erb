@@ -1,78 +1,128 @@
-<div id="inner-content" class="li-no-style">
-  <h2>Мой профиль</h2>
+<div class="content">
+  <div class="container">
+    <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => {:method => :put}) do |f| %>
+        <%= devise_error_messages! %>
+        <h2>Мой профиль<span id="my-info">+</span></h2>
 
-  <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => {:method => :put}) do |f| %>
-      <%= devise_error_messages! %>
+        <div>
+          <%= f.submit "Сохранить изменения" %>
+        </div>
+        <div class="container-left">
+          <div>
+            <%= f.label :email %>
+            <br/>
+            <%= f.email_field :email %>
+          </div>
+          <div>
+            <%= f.label "Имя" %>
+            <br/>
+            <%= f.text_field :name %>
+          </div>
+          <div>
+            <%= f.label "Фамилия" %>
+            <br/>
+            <%= f.text_field :surname %>
+          </div>
+          <div>
+            <%= f.label "Расскажите о себе" %>
+            <br/>
+            <%= f.text_area :about, :cols => 55, :rows => 6 %>
+          </div>
+        </div>
+        <div class="container-right">
+          <div>
+            <%= f.label "Роль в системе" %>
+            <br/>
+            <%= f.collection_select(:role_id, Role.collection(current_user.admin?), :cut, :name, :prompt => true) %>
+          </div>
+          <div>
+            <%= f.label "Телефон" %>
+            <br/>
+            <%= f.text_field :phone %>
+          </div>
+          <div>
+            <%= f.label "Организация" %>
+            <br/>
+            <%= f.text_field :organization %>
+          </div>
+          <!--<div>-->
+          <!--<%#= f.label "Внутренний работник" %>-->
+          <!--<br/>-->
+          <!--<%#= f.check_box :internal %>-->
+          <!--</div>-->
+          <div>
+            <%= f.label :password %> <i>(для изменения пароля)</i><br/>
+            <%= f.password_field :password %>
+          </div>
+          <div>
+            <%= f.label :password_confirmation %>
+            <br/>
+            <%= f.password_field :password_confirmation %>
+          </div>
+          <div>
+            <%= f.label :current_password %> <i>(введите для сохранения профиля)</i><br/>
+            <%= f.password_field :current_password %>
+          </div>
+          <div>
+            <% if current_user.admin? %>
+                <%= link_to 'Управление пользователями', "/user" %>
+            <% end %>
+          </div>
+        </div>
+    <% end %>
 
-      <div>
-        <%= f.label :email %>
-        <br/>
-        <%= f.email_field :email %>
-      </div>
+    <% if @flats_history.size > 0 && current_user.admin? %>
 
-      <div>
-        <%= f.label "Имя" %>
-        <br/>
-        <%= f.text_field :name %>
-      </div>
-      <div>
-        <%= f.label "Фамилия" %>
-        <br/>
-        <%= f.text_field :surname %>
-      </div>
-      <div>
-        <%= f.label "Телефон" %>
-        <br/>
-        <%= f.text_field :phone %>
-      </div>
-      <div>
-        <%= f.label "Расскажите о себе" %>
-        <br/>
-        <%= f.text_area :about, :cols => 55, :rows => 5 %>
-      </div>
-      <div>
-        <%= f.label "Роль в системе" %>
-        <br/>
-        <%= f.collection_select(:role_id, Role.collection(current_user.admin? || current_user.id == 1), :cut, :name, :prompt => true) %>
-      </div>
-      <div>
-        <%= f.label "Организация" %>
-        <br/>
-        <%= f.text_field :organization %>
-      </div>
-      <!--<div>-->
-      <!--<%#= f.label "Внутренний работник" %>-->
-      <!--<br/>-->
-      <!--<%#= f.check_box :internal %>-->
-      <!--</div>-->
+        <table class="flats" cellspacing="0">
+          <tr class='even-first'>
+            <th width="11%"></th>
+            <th width="25%"><%= t('activerecord.attributes.flat.metro') %>
+              / <%= t('activerecord.attributes.flat.address') %></th>
+            <th width="12%"><%= t('activerecord.base.rooms') %></th>
+            <th width="15%"><%= t('activerecord.attributes.flat.remote_type') %></th>
+            <th width="9%"><%= t('activerecord.attributes.flat.floor') %></th>
+            <th width="15%"><%= t('activerecord.attributes.flat.living_space') %></th>
+            <th width="13%"><%= t('activerecord.attributes.flat.price') %>, руб</th>
+          </tr>
 
-      <div>
-        <%= f.label :password %> <i>(не нужно заполнять если вы не хотите внести изменения в профиль)</i><br/>
-        <%= f.password_field :password %>
-      </div>
+          <% @flats_history.each_with_index do |flat, i| %>
+              <tr <%= "class='even'" if i%2!=0 %>>
+                <td><%= flat.id %></td>
+                <td><%= flat.updated_at %></td>
+                <td><%= "#{flat.metro} / #{flat.address}" %></td>
+                <td><%= flat.updated_at %></td>
+                <td><%= flat.agent.name %></td>
 
-      <div>
-        <%= f.label :password_confirmation %>
-        <br/>
-        <%= f.password_field :password_confirmation %>
-      </div>
 
-      <div>
-        <%= f.label :current_password %> <i>(введите для сохранения профиля)</i><br/>
-        <%= f.password_field :current_password %>
-      </div>
+                <td><%= raw flat.flat_images.size > 0 ? "<a href='flats/#{flat.id}'><img src='#{flat.flat_images.first.image.url(:list)}'/></a>" : "" %></td>
+                <td>
+                  <b><%= flat.metro %></b><br/><%= flat.address %>
+                  <p><%= link_to(t('backend.actions.edit'), edit_flat_path(flat)) if can?(:edit, flat) %><%= link_to(t('backend.actions.destroy'), flat, :confirm => t('backend.actions.are_you_sure'), :method => :delete) if can?(:destroy, flat) %></p>
+                </td>
+                <td>
+                  <center><%= RoomCount.by_id(flat.rooms_count) %></center>
+                </td>
+                <td><%= "#{RemoteType.by_id(flat.remote_type)}, #{flat.remote_time} минут" if RemoteType.by_id(flat.remote_type) && flat.remote_time %></td>
+                <td>
+                  <center><%= flat.floor %> (<%= flat.floor_count %>)</center>
+                </td>
+                <td>
+                  <center><%= flat.living_space %> м</center>
+                </td>
+                <td><%= flat.price %></td>
 
-      <br/>
-      <div>
-        <% if current_user.admin? || current_user.id == 1 %>
-            <%= link_to 'Управление пользователями', "/user" %>
-        <% end %>
-      </div>
-      <br/>
-      <br/>
+                <!--<td><%#= Prepayment.by_id(flat.prepayment) %></td>-->
+                <!--<td><%#= flat.rent_period %></td>-->
+                <!--<td><%#= flat.balkon %></td>-->
+                <!--<td><%#= flat.living_space %></td>-->
+                <!--<td><%#= flat.description %></td>-->
+                <!--<td><%#= flat.rent_type %></td>-->
+                <!--<td><%#= link_to(t('backend.actions.show'), flat) if can?(:show, flat) %></td>-->
+              </tr>
+          <% end %>
+        </table>
+    <% end %>
 
-      <div>
-        <%= f.submit "Сохранить изменения" %>
-      </div>
-  <% end %>
+
+  </div>
 </div>

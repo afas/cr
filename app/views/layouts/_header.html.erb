@@ -24,6 +24,9 @@
       </div>
     </div>
     <ul id="Navigation">
+      <li class="nav-item">
+        <%= link_to "Поиск", "#", :id => "button", :class => "nav-item" %>
+      </li>
       <% @services_menu.each do |static| %>
           <li class="nav-item">
             <%= link_to static.title, "/#{static.short_url}", :class => ("active" if !@static.nil? && @static == static) %>

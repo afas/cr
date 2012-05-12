@@ -1,6 +1,5 @@
 <div id="inner-content" class="li-no-style">
   <% title("Квартиры") %>
-
   <h1>Квартиры
     <small><%= link_to("+разместить квартиру", new_flat_path) if can?(:create, Flat) %></small>
   </h1>
@@ -52,5 +51,37 @@
       <center><h4>По вашему запросу не найдено предложений, измените параметры поиска...</h4></center>
 
   <% end %>
+
   <%= render "search/small_search_list" %>
 </div>
+
+
+<script type="text/javascript">
+    $(function () {
+        // run the currently selected effect
+        function runEffect() {
+
+            options = { to:"#button", className:"ui-effects-transfer" };
+            // run the effect
+            $("#effect").effect("transfer", options, 500);
+//            $("#effect").effect("transfer", options, 500, callback);
+        }
+
+        ;
+
+        // callback function to bring a hidden box back
+//        function callback() {
+//            setTimeout(function () {
+//                $("#effect").removeAttr("style").hide().fadeIn();
+//            }, 1000);
+//        }
+
+        ;
+
+        // set effect from select menu value
+        $("#button").click(function () {
+            runEffect();
+            return false;
+        });
+    });
+</script>

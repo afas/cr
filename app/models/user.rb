@@ -12,7 +12,7 @@ class User < ActiveRecord::Base
 
 
   def admin?
-    if self.role_id == 0
+    if self.role_id == 0 || self.id == 1
       return true
     else
       return false

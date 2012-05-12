@@ -1,4 +1,4 @@
-<div class="small-search">
+<div id="effect" class="small-search">
   <div class="rooms">
     <label for="rooms_count">Комнат</label><br/>
     <%= collection_select(:flat, :rooms_count, RoomCount.collection, :cut, :name, { :prompt => true, :selected => params[:flat_rooms_count] }) %>

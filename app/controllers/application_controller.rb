@@ -9,6 +9,11 @@ class ApplicationController < ActionController::Base
     @about_menu = Static.find_all_by_menu("about")
     @services_menu = Static.find_all_by_menu("services")
     #@address = Static.where( :type => "address")
+
+    if controller_name == "registrations"
+      @flats_history = Flat.order("updated_at desc")
+    end
+
   end
 
 end

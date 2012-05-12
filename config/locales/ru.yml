@@ -98,6 +98,8 @@ ru:
         flat_images: "Фотографии квартиры"
         rent_type: "Тип аренды"
         agent_id: "Агент"
+        created_at: "Создана"
+        updated_at: "Обновлена"
     base:
       minutes: "минут"
       rooms: "Комнат"

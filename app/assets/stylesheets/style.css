@@ -59,7 +59,7 @@ h3 {
     margin: 0;
     position: relative;
     background: #252527;
-    z-index: 9999;
+    z-index: 10005;
     width: 100%;
     position: fixed;
 }
@@ -199,7 +199,7 @@ h3 {
 
 #Body {
     width: 100%;
-    overflow: hidden;
+    overflow: visible;
 }
 
 #Content {
@@ -255,15 +255,17 @@ h3 {
 
 .home #Footer {
     /*position: absolute;*/
-    position: relative;
+    position: fixed;
     left: 50%;
     bottom: 0;
     margin-left: -480px;
     color: #fff;
+    z-index: 10000;
 }
 
 .home #Footer a {
-    color: #fff;
+    color: #000;
+    line-height: 14px;
 }
 
 .boxes .grid-4 {
@@ -348,14 +350,48 @@ h3 {
 }
 
 #firstline {
-    width: 330px;
-    height: 330px;
+    width: 233px;
+    height: 233px;
     float: right;
     overflow: hidden;
 }
 
 #firstline img {
     cursor: pointer;
+}
+
+
+
+.content {
+    position: relative;
+    top: 0;
+    width: 900px;
+    z-index: 10000;
+    margin: 0 auto;
+    /*margin: 115px auto;*/
+}
+
+.container {
+    padding-top: 115px;
+}
+
+
+.toggler { width: 500px; height: 200px; position: relative; }
+
+
+.content span {
+    background-color: rgba(255,255,255,0.8);
+    color: #000000;
+    padding: 3px;
+}
+
+#Footer span {
+    background-color: rgba(255,255,255,0.8);
+    color: #000000;
+}
+
+#Footer span a {
+    color: #000000;
 }
 
 #secondline {
@@ -1929,8 +1965,9 @@ form .actions input {
 }
 
 #inner-content {
-    margin: 130px auto 55px;
+    margin: 0 auto;
     width: 960px;
+    padding-top: 115px;
 }
 
 #inner-content a {
@@ -1977,11 +2014,11 @@ table.flats img {
 }
 
 tr.even {
-    background-color: rgba(255,255,255, 0.3)
+    background-color: rgba(255, 255, 255, 0.3)
 }
 
 tr.even-first {
-    background-color: rgba(255,255,255, 0.5)
+    background-color: rgba(255, 255, 255, 0.5)
 }
 
 h1 small {

@@ -13,6 +13,7 @@ gem 'sqlite3'
 gem 'marilyn'
 gem 'cancan'
 gem 'devise'
+gem 'proxylocal'
 gem "gmaps4rails", "~> 1.3.2"
 gem 'paperclip'
 gem 'russian'

@@ -7,7 +7,8 @@ class FlatsOrder
     [
         FlatsOrder.new(:name => 'Цена', :cut => 'price'),
         FlatsOrder.new(:name => 'Удаленность от метро', :cut => 'remote_time'),
-        FlatsOrder.new(:name => 'Жилая площадь', :cut => 'living_space')
+        FlatsOrder.new(:name => 'Жилая площадь', :cut => 'living_space'),
+        FlatsOrder.new(:name => 'Изменена', :cut => 'updatet_at DESC')
     ]
   end
 

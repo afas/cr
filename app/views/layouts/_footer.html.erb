@@ -5,14 +5,17 @@
 
 <p>
   <% if user_signed_in? %>
-      Вы вошли как <%= current_user.email %>. Не вы?
-      <%= link_to "Мой профиль", "/users/edit" %> / <%= link_to "Выйти", destroy_user_session_path, :method => :delete %>
+      <span>Вы вошли как <%= current_user.email %>
+        / <%= link_to current_user.manager? ? "Рабочий кабинет" : "Личный кабинет", "/users/edit" %>
+        / <%= link_to "Выйти", destroy_user_session_path, :method => :delete %></span>
   <% else %>
+      <span>
       <%= link_to "Войти", new_user_session_path %> /
-      <%= link_to "Зарегистрироваться", new_user_registration_path %>
+        <%= link_to "Зарегистрироваться", new_user_registration_path %>
+          </span>
   <% end %>
   <br/>
-  &copy; 2011 Classic Rent. Все права защищены. Сделано в <a href="http://black-sheep.ru" target="_blank">Black Sheep</a>
+  <span>&copy; 2011 Classic Rent. Все права защищены. Сделано в <a href="http://black-sheep.ru" target="_blank">Black Sheep</a></span>
 </p>
 
 

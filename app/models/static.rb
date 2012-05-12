@@ -8,7 +8,7 @@ class Static < ActiveRecord::Base
   has_attached_file :preview,
                     :styles => {
                         :list => '170x130#',
-                        :special => '329x329#'
+                        :special => '233x233#'
                     },
                     #:default_url => 'http://www.businesspark-sofia.com/uploads/Circles/CirclesEn/circles1en.png',
                     :default_url => '/static/circle.png',
