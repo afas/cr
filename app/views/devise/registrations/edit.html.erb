@@ -93,7 +93,6 @@
                 <td><%= flat.updated_at %></td>
                 <td><%= flat.agent.name %></td>
 
-
                 <td><%= raw flat.flat_images.size > 0 ? "<a href='flats/#{flat.id}'><img src='#{flat.flat_images.first.image.url(:list)}'/></a>" : "" %></td>
                 <td>
                   <b><%= flat.metro %></b><br/><%= flat.address %>

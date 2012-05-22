@@ -5,7 +5,7 @@ class Flat < ActiveRecord::Base
 
   has_many :flat_images
 
-  belongs_to :user, :class_name => Agent, :foreign_key => :agent_id
+  belongs_to :user, :class_name => "Agent"#, :foreign_key => :agent_id
 
   #default_scope order("id DESC")
 
