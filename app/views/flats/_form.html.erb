@@ -5,7 +5,7 @@
         <div class="field">
           <%= f.label I18n.t('activerecord.attributes.flat.agent_id') %>
           <br/>
-          <%= f.collection_select(:agent_id, User.only_internal, :id, :email, :promt => true )  %>
+          <%= f.collection_select(:agent_id, User.only_internal, :id, :email, :promt => true) %>
         </div>
     <% end %>
 
@@ -14,6 +14,12 @@
           <%= f.label I18n.t('activerecord.attributes.flat.approved') %>
           <br/>
           <%= f.check_box :approved %>
+        </div>
+
+        <div class="field">
+          <%= f.label I18n.t('activerecord.attributes.flat.rent_type') %>
+          <br/>
+          <%= f.collection_select(:rent_status_id, RentStatus.collection, :cut, :name, :prompt => true) %>
         </div>
     <% end %>
 
@@ -65,12 +71,7 @@
       <%= f.label I18n.t('activerecord.attributes.flat.balkon') %>
       <br/>
       <%= f.collection_select(:balkon, Balkon.collection, :cut, :name, :prompt => true) %>
-      <%#= f.number_field :balkon %>
     </div>
-    <!--add_column :flats, :kitch_space, :float-->
-    <!--add_column :flats, :full_space, :float-->
-    <!--add_column :flats, :wc, :integer-->
-    <!--add_column :flats, :renter_info, :string-->
     <div class="field">
       <%= f.label I18n.t('activerecord.attributes.flat.living_space') %>
       <br/>
@@ -92,9 +93,14 @@
       <%= f.collection_select(:balkon, WC.collection, :cut, :name, :prompt => true) %>
     </div>
     <div class="field">
+      <%= f.label I18n.t('activerecord.attributes.flat.description') %>
+      <br/>
+      <%= f.text_area :description, :cols => 55, :rows => 8 %>
+    </div>
+    <div class="field">
       <%= f.label I18n.t('activerecord.attributes.flat.renter_info') %>
       <br/>
-      <%= f.text_field :renter_info %>
+      <%= f.text_area :renter_info, :cols => 55, :rows => 8 %>
     </div>
     <div class="field">
       <%= f.label I18n.t('activerecord.attributes.flat.floor') %>
@@ -105,11 +111,6 @@
       <%= f.label I18n.t('activerecord.attributes.flat.floor_count') %>
       <br/>
       <%= f.number_field :floor_count %>
-    </div>
-    <div class="field">
-      <%= f.label I18n.t('activerecord.attributes.flat.description') %>
-      <br/>
-      <%= f.text_area :description, :cols => 55, :rows => 13 %>
     </div>
     <div class="field">
       <%= f.label I18n.t('activerecord.attributes.flat.flat_images') %>
@@ -124,14 +125,6 @@
       <% end %>
       <div><%= f.file_field :flat_images, :multiple => true %></div>
     </div>
-
-
-    <!--<div class="field">-->
-    <!--<%#= f.label I18n.t('activerecord.attributes.flat.rent_type') %>-->
-    <!--<br/>-->
-    <!--<%#= f.number_field :rent_type %>-->
-    <!--</div>-->
-    <br/>
 
     <div class="actions">
       <%= f.submit "Сохранить" %>

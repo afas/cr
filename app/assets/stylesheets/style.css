@@ -2009,8 +2009,21 @@ table.flats th {
     height: 65px;
 }
 
+table.flats a {
+    color: #1F2122;
+}
+
 table.flats img {
     margin: 5px;
+}
+
+table.flats-admin {
+    text-align: left;
+}
+
+table.flats-admin th{
+    text-align: left;
+    padding-left: 5px;
 }
 
 tr.even {

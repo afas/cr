@@ -2,7 +2,7 @@
   <div class="container">
     <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => {:method => :put}) do |f| %>
         <%= devise_error_messages! %>
-        <h2>Мой профиль<span id="my-info">+</span></h2>
+        <h2>Мой профиль</h2>
 
         <div>
           <%= f.submit "Сохранить изменения" %>
@@ -72,56 +72,28 @@
     <% end %>
 
     <% if @flats_history.size > 0 && current_user.admin? %>
-
-        <table class="flats" cellspacing="0">
+        <table class="flats flats-admin" cellspacing="0">
           <tr class='even-first'>
-            <th width="11%"></th>
-            <th width="25%"><%= t('activerecord.attributes.flat.metro') %>
-              / <%= t('activerecord.attributes.flat.address') %></th>
-            <th width="12%"><%= t('activerecord.base.rooms') %></th>
-            <th width="15%"><%= t('activerecord.attributes.flat.remote_type') %></th>
-            <th width="9%"><%= t('activerecord.attributes.flat.floor') %></th>
-            <th width="15%"><%= t('activerecord.attributes.flat.living_space') %></th>
-            <th width="13%"><%= t('activerecord.attributes.flat.price') %>, руб</th>
+            <th width="13%">№</th>
+            <th width="11%">Стоимость</th>
+            <th width="14%">Дата изменения</th>
+            <th width="40%">Адрес</th>
+            <th width="10%">Агент</th>
+            <th width="12%">Статус</th>
           </tr>
 
           <% @flats_history.each_with_index do |flat, i| %>
               <tr <%= "class='even'" if i%2!=0 %>>
-                <td><%= flat.id %></td>
-                <td><%= flat.updated_at %></td>
-                <td><%= "#{flat.metro} / #{flat.address}" %></td>
-                <td><%= flat.updated_at %></td>
-                <td><%= flat.agent.name %></td>
-
-                <td><%= raw flat.flat_images.size > 0 ? "<a href='flats/#{flat.id}'><img src='#{flat.flat_images.first.image.url(:list)}'/></a>" : "" %></td>
-                <td>
-                  <b><%= flat.metro %></b><br/><%= flat.address %>
-                  <p><%= link_to(t('backend.actions.edit'), edit_flat_path(flat)) if can?(:edit, flat) %><%= link_to(t('backend.actions.destroy'), flat, :confirm => t('backend.actions.are_you_sure'), :method => :delete) if can?(:destroy, flat) %></p>
-                </td>
-                <td>
-                  <center><%= RoomCount.by_id(flat.rooms_count) %></center>
-                </td>
-                <td><%= "#{RemoteType.by_id(flat.remote_type)}, #{flat.remote_time} минут" if RemoteType.by_id(flat.remote_type) && flat.remote_time %></td>
-                <td>
-                  <center><%= flat.floor %> (<%= flat.floor_count %>)</center>
-                </td>
-                <td>
-                  <center><%= flat.living_space %> м</center>
-                </td>
+                <td><%= link_to("#{flat.id} / #{t('backend.actions.edit')}", edit_flat_path(flat)) if can?(:edit, flat) %></td>
                 <td><%= flat.price %></td>
-
-                <!--<td><%#= Prepayment.by_id(flat.prepayment) %></td>-->
-                <!--<td><%#= flat.rent_period %></td>-->
-                <!--<td><%#= flat.balkon %></td>-->
-                <!--<td><%#= flat.living_space %></td>-->
-                <!--<td><%#= flat.description %></td>-->
-                <!--<td><%#= flat.rent_type %></td>-->
-                <!--<td><%#= link_to(t('backend.actions.show'), flat) if can?(:show, flat) %></td>-->
+                <td><%= flat.updated_at.strftime("%d %h - %H:%M")  %></td>
+                <td><%= raw "#{flat.address} <b>#{flat.metro}</b>" %></td>
+                <td><%= flat.agent.name unless flat.agent.nil? %></td>
+                <td title="<%= flat.renter_info %>"><%= RentStatus.by_id(flat.rent_status_id) %></td>
               </tr>
           <% end %>
         </table>
-    <% end %>
 
-
+  <% end %>
   </div>
 </div>

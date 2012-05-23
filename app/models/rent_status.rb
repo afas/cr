@@ -1,13 +1,13 @@
 # encoding: utf-8
-class RoomStatus
+class RentStatus
   attr_accessor :name
   attr_accessor :cut
 
   def self.collection
     [
-        RoomStatus.new(:name => 'Подана, к рассмотрению', :cut => 0),
-        RoomStatus.new(:name => 'Рассмотрена, допущена к поиску', :cut => 1),
-        RoomStatus.new(:name => 'Сдана, архив', :cut => 2)
+        RentStatus.new(:name => 'Подана, к рассмотрению', :cut => 0),
+        RentStatus.new(:name => 'Рассмотрена, допущена к поиску', :cut => 1),
+        RentStatus.new(:name => 'Сдана, архив', :cut => 2)
     ]
   end
 
