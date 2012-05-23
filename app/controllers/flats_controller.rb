@@ -1,10 +1,11 @@
+#encoding:utf-8
 class FlatsController < ApplicationController
   load_and_authorize_resource
 
   before_filter :auth_user, :only => "new"
 
   def auth_user
-    redirect_to new_user_session_path if current_user.nil?
+    redirect_to new_user_registration_path, :notice => "Внимание! <br/>Для размещения информации о квартире необходимо зарегистрироваться" if current_user.nil?
   end
 
   # GET /flats
@@ -83,7 +84,7 @@ class FlatsController < ApplicationController
   # GET /flats/1
   # GET /flats/1.xml
   def show
-    @flats_to_map = Flat.approved.to_gmaps4rails
+    @flats_to_map = Flat.where("id = ?",params[:id]).approved.to_gmaps4rails
 
     respond_to do |format|
       format.html { render :layout => "with_gmaps" }
