@@ -8,7 +8,7 @@ gem 'rails', '3.1.0'
 gem 'execjs'
 gem 'therubyracer'
 
-gem 'aloha_rails'
+#gem 'aloha_rails'
 gem 'sqlite3'
 gem 'marilyn'
 gem 'cancan'
