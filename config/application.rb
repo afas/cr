@@ -42,7 +42,7 @@ module Classicrent
     # Enable the asset pipeline
     config.assets.enabled = true
 
-    config.assets.precompile += ['with_wysiwyg.js', 'with_gmaps.js', 'with_gmaps.css']
+    config.assets.precompile += ['with_wysiwyg.js', 'with_gmaps.js']
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
