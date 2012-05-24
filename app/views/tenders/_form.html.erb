@@ -1,6 +1,10 @@
 <%= form_for(@tender, :builder => StarsFormBuilder) do |f| %>
     <%= render 'shared/error_messages', :target => @tender %>
 
+    <!--add_column :tenders, :agent_id, :integer, :default => 0-->
+    <!--add_column :tenders, :client_status_id, :integer, :default => 0-->
+    <!--add_column :tenders, :comments, :string-->
+
     <div class="field">
       <%= f.label "Представьтесь" %>
       <br/>
@@ -37,6 +41,25 @@
       <%= f.text_area :description, :cols => 55, :rows => 5 %>
     </div>
     <br/>
+    <br/>
+    <% if !current_user.nil? && (current_user.manager?) %>
+        <div class="field">
+          <%= f.label I18n.t('activerecord.attributes.tender.agent_id') %>
+          <br/>
+          <%= f.collection_select(:agent_id, User.only_internal, :id, :email, :promt => true) %>
+        </div>
+        <div class="field">
+          <%= f.label I18n.t('activerecord.attributes.tender.client_status') %>
+          <br/>
+          <%= collection_select(:client_status, :operation, ClientStatus.collection, :cut, :name, :prompt => false) %>
+        </div>
+        <div class="field">
+          <%= f.label I18n.t('activerecord.attributes.tender.comments') %>
+          <br/>
+          <%= f.text_area :comments, :cols => 55, :rows => 5 %>
+        </div>
+    <% end %>
+
     <div class="actions">
       <%= f.submit "Отправить заявку" %>
     </div>

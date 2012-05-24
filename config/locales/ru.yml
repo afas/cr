@@ -101,6 +101,10 @@ ru:
         agent_id: "Агент"
         created_at: "Создана"
         updated_at: "Обновлена"
+      tender:
+        agent_id: "Агент"
+        client_status: "Состояние заявки/клиента"
+        comments: "Комментарии (полный лог общения и работы агента с данной заявкой)"
     base:
       minutes: "минут"
       rooms: "Комнат"
