@@ -24,15 +24,14 @@
       </div>
     </div>
     <ul id="Navigation">
-      <li class="nav-item">
-        <%= link_to "Поиск", "#", :id => "button", :class => "nav-item" %>
-      </li>
       <% @services_menu.each do |static| %>
           <li class="nav-item">
             <%= link_to static.title, "/#{static.short_url}", :class => ("active" if !@static.nil? && @static == static) %>
-            <%#= raw "<a class='separator'>/</a>" if static != @services_menu.last %>
           </li>
       <% end %>
+      <li class="nav-item">
+        <%= link_to "Поиск", (controller_name != "flats" && controller_name != "search" ? "/search" : "#"), :id => "search-button", :class => "nav-item" %>
+      </li>
     </ul>
   </div>
 </div>

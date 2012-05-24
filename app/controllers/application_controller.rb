@@ -11,9 +11,15 @@ class ApplicationController < ActionController::Base
     #@address = Static.where( :type => "address")
 
     if controller_name == "registrations"
-      @flats_history = Flat.order("updated_at desc")
+      if !current_user.nil? && (current_user.manager?)
+        @flats = Flat.order("updated_at desc")
+      else
+        if current_user.nil?
+          @flats = Flat.approved.order("updated_at desc")
+        else
+          @flats = Flat.where("agent_id = ?", current_user.id).order("updated_at desc")
+        end
+      end
     end
-
   end
-
 end

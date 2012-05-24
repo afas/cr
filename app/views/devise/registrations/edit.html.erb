@@ -45,11 +45,6 @@
             <br/>
             <%= f.text_field :organization %>
           </div>
-          <!--<div>-->
-          <!--<%#= f.label "Внутренний работник" %>-->
-          <!--<br/>-->
-          <!--<%#= f.check_box :internal %>-->
-          <!--</div>-->
           <div>
             <%= f.label :password %> <i>(для изменения пароля)</i><br/>
             <%= f.password_field :password %>
@@ -63,15 +58,21 @@
             <%= f.label :current_password %> <i>(введите для сохранения профиля)</i><br/>
             <%= f.password_field :current_password %>
           </div>
-          <div>
-            <% if current_user.admin? %>
+          <% if current_user.admin? %>
+              <div>
+                <%= f.label "Внутренний работник" %>
+                <br/>
+                <%= f.check_box :internal %>
+              </div>
+
+              <div>
                 <%= link_to 'Управление пользователями', "/user" %>
-            <% end %>
-          </div>
+              </div>
+          <% end %>
         </div>
     <% end %>
 
-    <% if @flats_history.size > 0 && current_user.admin? %>
+    <% if @flats.size > 0 %>
         <table class="flats flats-admin" cellspacing="0">
           <tr class='even-first'>
             <th width="13%">№</th>
@@ -82,11 +83,11 @@
             <th width="12%">Статус</th>
           </tr>
 
-          <% @flats_history.each_with_index do |flat, i| %>
+          <% @flats.each_with_index do |flat, i| %>
               <tr <%= "class='even'" if i%2!=0 %>>
                 <td><%= link_to("#{flat.id} / #{t('backend.actions.edit')}", edit_flat_path(flat)) if can?(:edit, flat) %></td>
                 <td><%= flat.price %></td>
-                <td><%= flat.updated_at.strftime("%d %h - %H:%M")  %></td>
+                <td><%= flat.updated_at.strftime("%d %h - %H:%M") %></td>
                 <td><%= raw "#{flat.address} <b>#{flat.metro}</b>" %></td>
                 <td><%= flat.agent.name unless flat.agent.nil? %></td>
                 <td title="<%= flat.renter_info %>"><%= RentStatus.by_id(flat.rent_status_id) %></td>
@@ -94,6 +95,6 @@
           <% end %>
         </table>
 
-  <% end %>
+    <% end %>
   </div>
 </div>

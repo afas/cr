@@ -9,6 +9,9 @@
 
 //= require jquery-ui
 
+//= require cookies
+
 //= require jquery-easing
 //= require jquery-fancybox
 //= require jquery-mousewheel
+

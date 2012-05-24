@@ -1,4 +1,4 @@
-<div class="small-search">
+<div id="search-panel" class="small-search">
   <div class="rooms">
     <label for="rooms_count">Комнат</label><br/>
     <%= collection_select(:flat, :rooms_count, RoomCount.collection, :cut, :name, {:prompt => true, :selected => params[:flat_rooms_count]}) %>
@@ -135,6 +135,56 @@
 
 
     $(function() {
-        $(".small-search").draggable();
+        $("#search-panel").draggable();
+
+        if (getCookieValue("search-panel") != "hide") {
+            $("#search-panel").show();
+            $("#search-button").html("Скрыть фильтр");
+        } else {
+            $("#search-button").html("Показать фильтр");
+        }
     });
+
+
+
+    function runEffect() {
+        hidden = getCookieValue("search-panel") == "hide";
+        if (hidden) {
+            $("#search-panel").show();
+            callbackEffect();
+        } else {
+            speed = 500;
+            options = { to:"#search-button", className:"search-panel" };
+            $("#search-panel").effect("transfer", options, speed, callbackEffect()).hide();
+        }
+    }
+
+    function callbackEffect() {
+        hidden = getCookieValue("search-panel") == "hide";
+        if (hidden) {
+            if (writeSessionCookie("search-panel", "show")) {
+                $("#search-button").html("Скрыть фильтр");
+            }
+            else {
+                alert("В браузере выключены куки.");
+            }
+        } else {
+            if (writeSessionCookie("search-panel", "hide")) {
+                $("#search-button").html("Показать фильтр");
+            }
+            else {
+                alert("В браузере выключены куки.");
+            }
+        }
+    }
+
+    $("#search-panel").draggable();
+
+    $("#search-button").click(function () {
+        runEffect();
+        return false;
+    });
+
+
+
 </script>

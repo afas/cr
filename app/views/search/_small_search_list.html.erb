@@ -1,17 +1,17 @@
-<div id="effect" class="small-search">
+<div id="search-panel" class="small-search">
   <div class="rooms">
     <label for="rooms_count">Комнат</label><br/>
-    <%= collection_select(:flat, :rooms_count, RoomCount.collection, :cut, :name, { :prompt => true, :selected => params[:flat_rooms_count] }) %>
+    <%= collection_select(:flat, :rooms_count, RoomCount.collection, :cut, :name, {:prompt => true, :selected => params[:flat_rooms_count]}) %>
   </div>
 
   <div class="rent_period">
     <label for="rent_period">Срок аренды</label><br/>
-    <%= collection_select(:flat, :rent_period, RentPeriod.collection, :cut, :name, { :prompt => true, :selected => params[:flat_rent_period] }) %>
+    <%= collection_select(:flat, :rent_period, RentPeriod.collection, :cut, :name, {:prompt => true, :selected => params[:flat_rent_period]}) %>
   </div>
 
   <div class="prepayment">
     <label for="prepayment">Предоплата</label><br/>
-    <%= collection_select(:flat, :prepayment, Prepayment.collection, :cut, :name, { :prompt => true, :selected => params[:flat_prepayment] }) %>
+    <%= collection_select(:flat, :prepayment, Prepayment.collection, :cut, :name, {:prompt => true, :selected => params[:flat_prepayment]}) %>
   </div>
 
   <div class="metro">
@@ -26,7 +26,7 @@
 
   <div class="balkon">
     <label for="balkon">Балкон</label><br/>
-    <%= collection_select(:flat, :balkon, Balkon.collection, :cut, :name, { :prompt => true, :selected => params[:flat_balkon] }) %>
+    <%= collection_select(:flat, :balkon, Balkon.collection, :cut, :name, {:prompt => true, :selected => params[:flat_balkon]}) %>
   </div>
 
   <div class="living_space">
@@ -42,7 +42,7 @@
 
   <div class="flats_order">
     <label for="flats_order">Порядок выдачи</label><br/>
-    <%= collection_select(:flat, :flats_order, FlatsOrder.collection, :cut, :name, { :prompt => true, :selected => params[:flat_flats_order] }) %>
+    <%= collection_select(:flat, :flats_order, FlatsOrder.collection, :cut, :name, {:prompt => true, :selected => params[:flat_flats_order]}) %>
   </div>
 
   <input type="submit" value="Показать на карте" class="q-search-submit" onclick="searchResults()"></input>
@@ -131,9 +131,50 @@
                 }
             });
 
-    $(function() {
-        $(".small-search").draggable();
-    });
 
+    if (getCookieValue("search-panel") != "hide") {
+        $("#search-panel").show();
+        $("#search-button").html("Скрыть фильтр");
+    } else {
+        $("#search-button").html("Показать фильтр");
+    }
+
+    function runEffect() {
+        hidden = getCookieValue("search-panel") == "hide";
+        if (hidden) {
+            $("#search-panel").show();
+            callbackEffect();
+        } else {
+            speed = 500;
+            options = { to:"#search-button", className:"search-panel" };
+            $("#search-panel").effect("transfer", options, speed, callbackEffect()).hide();
+        }
+    }
+
+    function callbackEffect() {
+        hidden = getCookieValue("search-panel") == "hide";
+        if (hidden) {
+            if (writeSessionCookie("search-panel", "show")) {
+                $("#search-button").html("Скрыть фильтр");
+            }
+            else {
+                alert("В браузере выключены куки.");
+            }
+        } else {
+            if (writeSessionCookie("search-panel", "hide")) {
+                $("#search-button").html("Показать фильтр");
+            }
+            else {
+                alert("В браузере выключены куки.");
+            }
+        }
+    }
+
+    $("#search-panel").draggable();
+
+    $("#search-button").click(function () {
+        runEffect();
+        return false;
+    });
 
 </script>

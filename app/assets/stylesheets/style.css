@@ -375,6 +375,9 @@ h3 {
     padding-top: 115px;
 }
 
+.container a {
+    color: #1F2122;
+}
 
 .toggler { width: 500px; height: 200px; position: relative; }
 
@@ -2036,4 +2039,24 @@ tr.even-first {
 
 h1 small {
     float: right;
+}
+
+/* Following is required  to show border while transferring.*/
+.ui-effects-transfer {
+    border: 3px dotted rgba(255, 255, 255, 0.8);
+    z-index: 11000;
+}
+
+.ui-effects-transfer-play {
+    background: none;
+    border: none;
+    box-shadow: none;
+}
+
+.ui-effects-transfer-hidden {
+    width: 10px;
+    height: 10px;
+    position: absolute;
+    top: 100px;
+    left: 100px;
 }
