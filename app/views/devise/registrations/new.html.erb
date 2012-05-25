@@ -1,6 +1,8 @@
 <div id="Content" class="grid-12 boxes">
-  <h2><%= raw notice %></h2>
-
+  <% unless notice.blank? %>
+  <h3><%= raw notice %></h3>
+  <hr>
+  <% end %>
 
   <h2>Регистрация</h2>
 

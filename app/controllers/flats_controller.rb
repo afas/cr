@@ -103,7 +103,7 @@ class FlatsController < ApplicationController
 
   # GET /flats/1/edit
   def edit
-    render :layout => "with_aloha"
+    render :layout => "with_wysiwyg"
   end
 
   # POST /flats

@@ -1,13 +1,14 @@
 <div>
   <%= gmaps({
-                    "map_options" => {
-                            "zoom" => 13,
-                            "auto_adjust" => true,
-                            "detect_location" => true,
-                            "center_on_user" => true
+                    :map_options => {
+                            :auto_zoom => true,
+                            #:zoom => 13,
+                            :auto_adjust => true
+                            #"detect_location" => true,
+                            #"center_on_user" => true
                     },
-                    "markers" => {
-                            "data" => @flats
+                    :markers => {
+                            :data => @flats
                     }
             }) %>
 

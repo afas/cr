@@ -1964,7 +1964,7 @@ form .actions input {
 }
 
 .gallery-list img {
-    padding-right: 5px;
+    padding: 5px 5px 0 0;
 }
 
 #inner-content {

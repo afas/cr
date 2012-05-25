@@ -5,4 +5,5 @@
 //= require jquery-fancybox
 //= require jquery-mousewheel
 
-//= require aloha
+//= require jquery-markitup
+//= require markitup-set

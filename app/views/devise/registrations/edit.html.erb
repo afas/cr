@@ -2,6 +2,12 @@
   <div class="container">
     <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => {:method => :put}) do |f| %>
         <%= devise_error_messages! %>
+
+        <% unless notice.blank? %>
+            <h3><%= raw notice %></h3>
+            <hr>
+        <% end %>
+
         <h2>Мой профиль</h2>
 
         <h2>Мой профиль<%= f.submit "Сохранить изменения", :type => "link" %></h2>
@@ -83,17 +89,46 @@
         </div>
     <% end %>
 
+    <% if @tenders.size > 0 %>
+        <h2>Активные заявки</h2>
+
+        <table class="flats flats-admin" cellspacing="0">
+          <tr class='even-first'>
+            <th width="13%">№</th>
+            <th width="11%">Имя</th>
+            <th width="14%">Телефон</th>
+            <th width="40%">Тип</th>
+            <th width="10%">Агент</th>
+            <th width="10%">Изменена</th>
+            <th width="12%">Статус</th>
+          </tr>
+
+          <% @tenders.each_with_index do |tender, i| %>
+              <tr <%= "class='even'" if i%2!=0 %>>
+                <td><%= link_to("#{tender.id} / #{t('backend.actions.edit')}", edit_tender_path(tender)) if can?(:edit, tender) %></td>
+                <td><%= tender.name %></td>
+                <td><%= tender.phone %></td>
+                <td><%= TenderOperation.by_id(tender.operation) %></td>
+                <td><%= tender.agent.name unless tender.agent.nil? %></td>
+                <td><%= tender.updated_at.strftime("%d %h - %H:%M") %></td>
+                <td><%= ClientStatus.by_id(tender.client_status_id) %></td>
+              </tr>
+          <% end %>
+        </table>
+    <% end %>
+
     <% if @flats.size > 0 %>
+        <h2>Недвижимость</h2>
+
         <table class="flats flats-admin" cellspacing="0">
           <tr class='even-first'>
             <th width="13%">№</th>
             <th width="11%">Стоимость</th>
-            <th width="14%">Дата изменения</th>
+            <th width="14%">Изменена</th>
             <th width="40%">Адрес</th>
             <th width="10%">Агент</th>
             <th width="12%">Статус</th>
           </tr>
-
           <% @flats.each_with_index do |flat, i| %>
               <tr <%= "class='even'" if i%2!=0 %>>
                 <td><%= link_to("#{flat.id} / #{t('backend.actions.edit')}", edit_flat_path(flat)) if can?(:edit, flat) %></td>

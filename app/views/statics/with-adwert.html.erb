@@ -8,10 +8,6 @@
     <%= link_to t('backend.actions.edit'), edit_static_path(@static) if can?(:edit, @static) %>
     <%= raw "<br/>" if can?(:edit, @static) %>
 
-    <p>
-      <%= raw @static.content %>
-    </p>
-
     <% if @static.static_files.size > 0 %>
         <h2>Документы</h2>
         <ul class="files">
@@ -34,7 +30,13 @@
         <% end %>
         <div class="g-clearfix"></div>
     <% end %>
+    <div class="static-double-columns">
+      <%= raw @static.content %>
+    </div>
+
   </div>
+
+
   <div class="content-right">
     <script type="text/javascript" src="http://userapi.com/js/api/openapi.js?47"></script>
     <!-- VK Widget -->
