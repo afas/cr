@@ -2060,3 +2060,21 @@ h1 small {
     top: 100px;
     left: 100px;
 }
+
+ul.admin-functions {
+    height: 21px;
+    list-style: none outside none;
+    margin: 0;
+    padding: 0;
+    height: 34px;
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+ul.admin-functions li a {
+    text-decoration: none;
+}
+ul.admin-functions li {
+    list-style: none;
+    float: left;
+    padding: 8px 21px 0 0;
+}

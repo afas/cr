@@ -4,6 +4,21 @@
         <%= devise_error_messages! %>
         <h2>Мой профиль</h2>
 
+        <h2>Мой профиль<%= f.submit "Сохранить изменения", :type => "link" %></h2>
+
+        <% if current_user.admin? %>
+            <ul class="admin-functions">
+              <li><%= link_to "Акции", "/special" %></li>
+              <li><%= link_to 'Управление пользователями', "/user" %></li>
+              <li><%= link_to "Фон", welcome_images_path %></li>
+              <li><%= link_to "Заявки", "/tenders" %></li>
+              <li><%= link_to "Импорт", new_import_path %></li>
+            </ul>
+        <% else %>
+            <%= f.submit "Сохранить изменения" %>
+        <% end %>
+
+
         <div>
           <%= f.submit "Сохранить изменения" %>
         </div>
@@ -64,11 +79,7 @@
                 <br/>
                 <%= f.check_box :internal %>
               </div>
-
-              <div>
-                <%= link_to 'Управление пользователями', "/user" %>
-              </div>
-          <% end %>
+        <% end %>
         </div>
     <% end %>
 

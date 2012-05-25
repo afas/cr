@@ -7,19 +7,6 @@
           <% @about_menu.each do |static| %>
               <%= link_to static.title, "/#{static.short_url}" %>
           <% end %>
-
-          <% if can?(:create, Static) %>
-              <%= link_to "Акции", "/special" %>
-          <% end %>
-          <% if can?(:create, WelcomeImage) %>
-              <%= link_to "Фон", welcome_images_path %>
-          <% end %>
-          <% if can?(:destroy, Tender) %>
-              <%= link_to "Заявки", "/tenders" %>
-          <% end %>
-          <% if can?(:create, Import) %>
-              <%= link_to "Импорт", new_import_path %>
-          <% end %>
         </p>
       </div>
     </div>
