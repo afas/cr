@@ -260,8 +260,15 @@ h3 {
     bottom: 0;
     margin-left: -480px;
     color: #fff;
+    /*z-index: 100000;*/
+}
+
+.home #Footer p {
+    position: relative;
+    display: block;
     z-index: 10000;
 }
+
 
 .home #Footer a {
     color: #000;
@@ -2076,5 +2083,5 @@ ul.admin-functions li a {
 ul.admin-functions li {
     list-style: none;
     float: left;
-    padding: 8px 21px 0 0;
+    padding: 8px 0 0 21px;
 }

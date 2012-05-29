@@ -10,8 +10,6 @@
 
         <h2>Мой профиль</h2>
 
-        <h2>Мой профиль<%= f.submit "Сохранить изменения", :type => "link" %></h2>
-
         <% if current_user.admin? %>
             <ul class="admin-functions">
               <li><%= link_to "Акции", "/special" %></li>
@@ -20,10 +18,8 @@
               <li><%= link_to "Заявки", "/tenders" %></li>
               <li><%= link_to "Импорт", new_import_path %></li>
             </ul>
-        <% else %>
-            <%= f.submit "Сохранить изменения" %>
+            <br/>
         <% end %>
-
 
         <div>
           <%= f.submit "Сохранить изменения" %>
@@ -91,7 +87,6 @@
 
     <% if @tenders.size > 0 %>
         <h2>Активные заявки</h2>
-
         <table class="flats flats-admin" cellspacing="0">
           <tr class='even-first'>
             <th width="13%">№</th>
@@ -102,7 +97,6 @@
             <th width="10%">Изменена</th>
             <th width="12%">Статус</th>
           </tr>
-
           <% @tenders.each_with_index do |tender, i| %>
               <tr <%= "class='even'" if i%2!=0 %>>
                 <td><%= link_to("#{tender.id} / #{t('backend.actions.edit')}", edit_tender_path(tender)) if can?(:edit, tender) %></td>
@@ -119,7 +113,6 @@
 
     <% if @flats.size > 0 %>
         <h2>Недвижимость</h2>
-
         <table class="flats flats-admin" cellspacing="0">
           <tr class='even-first'>
             <th width="13%">№</th>
@@ -140,7 +133,7 @@
               </tr>
           <% end %>
         </table>
-
     <% end %>
+
   </div>
 </div>
