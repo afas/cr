@@ -974,6 +974,9 @@ h3 {
 
 .comment-form .actions {
     margin: 0 0 10px 107px;
+    display: block;
+    position: relative;
+    z-index: 10001;
 }
 
 #Content ul.error_list, .error {
