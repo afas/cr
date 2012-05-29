@@ -974,9 +974,6 @@ h3 {
 
 .comment-form .actions {
     margin: 0 0 10px 107px;
-    display: block;
-    position: relative;
-    z-index: 10001;
 }
 
 #Content ul.error_list, .error {
@@ -1091,11 +1088,16 @@ form legend {
 form .actions {
     /*margin: 0 0 0 35%;*/
     font-size: 12px;
+
+    display: block;
+    position: relative;
+    z-index: 10001;
 }
 
 form .actions input {
     cursor: pointer;
 }
+
 
 .hint {
     font-size: 11px;
