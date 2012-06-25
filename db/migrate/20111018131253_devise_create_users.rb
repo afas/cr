@@ -57,6 +57,9 @@ class DeviseCreateUsers < ActiveRecord::Migration
     # add_index :users, :unlock_token,         :unique => true
     # add_index :users, :authentication_token, :unique => true
 
-    User.create( :email => "admin@classicrent.ru", :password => "enlightenment", :name => "Рафаэль", :role_id => 0 )
+    User.create( :email => "admin@classicrent.ru", :password => "enlightenment", :name => "Rafael", :role_id => 0 )
+    User.create( :email => "manager@classicrent.ru", :password => "manager@classicrent.ru", :name => "Менеджер", :role_id => 1 )
+    User.create( :email => "rieltor@classicrent.ru", :password => "rieltor@classicrent.ru", :name => "Риэлтор", :role_id => 2 )
+    User.create( :email => "user@classicrent.ru", :password => "user@classicrent.ru", :name => "Пользователь", :role_id => 3 )
   end
 end

@@ -1,25 +1,15 @@
 <div id="inner-content" class="li-no-style">
   <div class="content-left">
     <%= title(@static.title) %>
-
     <%= link_to t('backend.actions.edit'), edit_static_path(@static) if can?(:edit, @static) %>
     <%= raw "<br/>" if can?(:edit, @static) %>
+    <div class="static-double-columns">
+      <%= image_tag @static.preview.url(:list), :alt => @static.title if @static.preview_file_name %>
+      <%= raw @static.content %>
+    </div>
+  </div>
 
-    <% if @static.static_files.size > 0 %>
-        <h2>Документы</h2>
-        <ul class="files">
-          <% @static.static_files.each do |file| %>
-              <li>
-                <%= link_to image_tag("/images/file-icon.png"), file.file.url %>
-                <%= link_to file.file_file_name.split('.')[0], file.file.url, :class => "files-description" %>
-                <!--<br/>-->
-                <!--<%#= file.file_file_size / 1024 %>KB, <%#= file.file_updated_at.strftime("%e %b %Y") %>-->
-              </li>
-          <% end %>
-        </ul>
-        <div class="g-clearfix"></div>
-    <% end %>
-
+  <div class="content-right">
     <% if @static.static_images.size > 0 %>
         <h2>Фотогалерея</h2>
         <% @static.static_images.each do |image| %>
@@ -27,26 +17,34 @@
         <% end %>
         <div class="g-clearfix"></div>
     <% end %>
-    <div class="static-double-columns">
-      <%= raw @static.content %>
-    </div>
 
-  </div>
-
-
-  <div class="content-right">
+    <% if @static.static_files.size > 0 %>
+        <h2>Файлы</h2>
+        <ul class="files">
+          <% @static.static_files.each do |file| %>
+              <li>
+                <%= link_to image_tag('file-icon.png'), file.file.url, :target => "_blank" %>
+                <%= link_to file.file_file_name.split('.')[0], file.file.url, :class => "files-description", :target => "_blank" %>
+                <!--<br/>-->
+                <!--<%#= file.file_file_size / 1024 %>KB, <%#= file.file_updated_at.strftime("%e %b %Y") %>-->
+              </li>
+          <% end %>
+        </ul>
+        <div class="g-clearfix"></div>
+    <% end %>
+    <!--<br/>-->
+    <%#= render "layouts/yandex_news" %>
+    <br/>
     <%= render "layouts/vk_community" %>
   </div>
-
 </div>
 
-
 <script type="text/javascript">
-    $(document).ready(function() {
+    $(document).ready(function () {
         $("a[rel=gallery]").fancybox({
-            'transitionIn'      : 'none',
-            'transitionOut'     : 'none',
-            'titlePosition'     : 'over'
+            'transitionIn':'none',
+            'transitionOut':'none',
+            'titlePosition':'over'
         });
     });
 </script>

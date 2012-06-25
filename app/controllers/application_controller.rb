@@ -9,10 +9,10 @@ class ApplicationController < ActionController::Base
   #def after_sign_in_path_for(resource)
   #  if current_user.name.blank? || current_user.phone.blank?
   #    redirect_to edit_user_registration, :notice => "Для большего комфорта работы системы предлагаем вам назвать ваше имя и контактный телефон."
-    #else
-    #  redirect_to
-    #  true
-    #end
+  #else
+  #  redirect_to
+  #  true
+  #end
   #end
 
   def build_menu
@@ -21,15 +21,19 @@ class ApplicationController < ActionController::Base
     #@address = Static.where( :type => "address")
 
     if controller_name == "registrations"
-      if !current_user.nil? && (current_user.manager?)
-        @flats = Flat.order("updated_at desc")
-        @tenders = Tender.where("client_status_id <> ?", 3).order("updated_at desc")
-      else
-        if current_user.nil?
-          @flats = Flat.approved.order("updated_at desc")
-        else
+
+      unless current_user.nil?
+        if current_user.manager?
+          @flats = Flat.order("updated_at desc")
+          @tenders = Tender.where("client_status_id <> ?", 3).order("updated_at desc")
+        end
+        if current_user.rieltor?
           @flats = Flat.where("agent_id = ?", current_user.id).order("updated_at desc")
           @tenders = Tender.where("agent_id = ? && client_status_id <> ?", current_user.id, 3).order("updated_at desc")
+        end
+        if current_user.client?
+          @flats = Flat.order("updated_at desc")
+          @tenders = Tender.where("client_status_id <> ?", 3).order("updated_at desc")
         end
       end
     end

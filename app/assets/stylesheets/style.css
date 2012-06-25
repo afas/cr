@@ -112,6 +112,37 @@ h3 {
     width: 100px;
 }
 
+.strip-links a span {
+    display: none;
+    /*border-top: 1px solid #38393A;*/
+    color: #fff;
+    line-height: 21px;
+    opacity: 0.3;
+    position: absolute;
+    top: 32px;
+    width: 100px;
+}
+
+
+.nav-item a span {
+    display: none;
+    /*border-top: 1px solid #38393A;*/
+    color: #fff;
+    line-height: 21px;
+    opacity: 0.3;
+    position: absolute;
+    top: 19px;
+    /*width: 300px;*/
+}
+
+.strip-links a:hover span, .nav-item a:hover span {
+    display: block;
+}
+
+.static-double-columns p a {
+    float: none !important;
+}
+
 .strip-links a.last {
     border-right: none !important;
 }
@@ -283,7 +314,7 @@ h3 {
 
 .boxes .grid-4 .placeholder {
     height: 105px;
-    padding: 15px 25px 20px 25px;
+    padding: 15px 13px 20px 21px;
     overflow: hidden;
     background: url(box-back.png) no-repeat left top;
 }
@@ -549,9 +580,12 @@ h3 {
     padding: 25px 15px;
 }
 
+.inactive {
+    cursor: wait;
+    opacity: 0.2;
+}
 .inactive a {
     cursor: wait;
-    color: rgba(255,255,255, 0.5);
 }
 
 .video-replacement {

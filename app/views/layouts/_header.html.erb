@@ -5,7 +5,7 @@
       <div class="strip-links">
         <p>
           <% @about_menu.each do |static| %>
-              <%= link_to static.title, "/#{static.short_url}" %>
+              <%= link_to raw("#{static.title}<span>#{static.hover}</span>"), "/#{static.short_url}" %>
           <% end %>
         </p>
       </div>
@@ -13,7 +13,7 @@
     <ul id="Navigation">
       <% @services_menu.each do |static| %>
           <li class="nav-item">
-            <%= link_to static.title, "/#{static.short_url}", :class => ("active" if !@static.nil? && @static == static) %>
+            <%= link_to raw("#{static.title}<span>#{static.hover}</span>"), "/#{static.short_url}", :class => ("active" if !@static.nil? && @static == static) %>
           </li>
       <% end %>
       <li class="nav-item">
