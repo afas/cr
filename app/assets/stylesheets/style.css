@@ -139,6 +139,12 @@ h3 {
     display: block;
 }
 
+.static-double-columns img {
+    border: medium none;
+    float: left;
+    margin: 0 8px 8px 0;
+}
+
 .static-double-columns p a {
     float: none !important;
 }
@@ -2032,6 +2038,10 @@ form .actions input {
     float: left;
     width: 690px;
     padding-right: 20px;
+}
+
+.content-right h2 {
+    margin: 0 0 5px;
 }
 
 .content-right {
