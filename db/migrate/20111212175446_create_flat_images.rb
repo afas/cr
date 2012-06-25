@@ -7,5 +7,6 @@ class CreateFlatImages < ActiveRecord::Migration
       t.integer :image_file_size
       t.datetime :image_updated_at
     end
+    add_index :flat_images, :flat_id
   end
 end

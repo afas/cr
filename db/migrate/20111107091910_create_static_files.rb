@@ -7,5 +7,6 @@ class CreateStaticFiles < ActiveRecord::Migration
       t.integer :file_file_size
       t.datetime :file_updated_at
     end
+    add_index :static_files, :static_id
   end
 end

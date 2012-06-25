@@ -6,25 +6,25 @@ class Role
   def self.collection(admin)
     if admin
       [
-          Role.new(:name => 'Администратор', :cut => '0'),
-          Role.new(:name => 'Менеджер', :cut => '1'),
-          Role.new(:name => 'Риэлтор', :cut => '2'),
-          Role.new(:name => 'Пользователь', :cut => '3')
+          Role.new(:name => 'Администратор', :cut => 0),
+          Role.new(:name => 'Менеджер', :cut => 1),
+          Role.new(:name => 'Риэлтор', :cut => 2),
+          Role.new(:name => 'Пользователь', :cut => 3)
       ]
     else
       [
-          Role.new(:name => 'Риэлтор', :cut => '2'),
-          Role.new(:name => 'Пользователь', :cut => '3')
+          Role.new(:name => 'Риэлтор', :cut => 2),
+          Role.new(:name => 'Пользователь', :cut => 3)
       ]
     end
   end
 
   def self.collection_all
     [
-        Role.new(:name => 'Администратор', :cut => '0'),
-        Role.new(:name => 'Менеджер', :cut => '1'),
-        Role.new(:name => 'Риэлтор', :cut => '2'),
-        Role.new(:name => 'Пользователь', :cut => '3')
+        Role.new(:name => 'Администратор', :cut => 0),
+        Role.new(:name => 'Менеджер', :cut => 1),
+        Role.new(:name => 'Риэлтор', :cut => 2),
+        Role.new(:name => 'Пользователь', :cut => 3)
     ]
   end
 
@@ -35,7 +35,7 @@ class Role
 
   def self.by_id(id)
     collection_all.each do |value|
-      return value.name if value.cut.to_i == id
+      return value.name if value.cut == id
     end
     false
   end

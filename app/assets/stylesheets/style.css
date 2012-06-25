@@ -100,16 +100,16 @@ h3 {
 }
 
 .strip-links a {
-    font-weight: bold;
-    width: 121px;
-    height: 33px;
-    line-height: 33px;
+    border-right: 1px solid #38393A;
+    color: #7C7A78;
     display: block;
     float: left;
-    text-decoration: none;
+    font-weight: bold;
+    height: 33px;
+    line-height: 33px;
     text-align: center;
-    color: #7C7A78;
-    border-right: 1px solid #38393A;
+    text-decoration: none;
+    width: 100px;
 }
 
 .strip-links a.last {
@@ -154,7 +154,7 @@ h3 {
 }
 
 #Navigation {
-    /*font: bold 13px Tahoma, Geneva, sans-serif;*/
+    font: bold 13px Tahoma, Geneva, sans-serif;
     text-transform: uppercase;
     margin: 4px -490px 0 0;
     padding: 0;
@@ -177,7 +177,7 @@ h3 {
     display: block;
     float: left;
     font-size: 12px;
-    font-weight: bold;
+    font-weight: normal;
     padding: 43px 34px;
     text-align: center;
     text-decoration: none;
@@ -547,6 +547,11 @@ h3 {
 
 #Content .ui-tabs li.ui-tabs-selected a {
     padding: 25px 15px;
+}
+
+.inactive a {
+    cursor: wait;
+    color: rgba(255,255,255, 0.5);
 }
 
 .video-replacement {

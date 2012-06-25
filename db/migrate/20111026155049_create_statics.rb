@@ -2,6 +2,7 @@ class CreateStatics < ActiveRecord::Migration
   def change
     create_table :statics do |t|
       t.string :title
+      t.string :hover
       t.text :content
       t.integer :parent_id
       t.string :short_url
@@ -17,5 +18,6 @@ class CreateStatics < ActiveRecord::Migration
 
       t.timestamps
     end
+    add_index :statics, :short_url, :unique => true
   end
 end

@@ -19,8 +19,18 @@ class CreateFlats < ActiveRecord::Migration
       t.float :latitude
       t.float :longitude
       t.boolean :gmaps
+      t.integer :agent_id
 
       t.timestamps
     end
+    add_index :flats, :rooms_count
+    add_index :flats, :rent_period
+    add_index :flats, :rent_type
+    add_index :flats, :metro
+    add_index :flats, :remote_type
+    add_index :flats, :floor
+    add_index :flats, :floor_count
+    add_index :flats, :approved
+    add_index :flats, :agent_id
   end
 end

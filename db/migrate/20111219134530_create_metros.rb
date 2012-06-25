@@ -4,5 +4,6 @@ class CreateMetros < ActiveRecord::Migration
       t.string :name
       t.timestamps
     end
+    add_index :metros, :name, :unique => true
   end
 end

@@ -7,5 +7,6 @@ class CreateStaticImages < ActiveRecord::Migration
       t.integer :image_file_size
       t.datetime :image_updated_at
     end
+    add_index :static_images, :static_id
   end
 end
