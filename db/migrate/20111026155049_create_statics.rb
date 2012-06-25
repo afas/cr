@@ -28,10 +28,10 @@ class CreateStatics < ActiveRecord::Migration
     Static.create(:title => "Партнеры", :hover => "по развитию", :short_url => "partners", :menu => "about")
     Static.create(:title => "Город", :hover => "", :short_url => "city", :menu => "about")
 
-    Static.create(:title => "Снять", :hover => "указать параметры помещений", :short_url => "for_renter", :menu => "services")
-    Static.create(:title => "Сдать", :hover => "порядок действий", :short_url => "for_owner", :menu => "services")
-    Static.create(:title => "Документы", :hover => "для оформления сделок", :short_url => "documents", :menu => "services")
-    Static.create(:title => "Услуги", :hover => "эксклюзив", :short_url => "services", :menu => "services")
+    Static.create(:title => "Снять", :hover => "порядок действий арендатора", :short_url => "for_renter", :menu => "services")
+    Static.create(:title => "Сдать", :hover => "порядок действий арендодателя", :short_url => "for_owner", :menu => "services")
+    Static.create(:title => "Документы", :hover => "эталонные наборы для оформления сделок", :short_url => "documents", :menu => "services")
+    Static.create(:title => "Услуги", :hover => "эксклюзивные предложения", :short_url => "services", :menu => "services")
     Static.create(:title => "Отзывы", :hover => "сообщество", :short_url => "feedback", :menu => "services")
 
     Static.create(:title => "Страхование квартир", :short_url => "apartment insurance", :menu => "special")

@@ -85,7 +85,7 @@
         </div>
     <% end %>
 
-    <% unless @tenders.nil? && @tenders.size == 0 %>
+    <% if @tenders.size > 0 %>
         <h2>Активные заявки</h2>
         <table class="flats flats-admin" cellspacing="0">
           <tr class='even-first'>
@@ -111,7 +111,7 @@
         </table>
     <% end %>
 
-    <% unless @flats.nil? || @flats.size == 0 %>
+    <% if @flats.size > 0 %>
         <h2>Недвижимость</h2>
         <table class="flats flats-admin" cellspacing="0">
           <tr class='even-first'>

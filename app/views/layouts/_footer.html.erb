@@ -6,7 +6,7 @@
 <p>
   <% if user_signed_in? %>
       <span>Вы вошли как <%= current_user.email %>
-        / <%= link_to current_user.manager? ? "Рабочий кабинет" : "Личный кабинет", "/users/edit" %>
+        / <%= link_to (current_user.rieltor?) ? "Рабочий кабинет" : "Личный кабинет", "/users/edit" %>
         / <%= link_to "Выйти", destroy_user_session_path, :method => :delete %></span>
   <% else %>
       <span>
