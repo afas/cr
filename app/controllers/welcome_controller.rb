@@ -1,6 +1,6 @@
 class WelcomeController < ApplicationController
   def index
-    @specials = Static.find_all_by_menu("special")
+    @specials = Static.where("menu = ?", 'special').order("random()")
     @backgrounds = WelcomeImage.all
 
   end
