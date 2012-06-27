@@ -132,6 +132,7 @@ h3 {
     opacity: 0.3;
     position: absolute;
     top: 19px;
+    white-space: nowrap;
     /*width: 300px;*/
 }
 
