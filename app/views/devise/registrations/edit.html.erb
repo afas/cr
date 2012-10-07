@@ -8,23 +8,73 @@
             <hr>
         <% end %>
 
-        <h2>Мой профиль</h2>
-
-        <% if current_user.admin? %>
-            <ul class="admin-functions">
-              <li><%= link_to "Акции", "/special" %></li>
-              <li><%= link_to 'Управление пользователями', "/user" %></li>
-              <li><%= link_to "Фон", welcome_images_path %></li>
-              <li><%= link_to "Заявки", "/tenders" %></li>
-              <li><%= link_to "Импорт", new_import_path %></li>
-            </ul>
-            <br/>
-        <% end %>
-
-        <div>
-          <%= f.submit "Сохранить изменения" %>
-        </div>
         <div class="container-left">
+          <h2>Мои объекты</h2>
+
+          <% if current_user.admin? %>
+              <ul class="admin-functions">
+                <li><%= link_to "Заявки", "/tenders" %></li>
+                <li><%= link_to "Импорт", new_import_path %></li>
+                <li><%= link_to 'Пользователи', "/user" %></li>
+                <li><%= link_to "Акции", "/special" %></li>
+                <li><%= link_to "Фон", welcome_images_path %></li>
+              </ul>
+              <br/>
+          <% end %>
+
+          <% if @tenders.size > 0 %>
+              <h2>Активные заявки</h2>
+              <table class="flats flats-admin" cellspacing="0">
+                <tr class='even-first'>
+                  <th width="13%">№</th>
+                  <th width="11%">Имя</th>
+                  <th width="14%">Телефон</th>
+                  <th width="40%">Тип</th>
+                  <th width="10%">Агент</th>
+                  <th width="10%">Изменена</th>
+                  <th width="12%">Статус</th>
+                </tr>
+                <% @tenders.each_with_index do |tender, i| %>
+                    <tr <%= "class='even'" if i%2!=0 %>>
+                      <td><%= link_to("#{tender.id} / #{t('backend.actions.edit')}", edit_tender_path(tender)) if can?(:edit, tender) %></td>
+                      <td><%= tender.name %></td>
+                      <td><%= tender.phone %></td>
+                      <td><%= TenderOperation.by_id(tender.operation) %></td>
+                      <td><%= tender.agent.name unless tender.agent.nil? %></td>
+                      <td><%= tender.updated_at.strftime("%d %h - %H:%M") %></td>
+                      <td><%= ClientStatus.by_id(tender.client_status_id) %></td>
+                    </tr>
+                <% end %>
+              </table>
+          <% end %>
+
+          <% if @flats.size > 0 %>
+              <h2>Недвижимость</h2>
+              <table class="flats flats-admin" cellspacing="0">
+                <tr class='even-first'>
+                  <th width="13%">№</th>
+                  <th width="11%">Стоимость</th>
+                  <th width="14%">Изменена</th>
+                  <th width="40%">Адрес</th>
+                  <th width="10%">Агент</th>
+                  <th width="12%">Статус</th>
+                </tr>
+                <% @flats.each_with_index do |flat, i| %>
+                    <tr <%= "class='even'" if i%2!=0 %>>
+                      <td><%= link_to("#{flat.id} / #{t('backend.actions.edit')}", edit_flat_path(flat)) if can?(:edit, flat) %></td>
+                      <td><%= flat.price %></td>
+                      <td><%= flat.updated_at.strftime("%d %h - %H:%M") %></td>
+                      <td><%= raw "#{flat.address} <b>#{flat.metro}</b>" %></td>
+                      <td><%= flat.agent.name unless flat.agent.nil? %></td>
+                      <td title="<%= flat.internal_comments %>"><%= RentStatus.by_id(flat.rent_status_id) %></td>
+                    </tr>
+                <% end %>
+              </table>
+          <% end %>
+        </div>
+
+        <div class="container-right">
+          <h2>Личные данные</h2>
           <div>
             <%= f.label :email %>
             <br/>
@@ -45,8 +95,7 @@
             <br/>
             <%= f.text_area :about, :cols => 55, :rows => 6 %>
           </div>
-        </div>
-        <div class="container-right">
+
           <div>
             <%= f.label "Роль в системе" %>
             <br/>
@@ -81,58 +130,12 @@
                 <br/>
                 <%= f.check_box :internal %>
               </div>
-        <% end %>
+          <% end %>
+
+          <div>
+            <%= f.submit "Сохранить изменения" %>
+          </div>
         </div>
-    <% end %>
-
-    <% if @tenders.size > 0 %>
-        <h2>Активные заявки</h2>
-        <table class="flats flats-admin" cellspacing="0">
-          <tr class='even-first'>
-            <th width="13%">№</th>
-            <th width="11%">Имя</th>
-            <th width="14%">Телефон</th>
-            <th width="40%">Тип</th>
-            <th width="10%">Агент</th>
-            <th width="10%">Изменена</th>
-            <th width="12%">Статус</th>
-          </tr>
-          <% @tenders.each_with_index do |tender, i| %>
-              <tr <%= "class='even'" if i%2!=0 %>>
-                <td><%= link_to("#{tender.id} / #{t('backend.actions.edit')}", edit_tender_path(tender)) if can?(:edit, tender) %></td>
-                <td><%= tender.name %></td>
-                <td><%= tender.phone %></td>
-                <td><%= TenderOperation.by_id(tender.operation) %></td>
-                <td><%= tender.agent.name unless tender.agent.nil? %></td>
-                <td><%= tender.updated_at.strftime("%d %h - %H:%M") %></td>
-                <td><%= ClientStatus.by_id(tender.client_status_id) %></td>
-              </tr>
-          <% end %>
-        </table>
-    <% end %>
-
-    <% if @flats.size > 0 %>
-        <h2>Недвижимость</h2>
-        <table class="flats flats-admin" cellspacing="0">
-          <tr class='even-first'>
-            <th width="13%">№</th>
-            <th width="11%">Стоимость</th>
-            <th width="14%">Изменена</th>
-            <th width="40%">Адрес</th>
-            <th width="10%">Агент</th>
-            <th width="12%">Статус</th>
-          </tr>
-          <% @flats.each_with_index do |flat, i| %>
-              <tr <%= "class='even'" if i%2!=0 %>>
-                <td><%= link_to("#{flat.id} / #{t('backend.actions.edit')}", edit_flat_path(flat)) if can?(:edit, flat) %></td>
-                <td><%= flat.price %></td>
-                <td><%= flat.updated_at.strftime("%d %h - %H:%M") %></td>
-                <td><%= raw "#{flat.address} <b>#{flat.metro}</b>" %></td>
-                <td><%= flat.agent.name unless flat.agent.nil? %></td>
-                <td title="<%= flat.renter_info %>"><%= RentStatus.by_id(flat.rent_status_id) %></td>
-              </tr>
-          <% end %>
-        </table>
     <% end %>
 
   </div>

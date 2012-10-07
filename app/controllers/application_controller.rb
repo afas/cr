@@ -33,6 +33,10 @@ class ApplicationController < ActionController::Base
           @flats = Flat.where("owner_id = ?", current_user.id).order("updated_at desc")
           @tenders = Tender.where("client_status_id <> ?", 3).order("updated_at desc")
         end
+        if current_user.admin?
+          @flats = Flat.order("updated_at desc")
+          @tenders = Tender.where("client_status_id <> ?", 3).order("updated_at desc")
+        end
       end
     end
   end

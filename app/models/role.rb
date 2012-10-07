@@ -8,12 +8,12 @@ class Role
       [
           Role.new(:name => 'Администратор', :cut => 0),
           Role.new(:name => 'Менеджер', :cut => 1),
-          Role.new(:name => 'Риэлтор', :cut => 2),
+          Role.new(:name => 'Агент', :cut => 2),
           Role.new(:name => 'Пользователь', :cut => 3)
       ]
     else
       [
-          Role.new(:name => 'Риэлтор', :cut => 2),
+          Role.new(:name => 'Агент', :cut => 2),
           Role.new(:name => 'Пользователь', :cut => 3)
       ]
     end
@@ -23,7 +23,7 @@ class Role
     [
         Role.new(:name => 'Администратор', :cut => 0),
         Role.new(:name => 'Менеджер', :cut => 1),
-        Role.new(:name => 'Риэлтор', :cut => 2),
+        Role.new(:name => 'Агент', :cut => 2),
         Role.new(:name => 'Пользователь', :cut => 3)
     ]
   end
@@ -37,7 +37,7 @@ class Role
     collection_all.each do |value|
       return value.name if value.cut == id
     end
-    false
+    "Не установлена"
   end
 
 end

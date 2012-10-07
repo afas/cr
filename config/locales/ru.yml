@@ -92,7 +92,7 @@ ru:
         kitch_space: "Кухня"
         living_space: "Жил. площадь"
         wc: "Сан. узел"
-        renter_info: "Служебные комментарии"
+        internal_comments: "Служебные комментарии"
         floor: "Этаж"
         floor_count: "Этажность"
         description: "Комментарии"

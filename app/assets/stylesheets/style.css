@@ -3,7 +3,7 @@ body {
     margin: 0;
     padding: 0;
     color: #1F2122;
-    background-color: #69A501;
+    background-color: #CCCCCC;
 }
 
 .g-clearfix {
@@ -54,14 +54,14 @@ h3 {
 /*Header*/
 
 #Header {
-    height: 115px;
-    padding: 0;
+    background: none repeat scroll 0 0 #FFFFFF;
+    border-bottom: 1px solid #7C7A78;
+    height: 133px;
     margin: 0;
-    position: relative;
-    background: #252527;
-    z-index: 10005;
-    width: 100%;
+    padding: 0;
     position: fixed;
+    width: 100%;
+    z-index: 10005;
 }
 
 .header-holder {
@@ -71,21 +71,22 @@ h3 {
 
 #Strip {
     font-size: 13px;
-    width: 760px;
+    width: 630px;
     overflow: hidden;
     float: right
 }
 
 #Logo {
     float: left;
-    height: 115px;
-    width: 188px;
+    height: 100px;
+    width: 216px;
+    margin-top: 7px;
 }
 
 #Logo a {
-    background: url("logo-en.png") no-repeat scroll center center transparent;
+    background: url("logo.png") no-repeat scroll center center transparent;
     display: block;
-    height: 115px;
+    height: 100px;
     text-indent: -9999px;
 }
 
@@ -100,16 +101,15 @@ h3 {
 }
 
 .strip-links a {
-    border-right: 1px solid #38393A;
     color: #7C7A78;
     display: block;
     float: left;
-    font-weight: bold;
+    /*font-weight: bold;*/
     height: 33px;
     line-height: 33px;
+    margin-left: 21px;
     text-align: center;
     text-decoration: none;
-    width: 100px;
 }
 
 .strip-links a span {
@@ -200,7 +200,7 @@ h3 {
     list-style: none;
     color: #fff;
     right: 50%;
-    bottom: -25px;
+    bottom: 23px;
     position: absolute;
     z-index: 99999;
 }
@@ -211,12 +211,12 @@ h3 {
 }
 
 #Navigation a {
-    color: #FFFFFF;
+    color: #7C7A78;
     display: block;
     float: left;
-    font-size: 12px;
+    font-size: 15px;
     font-weight: normal;
-    padding: 43px 34px;
+    margin-left: 34px;
     text-align: center;
     text-decoration: none;
 }
@@ -226,9 +226,7 @@ h3 {
 }
 
 #Navigation a.active {
-    color: #1F2122;
-    background: url(current-nav.png) no-repeat center center;
-    min-width: 100px;
+    color: #69A501;
 }
 
 #Navigation a.separator {
@@ -273,9 +271,9 @@ h3 {
     float: left !important;
 }
 
-.li-no-style a:hover {
-    color: #ccc !important;
-}
+/*.li-no-style a:hover {*/
+    /*color: #ccc !important;*/
+/*}*/
 
 .home #Body {
     width: 100%;
@@ -370,7 +368,7 @@ h3 {
 
 .slideshow {
     position: absolute;
-    top: 115px;
+    top: 134px;
     bottom: 0;
     left: 0;
     right: 0;
@@ -413,11 +411,11 @@ h3 {
     width: 900px;
     z-index: 10000;
     margin: 0 auto;
-    /*margin: 115px auto;*/
+    /*margin: 134px auto;*/
 }
 
 .container {
-    padding-top: 115px;
+    padding-top: 134px;
 }
 
 .container a {
@@ -431,6 +429,10 @@ h3 {
     background-color: rgba(255,255,255,0.8);
     color: #000000;
     padding: 3px;
+}
+
+h1 span {
+    line-height: 41px;
 }
 
 #Footer span {
@@ -505,7 +507,7 @@ h3 {
 }
 
 .gallery #headerimgs {
-    top: 115px;
+    top: 134px;
 }
 
 /*Footer*/
@@ -1132,9 +1134,10 @@ form legend {
 }
 
 form .actions {
-    /*margin: 0 0 0 35%;*/
     font-size: 12px;
+}
 
+form .actions, form .field input {
     display: block;
     position: relative;
     z-index: 10001;
@@ -1143,7 +1146,6 @@ form .actions {
 form .actions input {
     cursor: pointer;
 }
-
 
 .hint {
     font-size: 11px;
@@ -1975,15 +1977,41 @@ form .actions input {
     margin-top: 30px;
 }
 
+form input[type="text"], form input[type="number"] {
+    border: 1px dashed #9c9c9c;
+    font-size: 21px;
+    height: 34px;
+    line-height: 28px;
+    margin-bottom: 15px;
+    padding: 0 5px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+form textarea {
+    border: 1px solid #D5D5D5;
+    font-size: 21px;
+    /*height: 34px;*/
+    line-height: 28px;
+    margin-bottom: 15px;
+    padding: 0 5px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
 .rooms input, .price input {
     width: 55px;
+    font-size: 17px !important;
+    height: 27px !important;
     decoration: none;
-    border: 1px solid #000;
+    border: 1px solid #000 !important;
     background: none repeat scroll 0 0 rgba(0, 0, 0, 0.8);
     color: #fff;
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
     border-radius: 3px;
+    margin-bottom: 8px !important;
+
 }
 
 .rooms input {
@@ -1991,15 +2019,18 @@ form .actions input {
 }
 
 .metro input {
+    font-size: 17px !important;
     width: 121px;
     decoration: none;
-    border: 1px solid #000;
+    border: 1px solid #000 !important;
     background: none repeat scroll 0 0 rgba(0, 0, 0, 0.8);
     color: #fff;
     margin-right: 5px;
+    margin-bottom: 8px !important;
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
     border-radius: 3px;
+    height: 27px !important;
 }
 
 .baloon-right {
@@ -2028,7 +2059,7 @@ form .actions input {
 #inner-content {
     margin: 0 auto;
     width: 960px;
-    padding-top: 115px;
+    padding-top: 134px;
 }
 
 #inner-content a {

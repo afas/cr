@@ -1,6 +1,6 @@
 <div id="inner-content" class="li-no-style">
   <div class="content-left">
-    <%= title(@static.title) %>
+    <%= title(@static.title, true) %>
     <%= link_to t('backend.actions.edit'), edit_static_path(@static) if can?(:edit, @static) %>
     <%= raw "<br/>" if can?(:edit, @static) %>
     <div class="static-double-columns">

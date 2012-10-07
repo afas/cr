@@ -13,7 +13,7 @@
 
     </div>
     <div class="container-right">
-      <%#= title(@flat.address) %>
+      <%= title("#{t("site_name")} - #{@flat.address}") %>
 
       <h1><span><%= @flat.address %></span></h1>
 
@@ -103,9 +103,9 @@
           </p>
       <% end %>
 
-      <% if @flat.renter_info && !current_user.nil? && (current_user.manager? || @flat.agent_id == current_user.id) %>
+      <% if @flat.internal_comments && !current_user.nil? && (current_user.manager? || @flat.agent_id == current_user.id) %>
           <p>
-            <span><b><%= t('activerecord.attributes.flat.renter_info') %>:</b> <%= @flat.renter_info %></span>
+            <span><b><%= t('activerecord.attributes.flat.internal_comments') %>:</b> <%= @flat.internal_comments %></span>
           </p>
       <% end %>
 
