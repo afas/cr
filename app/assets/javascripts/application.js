@@ -11,4 +11,8 @@
 //= require jquery-ui
 //= require slimbox
 //= require cookies
+
+//= require selectBox
+//= require everywhere
+
 //= require site

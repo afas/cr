@@ -15,7 +15,7 @@
       <br/>
       <%= f.text_field :phone %>
     </div>
-    <div class="field">
+    <div class="field clearfix">
       <%= f.label "Количество комнат" %>
       <br/>
       <%= collection_select(:tender, :rooms_count, RoomCount.collection, :cut, :name, :prompt => true) %>
@@ -30,7 +30,7 @@
       <br/>
       <%= f.text_field :price %>
     </div>
-    <div class="field">
+    <div class="field clearfix">
       <%= f.label "Тип заявки" %>
       <br/>
       <%= collection_select(:tender, :operation, TenderOperation.collection, :cut, :name, :prompt => false) %>
@@ -40,15 +40,13 @@
       <br/>
       <%= f.text_area :description, :cols => 55, :rows => 5 %>
     </div>
-    <br/>
-    <br/>
     <% if !current_user.nil? && (current_user.manager?) %>
-        <div class="field">
+        <div class="field clearfix">
           <%= f.label I18n.t('activerecord.attributes.tender.agent_id') %>
           <br/>
           <%= f.collection_select(:agent_id, User.only_internal, :id, :email, :promt => true) %>
         </div>
-        <div class="field">
+        <div class="field clearfix">
           <%= f.label I18n.t('activerecord.attributes.tender.client_status') %>
           <br/>
           <%= collection_select(:client_status, :operation, ClientStatus.collection, :cut, :name, :prompt => false) %>

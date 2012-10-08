@@ -83,11 +83,11 @@
 }
 
 .small-search {
-  z-index: 10000;
-  cursor: pointer;
+  z-index: 21000;
+  cursor: move;
   position: fixed;
   width: 170px;
-  height: 400px;
+  height: 480px;
   bottom: 25px;
   right: 25px;
   background: none repeat scroll 0 0 rgba(255, 255, 255, 0.8);

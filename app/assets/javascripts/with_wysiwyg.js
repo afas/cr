@@ -7,3 +7,6 @@
 
 //= require jquery-markitup
 //= require markitup-set
+
+//= require selectBox
+//= require everywhere

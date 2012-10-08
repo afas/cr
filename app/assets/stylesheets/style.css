@@ -3,7 +3,8 @@ body {
     margin: 0;
     padding: 0;
     color: #1F2122;
-    background-color: #CCCCCC;
+    /*background-color: #CCCCCC;*/
+    background: url("bgorder.png") repeat scroll 50% 50% #E6E6E6;
 }
 
 .g-clearfix {
@@ -267,7 +268,7 @@ h3 {
 
 .li-no-style a {
     /*text-decoration: none !important;*/
-    border: none !important;
+    border: none;
     float: left !important;
 }
 
@@ -425,7 +426,7 @@ h3 {
 .toggler { width: 500px; height: 200px; position: relative; }
 
 
-.content span {
+.content .flat span {
     background-color: rgba(255,255,255,0.8);
     color: #000000;
     padding: 3px;
@@ -1977,7 +1978,7 @@ form .actions input {
     margin-top: 30px;
 }
 
-form input[type="text"], form input[type="number"] {
+form input[type="text"], form input[type="number"], form input[type="email"], form input[type="password"] {
     border: 1px dashed #9c9c9c;
     font-size: 21px;
     height: 34px;
@@ -1989,7 +1990,7 @@ form input[type="text"], form input[type="number"] {
 }
 
 form textarea {
-    border: 1px solid #D5D5D5;
+    border: 1px dashed #D5D5D5;
     font-size: 21px;
     /*height: 34px;*/
     line-height: 28px;
@@ -2063,7 +2064,7 @@ form textarea {
 }
 
 #inner-content a {
-    color: #fff;
+    color: #69A501;
 }
 
 .content-left {
@@ -2136,7 +2137,7 @@ h1 small {
 
 /* Following is required  to show border while transferring.*/
 .ui-effects-transfer {
-    border: 3px dotted rgba(255, 255, 255, 0.8);
+    border: 2px dashed #69A501;
     z-index: 11000;
 }
 
@@ -2170,4 +2171,8 @@ ul.admin-functions li {
     list-style: none;
     float: left;
     padding: 8px 0 0 21px;
+}
+
+.field .selectBox {
+    color: #69A501 !important;
 }

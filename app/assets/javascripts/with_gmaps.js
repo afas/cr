@@ -15,3 +15,6 @@
 //= require jquery-fancybox
 //= require jquery-mousewheel
 
+//= require selectBox
+//= require everywhere
+
