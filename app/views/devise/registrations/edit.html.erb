@@ -9,76 +9,19 @@
         <% end %>
 
         <div class="container-left">
-          <h2>Мои объекты</h2>
-
-          <% if current_user.admin? %>
-              <ul class="admin-functions">
-                <li><%= link_to "Заявки", "/tenders" %></li>
-                <li><%= link_to "Импорт", new_import_path %></li>
-                <li><%= link_to 'Пользователи', "/user" %></li>
-                <li><%= link_to "Акции", "/special" %></li>
-                <li><%= link_to "Фон", welcome_images_path %></li>
-              </ul>
-              <br/>
-          <% end %>
-
-          <% if @tenders.size > 0 %>
-              <h2>Активные заявки</h2>
-              <table class="flats flats-admin" cellspacing="0">
-                <tr class='even-first'>
-                  <th width="13%">№</th>
-                  <th width="11%">Имя</th>
-                  <th width="14%">Телефон</th>
-                  <th width="40%">Тип</th>
-                  <th width="10%">Агент</th>
-                  <th width="10%">Изменена</th>
-                  <th width="12%">Статус</th>
-                </tr>
-                <% @tenders.each_with_index do |tender, i| %>
-                    <tr <%= "class='even'" if i%2!=0 %>>
-                      <td><%= link_to("#{tender.id} / #{t('backend.actions.edit')}", edit_tender_path(tender)) if can?(:edit, tender) %></td>
-                      <td><%= tender.name %></td>
-                      <td><%= tender.phone %></td>
-                      <td><%= TenderOperation.by_id(tender.operation) %></td>
-                      <td><%= tender.agent.name unless tender.agent.nil? %></td>
-                      <td><%= tender.updated_at.strftime("%d %h - %H:%M") %></td>
-                      <td><%= ClientStatus.by_id(tender.client_status_id) %></td>
-                    </tr>
-                <% end %>
-              </table>
-          <% end %>
-
-          <% if @flats.size > 0 %>
-              <h2>Недвижимость</h2>
-              <table class="flats flats-admin" cellspacing="0">
-                <tr class='even-first'>
-                  <th width="13%">№</th>
-                  <th width="11%">Стоимость</th>
-                  <th width="14%">Изменена</th>
-                  <th width="40%">Адрес</th>
-                  <th width="10%">Агент</th>
-                  <th width="12%">Статус</th>
-                </tr>
-                <% @flats.each_with_index do |flat, i| %>
-                    <tr <%= "class='even'" if i%2!=0 %>>
-                      <td><%= link_to("#{flat.id} / #{t('backend.actions.edit')}", edit_flat_path(flat)) if can?(:edit, flat) %></td>
-                      <td><%= flat.price %></td>
-                      <td><%= flat.updated_at.strftime("%d %h - %H:%M") %></td>
-                      <td><%= raw "#{flat.address} <b>#{flat.metro}</b>" %></td>
-                      <td><%= flat.agent.name unless flat.agent.nil? %></td>
-                      <td title="<%= flat.internal_comments %>"><%= RentStatus.by_id(flat.rent_status_id) %></td>
-                    </tr>
-                <% end %>
-              </table>
-          <% end %>
+          <%= render "user/user_data" %>
         </div>
 
         <div class="container-right">
           <h2>Личные данные</h2>
+
           <div>
-            <%= f.label :email %>
+            <%= image_tag @user.avatar.url(:preview) unless @user.avatar_file_name.nil? %>
+          </div>
+          <div>
+            <%= f.label "Фото" %>
             <br/>
-            <%= f.email_field :email %>
+            <%= f.file_field :avatar %>
           </div>
           <div>
             <%= f.label "Имя" %>
@@ -91,11 +34,15 @@
             <%= f.text_field :surname %>
           </div>
           <div>
+            <%= f.label :email %>
+            <br/>
+            <%= f.email_field :email %>
+          </div>
+          <div>
             <%= f.label "Расскажите о себе" %>
             <br/>
             <%= f.text_area :about, :cols => 55, :rows => 6 %>
           </div>
-
           <div>
             <%= f.label "Роль в системе" %>
             <br/>

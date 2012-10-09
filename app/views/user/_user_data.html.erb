@@ -1,0 +1,48 @@
+<h2>Мои объекты</h2>
+
+<% if current_user.admin? %>
+
+    <div id="tabs">
+
+      <ul>
+        <!--<li><%#= link_to "Заявки", "/tenders" %></li>-->
+        <!--<li><%#= link_to "Импорт", new_import_path %></li>-->
+        <!--<li><%#= link_to 'Пользователи', "/user" %></li>-->
+        <!--<li><%#= link_to "Акции", "/special" %></li>-->
+        <!--<li><%#= link_to "Фон", welcome_images_path %></li>-->
+        <li><a href="#tenders">Заявки</a></li>
+        <li><a href="#flats">Квартиры</a></li>
+        <li><a href="#agents">Агенты</a></li>
+        <li><a href="#clients">Клиенты</a></li>
+        <li><a href="#comments">Комментарии</a></li>
+      </ul>
+
+      <div id="tenders">
+        <%= render "user/tenders" %>
+      </div>
+
+      <div id="flats">
+        <%= render "user/flats" %>
+      </div>
+
+      <div id="agents">
+        <%= render "user/agents" %>
+      </div>
+
+      <div id="clients">
+        <%= render "user/clients" %>
+      </div>
+
+      <div id="comments">
+        <%= render "user/comments" %>
+      </div>
+
+    </div>
+
+<% end %>
+
+<script type="text/javascript">
+    $(function () {
+        $("#tabs").tabs();
+    });
+</script>

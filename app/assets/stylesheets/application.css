@@ -10,7 +10,3 @@
  *= require style
  *= require selectBox
 */
-
-.GENTICS_editable {
-    min-height: 140px;
-}
