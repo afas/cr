@@ -36,6 +36,12 @@ class ApplicationController < ActionController::Base
         if current_user.admin?
           @flats = Flat.order("updated_at desc")
           @tenders = Tender.where("client_status_id <> ?", 3).order("updated_at desc")
+
+          @imports = Import.limit(13).order("created_at desc")
+          @welcome_images = WelcomeImage.order("created_at desc")
+          @specials = Static.where("menu = ?", 'special').order("created_at desc")
+          @agents = User.where("id <> ? and role_id = ?", current_user.id, 2)
+          #@clients = User.where("id <> ? and role_id", current_user.id, 3)
         end
       end
     end

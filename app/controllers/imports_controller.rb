@@ -1,3 +1,4 @@
+#encoding: utf-8
 class ImportsController < ApplicationController
   load_and_authorize_resource
 
@@ -42,9 +43,7 @@ class ImportsController < ApplicationController
           @import.import
         end
 
-        format.html { redirect_to(@import,
-                                  :notice => I18n.t('backend.actions.success_create',
-                                                    :model => I18n.t('activerecord.capitalized_models.import'))) }
+        format.html { redirect_to("/users/edit#imports", :notice => I18n.t('backend.actions.success_create', :model => I18n.t('activerecord.capitalized_models.import'))) }
         format.xml  { render :xml => @import, :status => :created, :location => @import }
       else
         format.html { render :action => "new" }
@@ -75,9 +74,7 @@ class ImportsController < ApplicationController
     @import.destroy
 
     respond_to do |format|
-      format.html { redirect_to(imports_url,
-                                :notice => I18n.t('backend.actions.success_destroy',
-                                                  :model => I18n.t('activerecord.capitalized_models.import'))) }
+      format.html { redirect_to("/users/edit#imports", :notice => "Квартиры и отметка об импорте удалены.") }
       format.xml  { head :ok }
     end
   end

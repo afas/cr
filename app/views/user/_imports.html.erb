@@ -1,0 +1,18 @@
+<table>
+  <tr>
+    <td>
+      <p><%= link_to("Импортировать XLS", new_import_path) if can?(:create, Import) %></p>
+    </td>
+  </tr>
+  <% @imports.each do |import| %>
+      <tr>
+        <td><%= import.file_file_name %></td>
+        <td><%= Russian::strftime(import.created_at, "%d %B %Y, %H:%m") %></td>
+        <td>Создано <%= import.flats.size %> квартир</td>
+        <td><%= link_to("Удалить", import, :confirm => "Будут удалены все квартиры по результатам данного импорта. Вы уверены?", :method => :delete) if can?(:destroy, import) %></td>
+        <!--<td><%#= link_to(t('backend.actions.show'), import) if can?(:show, import) %></td>-->
+        <!--<td><%#= link_to(t('backend.actions.edit'), edit_import_path(import)) if can?(:edit, import) %></td>-->
+      </tr>
+  <% end %>
+</table>
+

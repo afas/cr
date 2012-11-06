@@ -1,0 +1,15 @@
+<table>
+  <tr>
+    <td>
+        <p><%= link_to "Создать спецпредложение", "/statics/new/special" if can?(:create, Static) %></p>
+    </td>
+  </tr>
+  <% @specials.each do |static| %>
+      <tr>
+        <td><%= static.title %></td>
+        <td><%= link_to(t('backend.actions.show'), static) if can?(:show, static) %></td>
+        <td><%= link_to(t('backend.actions.edit'), edit_static_path(static)) if can?(:edit, static) %></td>
+        <td><%= link_to(t('backend.actions.destroy'), static, :confirm => t('backend.actions.are_you_sure'), :method => :delete) if can?(:destroy, static) %></td>
+      </tr>
+  <% end %>
+</table>

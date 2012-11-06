@@ -7,6 +7,8 @@ class Flat < ActiveRecord::Base
 
   belongs_to :agent, :class_name => "User"#, :foreign_key => :agent_id
 
+  belongs_to :import
+
   #default_scope order("id DESC")
 
   scope :approved, where(:approved => true)

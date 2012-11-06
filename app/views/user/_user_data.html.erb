@@ -13,32 +13,38 @@
         <li><a href="#tenders">Заявки</a></li>
         <li><a href="#flats">Квартиры</a></li>
         <li><a href="#agents">Агенты</a></li>
-        <li><a href="#clients">Клиенты</a></li>
+        <li><a href="#imports">Импорт</a></li>
+        <li><a href="#specials">Акции</a></li>
+        <li><a href="#backgrounds">Фон</a></li>
         <li><a href="#comments">Комментарии</a></li>
+        <!--<li><a href="#clients">Клиенты</a></li>-->
       </ul>
 
       <div id="tenders">
         <%= render "user/tenders" %>
       </div>
-
       <div id="flats">
         <%= render "user/flats" %>
       </div>
-
       <div id="agents">
         <%= render "user/agents" %>
       </div>
-
-      <div id="clients">
-        <%= render "user/clients" %>
+      <div id="imports">
+        <%= render "user/imports" %>
       </div>
-
+      <div id="specials">
+        <%= render "user/specials" %>
+      </div>
+      <div id="backgrounds">
+        <%= render "user/backgrounds" %>
+      </div>
       <div id="comments">
         <%= render "user/comments" %>
       </div>
-
+      <!--<div id="clients">-->
+      <%#= render "user/clients" %>
+      <!--</div>-->
     </div>
-
 <% end %>
 
 <script type="text/javascript">
