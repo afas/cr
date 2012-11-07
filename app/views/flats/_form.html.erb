@@ -41,6 +41,16 @@
       <%= f.text_field :price %>
     </div>
     <div class="field">
+      <%= f.label :rur %>
+      <br/>
+      <%= f.text_field :rur %>
+    </div>
+    <div class="field">
+      <%= f.label :usd %>
+      <br/>
+      <%= f.text_field :usd %>
+    </div>
+    <div class="field">
       <%= f.label I18n.t('activerecord.attributes.flat.prepayment') %>
       <br/>
       <%#= f.number_field :prepayment %>
@@ -50,6 +60,16 @@
       <%= f.label I18n.t('activerecord.attributes.flat.metro') %>
       <br/>
       <%= f.text_field :metro %>
+    </div>
+    <div class="field">
+      <%= f.label :street %>
+      <br/>
+      <%= f.text_field :street %>
+    </div>
+    <div class="field">
+      <%= f.label :building %>
+      <br/>
+      <%= f.text_field :building %>
     </div>
     <div class="field">
       <%= f.label I18n.t('activerecord.attributes.flat.address') %>
@@ -98,9 +118,9 @@
       <%= f.text_area :description, :cols => 55, :rows => 8 %>
     </div>
     <div class="field">
-      <%#= f.label I18n.t('activerecord.attributes.flat.renter_info') %>
+      <%= f.label I18n.t('activerecord.attributes.flat.renter_info') %>
       <br/>
-      <%#= f.text_area :renter_info, :cols => 55, :rows => 8 %>
+      <%= f.text_area :internal_comments, :cols => 55, :rows => 8 %>
     </div>
     <div class="field">
       <%= f.label I18n.t('activerecord.attributes.flat.floor') %>

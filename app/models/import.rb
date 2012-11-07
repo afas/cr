@@ -27,6 +27,7 @@ class Import < ActiveRecord::Base
         floor = row[18].to_i
         floor_count = row[19].to_i
         kitch_space = row[11].to_i
+        #living_space = row[12].to_i
         full_space = row[9].to_i
 
         rur = row[14] if row[15] == "р"
