@@ -5,17 +5,11 @@
         <div class="field">
           <%= f.label I18n.t('activerecord.attributes.flat.agent_id') %>
           <br/>
-          <%= f.collection_select(:agent_id, User.only_internal, :id, :email, :promt => true) %>
+          <%= f.collection_select(:agent_id, User.agents, :id, :email, :promt => true) %>
         </div>
     <% end %>
 
     <% if !current_user.nil? && (current_user.manager? || @flat.agent_id == current_user.id) %>
-        <div class="field">
-          <%= f.label I18n.t('activerecord.attributes.flat.approved') %>
-          <br/>
-          <%= f.check_box :approved %>
-        </div>
-
         <div class="field">
           <%= f.label I18n.t('activerecord.attributes.flat.rent_type') %>
           <br/>
@@ -145,6 +139,15 @@
       <% end %>
       <div><%= f.file_field :flat_images, :multiple => true %></div>
     </div>
+
+    <% if !current_user.nil? && (current_user.manager? || @flat.agent_id == current_user.id) %>
+        <div class="field">
+          <%= f.label I18n.t('activerecord.attributes.flat.approved') %>
+          <br/>
+          <%= f.check_box :approved %>
+        </div>
+    <% end %>
+
 
     <div class="actions">
       <%= f.submit "Сохранить" %>

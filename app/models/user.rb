@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :avatar, :avatar_file_name, :avatar_content_type, :avatar_file_size, :avatar_updated_at, :password_confirmation, :remember_me, :name, :surname, :phone, :about, :role_id, :organization, :internal
 
   scope :only_internal, where(:internal => true)
+  scope :agents, where("role_id = ?", 2)
 
   has_attached_file :avatar,
                     :styles => {
