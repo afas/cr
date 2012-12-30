@@ -11,7 +11,7 @@ class Static < ActiveRecord::Base
                         :special => '233x233#',
                         :inner => '350x200#'
                     },
-                    :default_url => 'circle.png',
+                    :default_url => '/assets/circle.png',
                     :url => '/static/:id/:style_:basename.:extension'
 
   #validates_attachment_presence :preview

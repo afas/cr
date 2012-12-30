@@ -1,6 +1,6 @@
-<%= form_for(@tender, :builder => StarsFormBuilder) do |f| %>
-    <%= render 'shared/error_messages', :target => @tender %>
+<%= form_for(@tender, :html => {:multipart => true}) do |f| %>
 
+    <%= render 'shared/error_messages', :target => @tender %>
 
     <%= f.hidden_field :owner_id, :value => current_user.id if !current_user.nil? && @tender.new_record? %>
 
@@ -34,7 +34,7 @@
     <div class="field">
       <%= f.label "Метро" %>
       <br/>
-      <input type="number" size="30" name="tender[metro]" id="tender_metro">
+      <%= f.text_field :metro, :class => "auto_metro" %>
     </div>
     <div class="field">
       <%= f.label "Стоимость аренды" %>
@@ -74,34 +74,3 @@
       <%= f.submit "В работу" %>
     </div>
 <% end %>
-
-<script type="text/javascript">
-    function split(val) {
-        return val.split(/,\s*/);
-    }
-    function extractLast(term) {
-        return split(term).pop();
-    }
-    $("#tender_metro")
-            .autocomplete({
-                source:function (request, response) {
-                    $.getJSON("/metros/by_metro", {
-                        term:extractLast(request.term)
-                    }, response);
-                },
-                search:function () {
-                    var term = extractLast(this.value);
-                    if (term.length < 2) {
-                        return false;
-                    }
-                },
-                select:function (event, ui) {
-                    var terms = split(this.value);
-                    terms.pop();
-                    this.value = ui.item.value;
-                    $(this).attr("object_name", ui.item.object);
-                    $(this).attr("object_id", ui.item.id);
-                    return false;
-                }
-            });
-</script>

@@ -1,4 +1,4 @@
-<%= form_for(@flat, :builder => StarsFormBuilder) do |f| %>
+<%= form_for(@flat, :html => {:multipart => true}) do |f| %>
     <%= render 'shared/error_messages', :target => @flat %>
 
     <% if !current_user.nil? && (current_user.manager? || @flat.agent_id == current_user.id) %>
@@ -88,7 +88,7 @@
     <div class="field">
       <%= f.label I18n.t('activerecord.attributes.flat.metro') %>
       <br/>
-      <%= f.text_field :metro %>
+      <%= f.text_field :metro, :class => "auto_metro" %>
     </div>
     <div class="field">
       <%= f.label :street %>
@@ -174,37 +174,3 @@
       <%= f.submit "Сохранить" %>
     </div>
 <% end %>
-
-<script type="text/javascript">
-    function split(val) {
-        return val.split(/,\s*/);
-    }
-
-    function extractLast(term) {
-        return split(term).pop();
-    }
-
-    $("#flat_metro")
-            .autocomplete({
-                source:function (request, response) {
-                    $.getJSON("/metros/by_metro", {
-                        term:extractLast(request.term)
-                    }, response);
-                },
-                search:function () {
-                    var term = extractLast(this.value);
-                    if (term.length < 2) {
-                        return false;
-                    }
-                },
-                select:function (event, ui) {
-                    var terms = split(this.value);
-                    terms.pop();
-                    this.value = ui.item.value;
-                    $(this).attr("object_name", ui.item.object);
-                    $(this).attr("object_id", ui.item.id);
-                    return false;
-                }
-            });
-
-</script>

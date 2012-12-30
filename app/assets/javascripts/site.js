@@ -9,8 +9,6 @@ function hide(obj) {
 }
 
 $(document).ready(function () {
-//    writeSessionCookie("user_options_display", "block");
-
     $(".buildings a").hover(
         function () {
             $(".building-num").fadeIn("fast");

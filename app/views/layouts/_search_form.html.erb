@@ -8,7 +8,7 @@
   </div>
 
   <div class="metro">
-    <input type="text" name="metro" placeholder="метро" value="" id="metro">
+    <input type="text" name="metro" placeholder="метро" value="" id="metro" class="auto_metro">
   </div>
 
   <div class="price">
@@ -18,35 +18,3 @@
   <input type="submit" value="Показать" class="q-search-submit"><span class="after-submit"> ›</span>
 
 </form>
-
-<script type="text/javascript">
-    function split(val) {
-        return val.split(/,\s*/);
-    }
-    function extractLast(term) {
-        return split(term).pop();
-    }
-
-    $("#metro")
-            .autocomplete({
-                source:function (request, response) {
-                    $.getJSON("/metros/by_metro", {
-                        term:extractLast(request.term)
-                    }, response);
-                },
-                search:function () {
-                    var term = extractLast(this.value);
-                    if (term.length < 2) {
-                        return false;
-                    }
-                },
-                select:function (event, ui) {
-                    var terms = split(this.value);
-                    terms.pop();
-                    this.value = ui.item.value;
-                    $(this).attr("object_name", ui.item.object);
-                    $(this).attr("object_id", ui.item.id);
-                    return false;
-                }
-            });
-</script>
