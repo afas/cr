@@ -5,8 +5,10 @@ class FlatType
 
   def self.collection
     [
-        FlatType.new(:name => 'Жилье', :cut => '0'),
-        FlatType.new(:name => 'Офис', :cut => '1')
+        FlatType.new(:name => 'Комната', :cut => 0),
+        FlatType.new(:name => 'Квартира', :cut => 1),
+        FlatType.new(:name => 'Дом', :cut => 2),
+        FlatType.new(:name => 'Офис', :cut => 3)
     ]
   end
 

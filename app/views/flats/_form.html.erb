@@ -1,38 +1,59 @@
 <%= form_for(@flat, :builder => StarsFormBuilder) do |f| %>
     <%= render 'shared/error_messages', :target => @flat %>
 
-    <% if !current_user.nil? && (current_user.manager?) %>
+    <% if !current_user.nil? && (current_user.manager? || @flat.agent_id == current_user.id) %>
         <div class="field">
           <%= f.label I18n.t('activerecord.attributes.flat.agent_id') %>
           <br/>
           <%= f.collection_select(:agent_id, User.agents, :id, :email, :promt => true) %>
         </div>
-    <% end %>
 
-    <% if !current_user.nil? && (current_user.manager? || @flat.agent_id == current_user.id) %>
         <div class="field">
-          <%= f.label I18n.t('activerecord.attributes.flat.rent_type') %>
+          <%= f.label I18n.t('activerecord.attributes.flat.rent_status') %>
           <br/>
           <%= f.collection_select(:rent_status_id, RentStatus.collection, :cut, :name, :prompt => true) %>
         </div>
+
+        <div class="field">
+          <%= f.label I18n.t('activerecord.attributes.flat.price') %>
+          <br/>
+          <%= f.text_field :price %>
+        </div>
+
+        <div class="field">
+          <%= f.label I18n.t('activerecord.attributes.flat.address') %>
+          <br/>
+          <%= f.text_field :address %>
+        </div>
+
+        <div class="field">
+          <%= f.label I18n.t('activerecord.attributes.flat.renter_info') %>
+          <br/>
+          <%= f.text_area :internal_comments, :cols => 55, :rows => 8 %>
+        </div>
+
+        <div class="field">
+          <%= f.label I18n.t('activerecord.attributes.flat.approved') %>
+          <br/>
+          <%= f.check_box :approved %>
+        </div>
+        <hr>
     <% end %>
 
     <div class="field">
-      <%= f.label I18n.t('activerecord.attributes.flat.rooms_count') %>
+      <%= f.label I18n.t('activerecord.attributes.flat.flat_type') %>
       <br/>
-      <%#= f.number_field :rooms_count %>
-      <%= f.collection_select(:rooms_count, RoomCount.collection, :cut, :name, :prompt => true) %>
+      <%= f.collection_select(:flat_type, FlatType.collection, :cut, :name, :prompt => true) %>
     </div>
     <div class="field">
       <%= f.label I18n.t('activerecord.attributes.flat.rent_period') %>
       <br/>
-      <%#= f.number_field :rent_period %>
       <%= f.collection_select(:rent_period, RentPeriod.collection, :cut, :name, :prompt => true) %>
     </div>
     <div class="field">
-      <%= f.label I18n.t('activerecord.attributes.flat.price') %>
+      <%= f.label I18n.t('activerecord.attributes.flat.rooms_count') %>
       <br/>
-      <%= f.text_field :price %>
+      <%= f.collection_select(:rooms_count, RoomCount.collection, :cut, :name, :prompt => true) %>
     </div>
     <div class="field">
       <%= f.label :rur %>
@@ -47,8 +68,22 @@
     <div class="field">
       <%= f.label I18n.t('activerecord.attributes.flat.prepayment') %>
       <br/>
-      <%#= f.number_field :prepayment %>
       <%= f.collection_select(:prepayment, Prepayment.collection, :cut, :name, :prompt => true) %>
+    </div>
+    <div class="field">
+      <%= f.label I18n.t('activerecord.attributes.flat.region') %>
+      <br/>
+      <%= f.text_field :region %>
+    </div>
+    <div class="field">
+      <%= f.label I18n.t('activerecord.attributes.flat.city') %>
+      <br/>
+      <%= f.text_field :city %>
+    </div>
+    <div class="field">
+      <%= f.label I18n.t('activerecord.attributes.flat.district') %>
+      <br/>
+      <%= f.text_field :district %>
     </div>
     <div class="field">
       <%= f.label I18n.t('activerecord.attributes.flat.metro') %>
@@ -66,14 +101,8 @@
       <%= f.text_field :building %>
     </div>
     <div class="field">
-      <%= f.label I18n.t('activerecord.attributes.flat.address') %>
-      <br/>
-      <%= f.text_field :address %>
-    </div>
-    <div class="field">
       <%= f.label I18n.t('activerecord.attributes.flat.remote_type') %>
       <br/>
-      <%#= f.number_field :remote_type %>
       <%= f.collection_select(:remote_type, RemoteType.collection, :cut, :name, :prompt => true) %>
     </div>
     <div class="field">
@@ -92,29 +121,14 @@
       <%= f.text_field :living_space %>
     </div>
     <div class="field">
-      <%= f.label I18n.t('activerecord.attributes.flat.full_space') %>
-      <br/>
-      <%= f.text_field :full_space %>
-    </div>
-    <div class="field">
       <%= f.label I18n.t('activerecord.attributes.flat.kitch_space') %>
       <br/>
       <%= f.text_field :kitch_space %>
     </div>
     <div class="field">
-      <%= f.label I18n.t('activerecord.attributes.flat.wc') %>
+      <%= f.label I18n.t('activerecord.attributes.flat.full_space') %>
       <br/>
-      <%= f.collection_select(:balkon, WC.collection, :cut, :name, :prompt => true) %>
-    </div>
-    <div class="field">
-      <%= f.label I18n.t('activerecord.attributes.flat.description') %>
-      <br/>
-      <%= f.text_area :description, :cols => 55, :rows => 8 %>
-    </div>
-    <div class="field">
-      <%= f.label I18n.t('activerecord.attributes.flat.renter_info') %>
-      <br/>
-      <%= f.text_area :internal_comments, :cols => 55, :rows => 8 %>
+      <%= f.text_field :full_space %>
     </div>
     <div class="field">
       <%= f.label I18n.t('activerecord.attributes.flat.floor') %>
@@ -126,12 +140,26 @@
       <br/>
       <%= f.number_field :floor_count %>
     </div>
+
+    <div class="field">
+      <%= f.label I18n.t('activerecord.attributes.flat.wc') %>
+      <br/>
+      <%= f.collection_select(:wc, WC.collection, :cut, :name, :prompt => true) %>
+    </div>
+
+    <div class="field">
+      <%= f.label I18n.t('activerecord.attributes.flat.description') %>
+      <br/>
+      <%= f.text_area :description, :cols => 55, :rows => 8 %>
+    </div>
+
     <div class="field">
       <%= f.label I18n.t('activerecord.attributes.flat.flat_images') %>
       <br/>
       <% @flat.flat_images.each do |image| %>
           <p id="flat_image_<%= image.id %>">
             <%= image_tag image.image.url(:list) %>
+            <br/>
             <%= link_to "Удалить",
                         flat_image_path(:id => image.id, :authenticity_token => form_authenticity_token),
                         :confirm => "Вы уверены?", :method => :delete, :remote => true %>
@@ -140,20 +168,12 @@
       <div><%= f.file_field :flat_images, :multiple => true %></div>
     </div>
 
-    <% if !current_user.nil? && (current_user.manager? || @flat.agent_id == current_user.id) %>
-        <div class="field">
-          <%= f.label I18n.t('activerecord.attributes.flat.approved') %>
-          <br/>
-          <%= f.check_box :approved %>
-        </div>
-    <% end %>
-
+    <br/>
 
     <div class="actions">
       <%= f.submit "Сохранить" %>
     </div>
 <% end %>
-
 
 <script type="text/javascript">
     function split(val) {

@@ -10,6 +10,17 @@ class TendersController < ApplicationController
     end
   end
 
+  # GET /tenders
+  # GET /tenders.xml
+  def welcome
+    respond_to do |format|
+      format.html {
+        render :layout => 'order_welcome'
+      }
+      format.xml  { render :xml => @tenders }
+    end
+  end
+
   # GET /tenders/1
   # GET /tenders/1.xml
   def show
@@ -37,9 +48,7 @@ class TendersController < ApplicationController
   def create
     respond_to do |format|
       if @tender.save
-        format.html { redirect_to(@tender,
-                                  :notice => I18n.t('backend.actions.success_create',
-                                                    :model => I18n.t('activerecord.capitalized_models.tender'))) }
+        format.html { redirect_to(root_path, :notice => t("activerecord.attributes.tender.create_succesfull")) }
         format.xml  { render :xml => @tender, :status => :created, :location => @tender }
       else
         format.html { render :action => "new" }
@@ -53,7 +62,7 @@ class TendersController < ApplicationController
   def update
     respond_to do |format|
       if @tender.update_attributes(params[:tender])
-        format.html { redirect_to(@tender,
+        format.html { redirect_to("/users/edit",
                                   :notice => I18n.t('backend.actions.success_update',
                                                     :model => I18n.t('activerecord.capitalized_models.tender'))) }
         format.xml  { head :ok }

@@ -6,7 +6,7 @@ class RentStatus
   def self.collection
     [
         RentStatus.new(:name => 'Подана, к рассмотрению', :cut => 0),
-        RentStatus.new(:name => 'Рассмотрена, допущена к поиску', :cut => 1),
+        RentStatus.new(:name => 'В работе', :cut => 1),
         RentStatus.new(:name => 'Сдана, архив', :cut => 2)
     ]
   end

@@ -2,7 +2,7 @@ class MetrosController < ApplicationController
   load_and_authorize_resource
 
   def by_metro
-    metro_name = params[:term].to_s.capitalize
+    metro_name = params[:term].mb_chars.titleize.to_s
     @tags = Metro.where("name LIKE '#{metro_name}%'")
     @results = Array.new
     @tags.each do |t|

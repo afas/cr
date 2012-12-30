@@ -7,10 +7,14 @@
         <%= link_to t('backend.actions.edit'), edit_static_path(@static) if can?(:edit, @static) %>
       </small>
     </h1>
+
     <div class="static-double-columns">
-      <%= image_tag @static.preview.url(:list), :alt => @static.title if @static.preview_file_name %>
+      <%= image_tag @static.preview.url(:inner), :alt => @static.title if @static.preview_file_name %>
       <%= raw @static.content %>
     </div>
+
+    <%= render "layouts/vk_community_wall" %>
+
   </div>
 
   <div class="content-right">
@@ -22,6 +26,8 @@
         <div class="g-clearfix"></div>
     <% end %>
 
+    <br>
+
     <% if @static.static_files.size > 0 %>
         <h2>Файлы</h2>
         <ul class="files">
@@ -29,17 +35,11 @@
               <li>
                 <%= link_to image_tag('file-icon.png'), file.file.url, :target => "_blank" %>
                 <%= link_to file.file_file_name.split('.')[0], file.file.url, :class => "files-description", :target => "_blank" %>
-                <!--<br/>-->
-                <!--<%#= file.file_file_size / 1024 %>KB, <%#= file.file_updated_at.strftime("%e %b %Y") %>-->
               </li>
           <% end %>
         </ul>
         <div class="g-clearfix"></div>
     <% end %>
-    <!--<br/>-->
-    <%#= render "layouts/yandex_news" %>
-    <br/>
-    <%= render "layouts/vk_community" %>
   </div>
 </div>
 

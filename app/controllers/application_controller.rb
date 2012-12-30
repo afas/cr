@@ -21,25 +21,25 @@ class ApplicationController < ActionController::Base
 
     if controller_name == "registrations"
       unless current_user.nil?
-        if current_user.manager?
-          @flats = Flat.order("updated_at desc")
+        if current_user.client?
+          @flats = Flat.where("owner_id = ?", current_user.id).order("updated_at desc")
           @tenders = Tender.where("client_status_id <> ?", 3).order("updated_at desc")
         end
         if current_user.rieltor?
           @flats = Flat.where("agent_id = ?", current_user.id).order("updated_at desc")
           @tenders = Tender.where("agent_id = ? AND client_status_id <> ?", current_user.id, 3).order("updated_at desc")
         end
-        if current_user.client?
-          @flats = Flat.where("owner_id = ?", current_user.id).order("updated_at desc")
+        if current_user.manager?
+          @flats = Flat.order("updated_at desc")
           @tenders = Tender.where("client_status_id <> ?", 3).order("updated_at desc")
+          @imports = Import.limit(13).order("created_at desc")
+          @specials = Static.where("menu = ?", 'special').order("created_at desc")
         end
         if current_user.admin?
           @flats = Flat.order("updated_at desc")
           @tenders = Tender.where("client_status_id <> ?", 3).order("updated_at desc")
 
-          @imports = Import.limit(13).order("created_at desc")
           @welcome_images = WelcomeImage.order("created_at desc")
-          @specials = Static.where("menu = ?", 'special').order("created_at desc")
           @agents = User.where("id <> ? and role_id = ?", current_user.id, 2)
           #@clients = User.where("id <> ? and role_id", current_user.id, 3)
         end

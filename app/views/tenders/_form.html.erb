@@ -11,14 +11,26 @@
       <%= f.text_field :name %>
     </div>
     <div class="field">
-      <%= f.label "Контактный телефон/телефоны" %>
+      <%= f.label "Контактная информация" %>
       <br/>
       <%= f.text_field :phone %>
     </div>
-    <div class="field clearfix">
-      <%= f.label "Количество комнат" %>
+    <div class="field">
+      <%= f.label I18n.t('activerecord.attributes.flat.flat_type') %>
       <br/>
-      <%= collection_select(:tender, :rooms_count, RoomCount.collection, :cut, :name, :prompt => true) %>
+      <%= f.collection_select(:flat_type, FlatType.collection, :cut, :name, :prompt => true) %>
+    </div>
+
+    <div class="field">
+      <%= f.label I18n.t('activerecord.attributes.flat.rooms_count') %>
+      <br/>
+      <%= f.collection_select(:rooms_count, RoomCount.collection, :cut, :name, :prompt => true) %>
+    </div>
+
+    <div class="field">
+      <%= f.label I18n.t('activerecord.attributes.flat.rent_period') %>
+      <br/>
+      <%= f.collection_select(:rent_period, RentPeriod.collection, :cut, :name, :prompt => true) %>
     </div>
     <div class="field">
       <%= f.label "Метро" %>
@@ -30,27 +42,28 @@
       <br/>
       <%= f.text_field :price %>
     </div>
-    <div class="field clearfix">
-      <%= f.label "Тип заявки" %>
-      <br/>
-      <%= collection_select(:tender, :operation, TenderOperation.collection, :cut, :name, :prompt => false) %>
-    </div>
     <div class="field">
       <%= f.label "Описание, комментарии" %>
       <br/>
       <%= f.text_area :description, :cols => 55, :rows => 5 %>
     </div>
+
     <% if !current_user.nil? && (current_user.manager?) %>
+        <hr/>
         <div class="field clearfix">
           <%= f.label I18n.t('activerecord.attributes.tender.agent_id') %>
           <br/>
           <%= f.collection_select(:agent_id, User.only_internal, :id, :email, :promt => true) %>
         </div>
+    <% end %>
+
+    <% if !current_user.nil? && (current_user.manager? || @tender.agent_id == current_user.id) %>
         <div class="field clearfix">
           <%= f.label I18n.t('activerecord.attributes.tender.client_status') %>
           <br/>
-          <%= collection_select(:client_status, :operation, ClientStatus.collection, :cut, :name, :prompt => false) %>
+          <%= collection_select(:client_status, :operation, RentStatus.collection, :cut, :name, :prompt => false) %>
         </div>
+
         <div class="field">
           <%= f.label I18n.t('activerecord.attributes.tender.comments') %>
           <br/>
@@ -59,7 +72,7 @@
     <% end %>
 
     <div class="actions">
-      <%= f.submit "Отправить заявку" %>
+      <%= f.submit "В работу" %>
     </div>
 <% end %>
 
@@ -72,18 +85,18 @@
     }
     $("#tender_metro")
             .autocomplete({
-                source: function(request, response) {
+                source:function (request, response) {
                     $.getJSON("/metros/by_metro", {
-                        term: extractLast(request.term)
+                        term:extractLast(request.term)
                     }, response);
                 },
-                search: function() {
+                search:function () {
                     var term = extractLast(this.value);
                     if (term.length < 2) {
                         return false;
                     }
                 },
-                select: function(event, ui) {
+                select:function (event, ui) {
                     var terms = split(this.value);
                     terms.pop();
                     this.value = ui.item.value;

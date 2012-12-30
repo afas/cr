@@ -28,7 +28,7 @@ class Ability
       else
         #all
         can [:create, :index, :show], Flat
-        can [:create, :show], Tender
+        can [:create, :show, :welcome], Tender
         can :by_metro, Metro
         can :read, Static
     end

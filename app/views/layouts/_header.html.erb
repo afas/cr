@@ -1,18 +1,21 @@
 <div id="Header">
   <div class="header-holder">
-    <div id="Logo"><a href="/">Classic Rent</a></div>
+    <div id="Logo">
+      <a href="/">Classic Rent</a>
+      <span class="name">Classic Rent</span>
+    </div>
     <div id="Strip">
       <div class="strip-links">
         <p>
           <% @about_menu.each do |static| %>
-              <%= link_to raw("#{static.title}<span>#{static.hover}</span>"), "/#{static.short_url}" %>
+              <%= link_to raw("#{static.title}"), "/#{static.short_url}" %>
           <% end %>
         </p>
       </div>
     </div>
     <ul id="Navigation">
       <li class="nav-item">
-        <%= link_to raw("Поиск<span>указать целевые параметры поиска</span>"), (controller_name != "flats" && controller_name != "search" ? "/search" : "#"), :id => "search-button", :class => "nav-item" %>
+        <%= link_to raw("Поиск<span>Все подробности о вашем новом доме выберите в интерфейсе там.</span>"), (controller_name != "flats" && controller_name != "search" ? "/search" : "#"), :id => "search-button", :class => "nav-item" %>
       </li>
       <% @services_menu.each do |static| %>
           <li class="nav-item">

@@ -1,10 +1,15 @@
 <div id="inner-content" class="li-no-style">
   <div class="content-left">
-    <%= title(@static.title, true) %>
-    <%= link_to t('backend.actions.edit'), edit_static_path(@static) if can?(:edit, @static) %>
-    <%= raw "<br/>" if can?(:edit, @static) %>
+    <%= title(@static.title) %>
+    <h1>
+      <%= @static.title %>
+      <small>
+        <%= link_to t('backend.actions.edit'), edit_static_path(@static) if can?(:edit, @static) %>
+      </small>
+    </h1>
+
     <div class="static-double-columns">
-      <%= image_tag @static.preview.url(:list), :alt => @static.title if @static.preview_file_name %>
+      <%= image_tag @static.preview.url(:inner), :alt => @static.title if @static.preview_file_name %>
       <%= raw @static.content %>
     </div>
   </div>
@@ -17,6 +22,8 @@
         <% end %>
         <div class="g-clearfix"></div>
     <% end %>
+
+    <br>
 
     <% if @static.static_files.size > 0 %>
         <h2>Файлы</h2>

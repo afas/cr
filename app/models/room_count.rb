@@ -5,7 +5,7 @@ class RoomCount
 
   def self.collection
     [
-        RoomCount.new(:name => 'комната', :cut => '0'),
+        #RoomCount.new(:name => 'комната', :cut => '0'),
         RoomCount.new(:name => '1', :cut => '1'),
         RoomCount.new(:name => '2', :cut => '2'),
         RoomCount.new(:name => '3', :cut => '3'),

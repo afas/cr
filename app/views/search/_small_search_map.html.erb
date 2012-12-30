@@ -1,4 +1,11 @@
 <div id="search-panel" class="small-search">
+  <div class="drag-me"></div>
+
+  <div class="flat_type">
+    <label for="flat_type">Тип помещения</label><br/>
+    <%= collection_select(:flat, :flat_type, FlatType.collection, :cut, :name, {:prompt => true, :selected => params[:flat_flat_type]}) %>
+  </div>
+
   <div class="rooms">
     <label for="rooms_count">Комнат</label><br/>
     <%= collection_select(:flat, :rooms_count, RoomCount.collection, :cut, :name, {:prompt => true, :selected => params[:flat_rooms_count]}) %>
@@ -16,23 +23,23 @@
 
   <div class="metro">
     <label for="metro">Метро</label><br/>
-    <input type="text" name="metro" placeholder="Баррикадная" id="metro" value="<%= params[:metro] %>">
+    <input type="text" name="metro" placeholder="..." id="metro" value="<%= params[:metro] %>">
   </div>
 
   <div class="address">
     <label for="address">Улица</label><br/>
-    <input type="text" name="address" placeholder="" id="address" value="<%= params[:address] %>">
+    <input type="text" name="address" placeholder="..." id="address" value="<%= params[:address] %>">
   </div>
 
-  <div class="balkon">
-    <label for="balkon">Балкон</label><br/>
-    <%= collection_select(:flat, :balkon, Balkon.collection, :cut, :name, {:prompt => true, :selected => params[:flat_balkon]}) %>
-  </div>
+  <!--<div class="balkon">-->
+    <!--<label for="balkon">Балкон</label><br/>-->
+    <%#= collection_select(:flat, :balkon, Balkon.collection, :cut, :name, {:prompt => true, :selected => params[:flat_balkon]}) %>
+  <!--</div>-->
 
-  <div class="living_space">
-    <label for="living_space">Площадь</label><br/>
-    <input type="text" name="living_space" placeholder="" id="living_space" value="<%= params[:living_space] %>">
-  </div>
+  <!--<div class="living_space">-->
+    <!--<label for="living_space">Площадь</label><br/>-->
+    <!--<input type="text" name="living_space" placeholder="" id="living_space" value="<%#= params[:living_space] %>">-->
+  <!--</div>-->
 
   <div class="price">
     <label for="price">Цена</label><br/>
@@ -45,9 +52,9 @@
     <%= collection_select(:flat, :flats_order, FlatsOrder.collection, :cut, :name, {:prompt => true, :selected => params[:flat_rooms_count]}) %>
   </div>
 
-  <input type="submit" value="Показать на карте" class="q-search-submit" onclick="searchResults()"></input>
+  <input type="submit" value="+ Показать на карте" class="q-search-submit" onclick="searchResults()"></input>
   <br/>
-  <input type="submit" value="Показать списком" class="q-search-submit" onclick="searchResultsList()"></input>
+  <input type="submit" value="+ Показать списком" class="q-search-submit" onclick="searchResultsList()"></input>
 </div>
 
 <script type="text/javascript">

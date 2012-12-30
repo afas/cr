@@ -1,15 +1,17 @@
 <table class="flats flats-admin" cellspacing="0">
   <tr class='even-first'>
-    <th width="70%"><%= "ФИО" %></th>
-    <th width="30%"><%= "Телефон" %></th>
-    <!--<th width="20%"><%= "Роль в системе" %></th>-->
+    <th width="30%"><%= "ФИО" %></th>
+    <th width="25%"><%= "Телефон" %></th>
+    <th width="25%"><%= "Роль/Свой" %></th>
+    <th width="20%"><%= "Вошел в систему" %></th>
   </tr>
 
   <% @agents.each_with_index do |user, i| %>
       <tr <%= "class='even'" if i%2 != 0 %>>
-        <td><%= link_to raw("#{user.email} #{user.name} #{user.surname}"), "/user/#{user.id}/edit" %></td>
+        <td><%= link_to raw("#{user.full_name}"), "/user/#{user.id}/edit" %></td>
         <td><%= "#{user.phone}" %></td>
-        <!--<td><%#= Role.by_id(user.role_id) %></td>-->
+        <td><%= Role.by_id(user.role_id) %>, <%= user.internal? ? "+" : "-" %></td>
+        <td><%= user.current_sign_in_at? ? user.current_sign_in_at.strftime("%d/%m %H:%M") : "не в сети" %></td>
       </tr>
   <% end %>
 </table>

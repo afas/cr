@@ -5,11 +5,11 @@ class RentPeriod
 
   def self.collection
     [
-        #RentPeriod.new(:name => 'Любой срок', :cut => '0'),
-        RentPeriod.new(:name => 'Посуточная', :cut => '1'),
-        RentPeriod.new(:name => 'Сезонная сдача(несколько месяцев)', :cut => '2'),
-        RentPeriod.new(:name => 'Длительный срок(от года)', :cut => '3'),
-        RentPeriod.new(:name => 'От месяца и более', :cut => '4'),
+        RentPeriod.new(:name => 'Почасовая', :cut => 0),
+        RentPeriod.new(:name => 'Посуточная', :cut => 1),
+        RentPeriod.new(:name => 'Сезонная сдача(несколько месяцев)', :cut => 2),
+        RentPeriod.new(:name => 'Месяц и более', :cut => 3),
+        RentPeriod.new(:name => 'Длительный срок(от года)', :cut => 4)
     ]
   end
 

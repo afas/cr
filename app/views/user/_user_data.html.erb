@@ -1,51 +1,58 @@
 <h2>Мои объекты</h2>
 
-<% if current_user.admin? %>
-
-    <div id="tabs">
-
+<div id="tabs">
+  <% unless current_user.nil? %>
       <ul>
-        <!--<li><%#= link_to "Заявки", "/tenders" %></li>-->
-        <!--<li><%#= link_to "Импорт", new_import_path %></li>-->
-        <!--<li><%#= link_to 'Пользователи', "/user" %></li>-->
-        <!--<li><%#= link_to "Акции", "/special" %></li>-->
-        <!--<li><%#= link_to "Фон", welcome_images_path %></li>-->
-        <li><a href="#tenders">Заявки</a></li>
-        <li><a href="#flats">Квартиры</a></li>
-        <li><a href="#agents">Агенты</a></li>
-        <li><a href="#imports">Импорт</a></li>
-        <li><a href="#specials">Акции</a></li>
-        <li><a href="#backgrounds">Фон</a></li>
-        <li><a href="#comments">Комментарии</a></li>
+        <% if current_user.current_user.rieltor? || current_user.client? %>
+            <li><a href="#tenders">Заявки</a></li>
+            <li><a href="#flats">Квартиры</a></li>
+        <% end %>
+        <% if current_user.manager? %>
+            <li><a href="#imports">Импорт</a></li>
+            <li><a href="#specials">Акции</a></li>
+        <% end %>
+        <% if current_user.admin? %>
+            <li><a href="#agents">Агенты</a></li>
+            <li><a href="#backgrounds">Фон</a></li>
+        <% end %>
+        <!--<li><a href="#comments">Комментарии</a></li>-->
         <!--<li><a href="#clients">Клиенты</a></li>-->
       </ul>
 
-      <div id="tenders">
-        <%= render "user/tenders" %>
-      </div>
-      <div id="flats">
-        <%= render "user/flats" %>
-      </div>
-      <div id="agents">
-        <%= render "user/agents" %>
-      </div>
-      <div id="imports">
-        <%= render "user/imports" %>
-      </div>
-      <div id="specials">
-        <%= render "user/specials" %>
-      </div>
-      <div id="backgrounds">
-        <%= render "user/backgrounds" %>
-      </div>
-      <div id="comments">
-        <%= render "user/comments" %>
-      </div>
-      <!--<div id="clients">-->
-      <%#= render "user/clients" %>
-      <!--</div>-->
-    </div>
-<% end %>
+      <% if current_user.current_user.rieltor? || current_user.client? %>
+          <div id="tenders">
+            <%= render "user/tenders" %>
+          </div>
+          <div id="flats">
+            <%= render "user/flats" %>
+          </div>
+      <% end %>
+      <% if current_user.manager? %>
+          <div id="imports">
+            <%= render "user/imports" %>
+          </div>
+          <div id="specials">
+            <%= render "user/specials" %>
+          </div>
+      <% end %>
+      <% if current_user.admin? %>
+          <div id="agents">
+            <%= render "user/agents" %>
+          </div>
+          <div id="backgrounds">
+            <%= render "user/backgrounds" %>
+          </div>
+      <% end %>
+      <!--<li><a href="#comments">Комментарии</a></li>-->
+      <!--<li><a href="#clients">Клиенты</a></li>-->
+  <% end %>
+  <!--<div id="comments">-->
+  <%#= render "user/comments" %>
+  <!--</div>-->
+  <!--<div id="clients">-->
+  <%#= render "user/clients" %>
+  <!--</div>-->
+</div>
 
 <script type="text/javascript">
     $(function () {

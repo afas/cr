@@ -8,11 +8,8 @@
   <meta name="robots" content="index, follow">
   <meta name="language" content="ru">
 
-  <%= puts controller_name %>
-  <%= puts action_name %>
-
-  <%= stylesheet_link_tag controller_name == "flats" && action_name == "show" ? :application : :fs_map_app %>
-  <%= javascript_include_tag :with_gmaps %>
+  <%= stylesheet_link_tag :application %>
+  <%= javascript_include_tag :application %>
 
   <%= csrf_meta_tag %>
 
@@ -24,12 +21,39 @@
 
 
 <div id="Wrapper">
-  <%= render "layouts/header" %>
+
+  <div id="Header">
+    <div class="header-holder">
+      <div id="Logo"><a href="/">Classic Rent</a></div>
+
+      <ul class="order-welcome-info">
+        <li><a href="skype:+74997557303?call">+7 (499) 75 57 303</a></li>
+        <li><a href="skype:support.classicrent?call">skype.classicrent</a></li>
+        <li><a href="mailto:mail@classicrent.ru">mail@classicrent.ru</a></li>
+      </ul>
+
+    </div>
+  </div>
+
   <div id="Body">
     <%= yield %>
   </div>
   <div id="Footer">
-    <%= render "layouts/footer" %>
+    <p class="social-links">
+      <%= link_to image_tag("vk.png", :alt => "#{t('site_name')} Группа в контакте"), "http://vkontakte.ru/classicrent", :target => "_blank" %>
+      <%= link_to image_tag("fb.png", :alt => "#{t('site_name')} Группа в Facebook"), "http://facebook.com/classicrent", :target => "_blank" %>
+    </p>
+
+    <p>
+      <% if user_signed_in? %>
+      <span>Вы вошли как <%= current_user.email %>
+        / <%= link_to (current_user.rieltor?) ? "Рабочий кабинет" : "Личный кабинет", "/users/edit" %>
+        / <%= link_to "Выйти", destroy_user_session_path, :method => :delete %></span>
+      <% end %>
+      <br/>
+      <span>&copy; 2011 Classic Rent. Все права защищены. Сделано в <a href="http://black-sheep.ru" target="_blank">Black
+        Sheep</a></span>
+    </p>
   </div>
 </div>
 
@@ -37,7 +61,7 @@
     var _gaq = _gaq || [];
     _gaq.push(['_setAccount', 'UA-28364227-1']);
     _gaq.push(['_trackPageview']);
-    (function() {
+    (function () {
         var ga = document.createElement('script');
         ga.type = 'text/javascript';
         ga.async = true;

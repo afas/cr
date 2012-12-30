@@ -2,22 +2,22 @@
     <table class="flats flats-admin" cellspacing="0">
       <tr class='even-first'>
         <th width="13%">№</th>
-        <th width="11%">Имя</th>
-        <th width="14%">Телефон</th>
-        <th width="40%">Тип</th>
-        <th width="10%">Агент</th>
-        <th width="10%">Изменена</th>
-        <th width="12%">Статус</th>
+        <th width="15%">Имя</th>
+        <th width="15%">Телефон</th>
+        <th width="15%">Тип</th>
+        <th width="15%">Агент</th>
+        <th width="15%">Изменена</th>
+        <th width="15%">Статус</th>
       </tr>
       <% @tenders.each_with_index do |tender, i| %>
           <tr <%= "class='even'" if i%2!=0 %>>
-            <td><%= link_to("#{tender.id} / #{t('backend.actions.edit')}", edit_tender_path(tender)) if can?(:edit, tender) %></td>
+            <td><%= can?(:edit, tender) ? link_to("+ #{tender.id}", edit_tender_path(tender)) : link_to("+ #{tender.id}", tender_path(tender)) %></td>
             <td><%= tender.name %></td>
             <td><%= tender.phone %></td>
-            <td><%= TenderOperation.by_id(tender.operation) %></td>
+            <td><%= FlatType.by_id(tender.flat_type) %></td>
             <td><%= tender.agent.name unless tender.agent.nil? %></td>
-            <td><%= tender.updated_at.strftime("%d %h - %H:%M") %></td>
-            <td><%= ClientStatus.by_id(tender.client_status_id) %></td>
+            <td><%= tender.updated_at.strftime("%d/%m %H:%M") %></td>
+            <td><%= RentStatus.by_id(tender.client_status_id) %></td>
           </tr>
       <% end %>
     </table>

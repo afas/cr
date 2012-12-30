@@ -1,15 +1,3 @@
-# Russian localization for Ruby on Rails 2.2+
-# by Yaroslav Markin <yaroslav@markin.net>
-#
-# Be sure to check out "russian" gem (http://github.com/yaroslav/russian) for
-# full Russian language support in Rails (month names, pluralization, etc).
-# The following is an excerpt from that gem.
-#
-# Для полноценной поддержки русского языка (варианты названий месяцев,
-# плюрализация и так далее) в Rails 2.2 нужно использовать gem "russian"
-# (http://github.com/yaroslav/russian). Следующие данные -- выдержка их него, чтобы
-# была возможность минимальной локализации приложения на русский язык.
-
 ru:
   site_name: "Classic rent"
 
@@ -27,9 +15,9 @@ ru:
       are_you_sure: "Вы уверены?"
       are_you_want_delete: "Вы уверены, что хотите удалить %{target} \"%{name}\"?"
       back: "Назад"
-      destroy: "Удалить"
-      edit: "Изменить"
-      show: "Посмотреть"
+      destroy: "- Удалить"
+      edit: "+ Изменить"
+      show: "+ Посмотреть"
       please_select: "Выберите..."
       success_create: "%{model} успешно создан."
       success_update: "%{model} успешно обновлён."
@@ -62,6 +50,7 @@ ru:
   activerecord:
     capitalized_models:
       user: "Пользователь"
+      tender: "Заявка"
     models:
       user: "пользователя"
       flat: "квартира"
@@ -73,38 +62,53 @@ ru:
         password: "Пароль"
         password_confirmation: "Пароль ещё раз"
         current_password: "Текущий пароль"
+      static:
+        create: "Создание новой страницы/раздела сайта"
+        edit: "Редактирование страницы/раздела сайта"
       flat:
+        new: "+ Разместить квартиру"
+        create: "Формирование информации о недвижимости"
+        edit: "Изменение информации о недвижимости"
+        rur: "Стоимость аренды в рублях"
+        usd: "Стоимость аренды в долларах"
         approved: "Проверена"
+        flat_type: "Тип помещения"
         rent_status: "Статус"
-        lot_number: "Номер лота"
+        lot_number: "Идентификатор"
         rooms_count: "Количество комнат"
         rent_period: "Срок аренды"
-        price: "Стоимость"
+        price: "Арендная плата"
         prepayment: "Предоплата"
         balkon: "Балкон"
+        region: "Регион, область"
+        city: "Город"
+        district: "Административный округ"
         metro: "Метро"
+        street: "Улица"
+        building: "Строение"
         address: "Адрес"
         remote_time: "Время"
-#        remote_time: "Время в минутах"
         remote_type: "От метро"
-#        remote_type: "От метро, Транспортом/пешком"
         full_space: "Общая площадь"
         kitch_space: "Кухня"
-        living_space: "Жил. площадь"
-        wc: "Сан. узел"
-        internal_comments: "Служебные комментарии"
+        living_space: "Жилая площадь"
+        wc: "Сан-узел"
+        renter_info: "Служебные комментарии"
         floor: "Этаж"
         floor_count: "Этажность"
         description: "Комментарии"
-        flat_images: "Фотографии квартиры"
+        flat_images: "Фотографии квартиры, на первое время подойдут любые"
         rent_type: "Тип аренды"
         agent_id: "Агент"
+        updated_at: "Одобрена"
         created_at: "Создана"
-        updated_at: "Обновлена"
       tender:
+        create: "Формирование заявки на поиск нежвижимости"
+        edit: "Клиент нуждающийся в заселении"
+        create_succesfull: "Ваша заявка поступила на обработку, в скорем времени ваш менеджер свяжемся с вами по указанным контактным данным. Всего доброго."
         agent_id: "Агент"
         client_status: "Состояние заявки/клиента"
-        comments: "Комментарии (полный лог общения и работы агента с данной заявкой)"
+        comments: "Лог работы по заявке"
     base:
       minutes: "минут"
       rooms: "Комнат"

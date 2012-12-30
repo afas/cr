@@ -1,8 +1,4 @@
-<%#= title(t('tenders.edit.title')) %>
-<%#= link_to t('backend.actions.show'), @tender %>
-<%#= link_to t('backend.actions.back'), tenders_path %>
-
 <div id="inner-content" class="li-no-style">
-  <%= title("Обработка заявки") %>
+  <%= title(t('activerecord.attributes.tender.edit'), true) %>
   <%= render 'form' %>
 </div>

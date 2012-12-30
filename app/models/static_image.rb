@@ -1,7 +1,7 @@
 class StaticImage < ActiveRecord::Base
   has_attached_file :image,
                     :styles => {
-                        :list => '89x89#',
+                        :list => '250x121#',
                         :preview => '136x98#',
                         :inner => '440x290#',
                         :gallery => '800x600#'

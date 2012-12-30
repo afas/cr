@@ -12,6 +12,16 @@ class StaticsController < ApplicationController
 
   # GET /statics
   # GET /statics.xml
+  def feedback
+    @static = Static.find_by_short_url(params[:short_url]) if params[:short_url]
+    respond_to do |format|
+      format.html # index.html.erb
+      format.xml { render :xml => @statics }
+    end
+  end
+
+  # GET /statics
+  # GET /statics.xml
   def special
     @specials = Static.find_all_by_menu("special")
     respond_to do |format|
@@ -40,7 +50,9 @@ class StaticsController < ApplicationController
   def new
     @static.menu = params[:menu] if params[:menu]
     respond_to do |format|
-      format.html # new.html.erb
+      format.html {
+        render :layout => "with_wysiwyg"
+      }
       format.xml { render :xml => @static }
     end
   end

@@ -1,33 +1,54 @@
 <div class="content">
   <div class="container flat">
     <div class="container-left">
-      <% if @flat.flat_images.size > 0 %>
+      <h2><span>Карта / Фотографии</span></h2>
 
-          <h2><span>Фотографии</span></h2>
-          <%= image_tag @flat.flat_images.first.image.url(:inner), :alt => @flat.address, :class => "container-big" %>
-          <br/>
+      <div class="container-big">
+        <%= gmaps({
+                          :map_options => {
+                                  :auto_zoom => false,
+                                  :zoom => 13,
+                                  :do_clustering => true,
+                                  :language => I18n.locale
+                          },
+                          :markers => {
+                                  :data => @flats_to_map
+                          }
+                  })
+        %>
+      </div>
+
+      <% if @flat.flat_images.size > 0 %>
           <% @flat.flat_images.each do |image| %>
               <%= link_to (image_tag image.image.url(:list)), image.image.url(:gallery), :rel => 'gallery' %>
           <% end %>
-          <div class="g-clearfix"></div>
       <% end %>
-
+      <div class="g-clearfix"></div>
     </div>
-    <div class="container-right">
-      <%= title("#{t("site_name")} - #{@flat.address}") %>
 
-      <h1><span><%= @flat.address %></span></h1>
+    <div class="container-right">
+      <%= title("#{t("site_name")} - #{@flat.small_address}") %>
+
+      <h1>
+        <span><%= @flat.small_address %></span>
+      </h1>
 
       <%= link_to t('backend.actions.edit'), edit_flat_path(@flat) if can?(:edit, @flat) %>
-      <%= raw "<br/>" if can?(:edit, @flat) %>
 
       <p>
         <span><b><%= t('activerecord.attributes.flat.lot_number') %>:</b> <%= @flat.id %></span>
       </p>
 
-      <% if RoomCount.by_id(@flat.rooms_count) %>
+      <% unless @flat.agent.nil? %>
           <p>
-            <span><b><%= t('activerecord.attributes.flat.rooms_count') %>:</b> <%= RoomCount.by_id(@flat.rooms_count) %></span>
+            <span><b><%= t('activerecord.attributes.flat.agent_id') %>:</b> <%= @flat.agent.contact_data %></span>
+          </p>
+      <% end %>
+
+      <% if FlatType.by_id(@flat.flat_type) %>
+          <p>
+            <span><b><%= t('activerecord.attributes.flat.flat_type') %>
+              :</b> <%= FlatType.by_id(@flat.flat_type) %></span>
           </p>
       <% end %>
 
@@ -35,6 +56,12 @@
           <p>
             <span><b><%= t('activerecord.attributes.flat.rent_period') %>
               :</b> <%= RentPeriod.by_id(@flat.rent_period) %></span>
+          </p>
+      <% end %>
+
+      <% if RoomCount.by_id(@flat.rooms_count) %>
+          <p>
+            <span><b><%= t('activerecord.attributes.flat.rooms_count') %>:</b> <%= RoomCount.by_id(@flat.rooms_count) %></span>
           </p>
       <% end %>
 
@@ -47,12 +74,6 @@
       <% if Prepayment.by_id(@flat.prepayment) %>
           <p>
             <span><b><%= t('activerecord.attributes.flat.prepayment') %>:</b> <%= Prepayment.by_id(@flat.prepayment) %></span>
-          </p>
-      <% end %>
-
-      <% if @flat.address? %>
-          <p>
-            <span><b><%= t('activerecord.attributes.flat.address') %>:</b> <%= @flat.address %></span>
           </p>
       <% end %>
 
@@ -69,23 +90,6 @@
           </p>
       <% end %>
 
-      <% if Balkon.by_id(@flat.balkon) %>
-          <p>
-            <span><b><%= t('activerecord.attributes.flat.balkon') %>:</b> <%= Balkon.by_id(@flat.balkon) %></span>
-          </p>
-      <% end %>
-
-      <% if WC.by_id(@flat.wc) %>
-          <p>
-            <span><b><%= t('activerecord.attributes.flat.wc') %>:</b> <%= WC.by_id(@flat.wc) %></span>
-          </p>
-      <% end %>
-
-      <% if @flat.full_space? %>
-          <p>
-            <span><b><%= t('activerecord.attributes.flat.full_space') %>:</b> <%= @flat.full_space %></span>
-          </p>
-      <% end %>
       <% if @flat.living_space? %>
           <p>
             <span><b><%= t('activerecord.attributes.flat.living_space') %>:</b> <%= @flat.living_space %></span>
@@ -104,9 +108,21 @@
           </p>
       <% end %>
 
-      <% if @flat.internal_comments && !current_user.nil? && (current_user.manager? || @flat.agent_id == current_user.id) %>
+      <% if @flat.full_space? %>
           <p>
-            <span><b><%= t('activerecord.attributes.flat.internal_comments') %>:</b> <%= @flat.internal_comments %></span>
+            <span><b><%= t('activerecord.attributes.flat.full_space') %>:</b> <%= @flat.full_space %></span>
+          </p>
+      <% end %>
+
+      <% if Balkon.by_id(@flat.balkon) %>
+          <p>
+            <span><b><%= t('activerecord.attributes.flat.balkon') %>:</b> <%= Balkon.by_id(@flat.balkon) %></span>
+          </p>
+      <% end %>
+
+      <% if WC.by_id(@flat.wc) %>
+          <p>
+            <span><b><%= t('activerecord.attributes.flat.wc') %>:</b> <%= WC.by_id(@flat.wc) %></span>
           </p>
       <% end %>
 
@@ -116,71 +132,38 @@
           </p>
       <% end %>
 
-      <% if FlatType.by_id(@flat.rent_type) %>
+      <p>
+            <span><b><%= t('activerecord.attributes.flat.updated_at') %>
+              :</b> <%= @flat.updated_at.strftime("%m/%d/%Y в %I:%M") %></span>
+      </p>
+
+      <hr/>
+
+      <% if !current_user.nil? && current_user.rieltor? %>
           <p>
-            <span><b><%= t('activerecord.attributes.flat.rent_type') %>
-              :</b> <%= FlatType.by_id(@flat.rent_type) %></span>
+            <span><b><%= t('activerecord.attributes.flat.rent_status') %>
+              :</b> <%= RentStatus.by_id(@flat.rent_status_id) %></span>
+          </p>
+
+          <p>
+            <span><b><%= t('activerecord.attributes.flat.created_at') %>
+              :</b> <%= @flat.created_at.strftime("%m/%d/%Y в %I:%M") %></span>
           </p>
       <% end %>
 
-      <p>
-            <span><b><%= t('activerecord.attributes.flat.created_at') %>
-              :</b> <%= @flat.created_at.strftime("%m/%d/%Y at %I:%M%p") %></span>
-      </p>
-
-      <p>
-            <span><b><%= t('activerecord.attributes.flat.updated_at') %>
-              :</b> <%= @flat.updated_at.strftime("%m/%d/%Y at %I:%M%p") %></span>
-      </p>
-
+      <% if !current_user.nil? && (current_user.manager? || @flat.agent_id == current_user.id) %>
+          <p>
+            <span><b><%= t('activerecord.attributes.flat.renter_info') %>
+              :</b> <%= @flat.internal_comments %></span>
+          </p>
+      <% end %>
     </div>
   </div>
-
-  <%= gmaps({
-                    :map_options => {
-                            :auto_zoom => false,
-                            :zoom => 13,
-                            :do_clustering => true
-                    },
-                    :markers => {
-                            :data => @flats_to_map
-                    }
-#,
-#                    :polylines => {:data => ' [ [
-#                         {"lng": -122.214897, "lat": 37.772323},
-#                         {"lng": -157.821856, "lat": 21.291982},
-#                         {"lng": 178.431, "lat": -18.142599},
-#                         {"lng": 153.027892, "lat": -27.46758}
-#                         ],
-#                         [
-#                         {"lng": -120.214897, "lat": 30.772323, "strokeColor": "#000", "strokeWeight" : 2 },
-#                         {"lng": -10.821856, "lat": 50.291982}
-#                         ] ]'}
-            })
-  %>
-
-  <%#= gmaps({
-                    "map_options" => {
-                            "zoom" => 13,
-                            "auto_adjust" => true,
-                            "detect_location" => true,
-                            "center_on_user" => true
-                    },
-                    "markers" => {
-                            "data" => @flats
-                    }
-            }) %>
-
-  <%#= render "search/small_search_map" %>
 </div>
+
 
 <script type="text/javascript">
     $(document).ready(function () {
-        var centerpoint = new google.maps.LatLng(<%= @flat.latitude %>, <%= @flat.longitude %>);
-
-//        Gmaps.map.setCenter(centerpoint);
-//        Gmaps4Rails.map.setCenter(centerpoint);
-
         $("a[rel=gallery]").fancybox({
             'transitionIn':'none',
             'transitionOut':'none',

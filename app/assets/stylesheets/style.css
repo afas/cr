@@ -1,10 +1,58 @@
+@font-face {
+    font-family: "Ubuntu";
+    font-style: italic;
+    font-weight: 700;
+    src: local("Ubuntu Bold Italic"), local("Ubuntu-BoldItalic"), url("http://themes.googleusercontent.com/static/fonts/ubuntu/v4/OMD20Sg9RTs7sUORCEN-7YbN6UDyHWBl620a-IRfuBk.woff") format("woff");
+}
+
+@font-face {
+    font-family: "Ubuntu";
+    font-style: italic;
+    font-weight: 400;
+    src: local("Ubuntu Italic"), local("Ubuntu-Italic"), url("http://themes.googleusercontent.com/static/fonts/ubuntu/v4/kbP_6ONYVgE-bLa9ZRbvvvesZW2xOQ-xsNqO47m55DA.woff") format("woff");
+}
+
+@font-face {
+    font-family: "Ubuntu";
+    font-style: italic;
+    font-weight: 300;
+    src: local("Ubuntu Light Italic"), local("Ubuntu-LightItalic"), url("http://themes.googleusercontent.com/static/fonts/ubuntu/v4/DZ_YjBPqZ88vcZCcIXm6VobN6UDyHWBl620a-IRfuBk.woff") format("woff");
+}
+
+@font-face {
+    font-family: "Ubuntu";
+    font-style: normal;
+    font-weight: 400;
+    src: local("Ubuntu"), url("http://themes.googleusercontent.com/static/fonts/ubuntu/v4/_xyN3apAT_yRRDeqB3sPRg.woff") format("woff");
+}
+
+@font-face {
+    font-family: "Ubuntu";
+    font-style: normal;
+    font-weight: 700;
+    src: local("Ubuntu Bold"), local("Ubuntu-Bold"), url("http://themes.googleusercontent.com/static/fonts/ubuntu/v4/0ihfXUL2emPh0ROJezvraD8E0i7KZn-EPnyo3HZu7kw.woff") format("woff");
+}
+
+@font-face {
+    font-family: "Ubuntu";
+    font-style: normal;
+    font-weight: 300;
+    src: local("Ubuntu Light"), local("Ubuntu-Light"), url("http://themes.googleusercontent.com/static/fonts/ubuntu/v4/_aijTyevf54tkVDLy-dlnD8E0i7KZn-EPnyo3HZu7kw.woff") format("woff");
+}
+
+@font-face {
+    font-family: "Ubuntu Mono";
+    font-style: normal;
+    font-weight: 400;
+    src: local("Ubuntu Mono"), local("UbuntuMono-Regular"), url("http://themes.googleusercontent.com/static/fonts/ubuntumono/v3/ViZhet7Ak-LRXZMXzuAfkYbN6UDyHWBl620a-IRfuBk.woff") format("woff");
+}
+
 body {
-    font: 15px arial, sans-serif;
+    color: #1F2122;
+    font-family: Ubuntu, Arial, sans-serif;
     margin: 0;
     padding: 0;
-    color: #1F2122;
-    /*background-color: #CCCCCC;*/
-    background: url("bgorder.png") repeat scroll 50% 50% #E6E6E6;
+    background: url("bg_dotted.png") repeat scroll 0 0 rgba(0, 0, 0, 1);
 }
 
 .g-clearfix {
@@ -20,11 +68,10 @@ a {
 }
 
 a:active {
-    outline: none;
+    outline: medium none;
 }
 
 :focus {
-    -moz-outline-style: none;
 }
 
 a:hover {
@@ -32,11 +79,11 @@ a:hover {
 }
 
 :focus {
-    outline: none;
+    outline: medium none;
 }
 
 img {
-    border: none;
+    border: medium none;
 }
 
 h3 {
@@ -45,56 +92,70 @@ h3 {
     text-transform: uppercase;
 }
 
-/*Wrapper*/
-
 #Wrapper {
-    width: 100%;
+    background: url("bg_dotted.png") repeat scroll 0 0 #FFFFFF;
     margin: 0 auto;
+    width: 100%;
 }
 
-/*Header*/
-
 #Header {
-    background: none repeat scroll 0 0 #FFFFFF;
-    border-bottom: 1px solid #7C7A78;
-    height: 133px;
+    background: none repeat scroll 0 0 #FFF;
+    box-shadow: 0 2px 21px rgba(0, 0, 0, 0.5);
+    height: 87px;
     margin: 0;
-    padding: 0;
+    padding: 21px 0 0;
     position: fixed;
     width: 100%;
-    z-index: 10005;
+    z-index: 1000;
 }
 
 .header-holder {
-    width: 960px;
     margin: 0 auto;
+    width: 960px;
+    position: relative;
 }
 
 #Strip {
+    float: right;
     font-size: 13px;
-    width: 630px;
     overflow: hidden;
-    float: right
+    width: 630px;
 }
 
 #Logo {
     float: left;
-    height: 100px;
-    width: 216px;
-    margin-top: 7px;
+    height: 68px;
+    margin: 0 auto;
+    position: relative;
+    width: 155px;
 }
 
 #Logo a {
-    background: url("logo.png") no-repeat scroll center center transparent;
+    background: url("logo-no-bg-89.png") no-repeat scroll 0 0 transparent;
     display: block;
-    height: 100px;
+    height: 64px;
+    left: 0;
+    position: absolute;
     text-indent: -9999px;
+    top: 0;
+    width: 89px;
+}
+
+#Logo .name {
+    color: #7C7A78;
+    font-size: 19px;
+    font-weight: 600;
+    left: 20px;
+    position: absolute;
+    text-shadow: 1px 1px 1px #000000;
+    text-transform: uppercase;
+    top: 45px;
 }
 
 .strip-links {
+    color: #7C7A78;
     float: right;
     line-height: 33px;
-    color: #7C7A78;
 }
 
 .strip-links p {
@@ -105,7 +166,7 @@ h3 {
     color: #7C7A78;
     display: block;
     float: left;
-    /*font-weight: bold;*/
+    font-size: 14px;
     height: 33px;
     line-height: 33px;
     margin-left: 21px;
@@ -114,31 +175,34 @@ h3 {
 }
 
 .strip-links a span {
+    color: #FFFFFF;
     display: none;
-    /*border-top: 1px solid #38393A;*/
-    color: #fff;
     line-height: 21px;
     opacity: 0.3;
     position: absolute;
     top: 32px;
-    width: 100px;
 }
 
-
 .nav-item a span {
+    color: #7C7A78;
     display: none;
-    /*border-top: 1px solid #38393A;*/
-    color: #fff;
-    line-height: 21px;
-    opacity: 0.3;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 16px;
     position: absolute;
-    top: 19px;
+    right: 0;
+    text-align: right;
+    text-shadow: none;
+    text-transform: none;
+    top: 0;
     white-space: nowrap;
-    /*width: 300px;*/
+    width: 450px;
 }
 
 .strip-links a:hover span, .nav-item a:hover span {
     display: block;
+    background: none repeat scroll 0 0 #FFF;
+    padding: 8px 0px;
 }
 
 .static-double-columns img {
@@ -152,7 +216,7 @@ h3 {
 }
 
 .strip-links a.last {
-    border-right: none !important;
+    border-right: medium none !important;
 }
 
 .strip-links a:hover {
@@ -160,74 +224,87 @@ h3 {
 }
 
 .search {
-    height: 33px;
-    float: right;
     border-left: 1px solid #38393A;
     border-right: 1px solid #38393A;
+    float: right;
+    height: 33px;
+}
+
+.drag-me {
+    background: url("bg_dotted.png") repeat scroll 0 0 #000000;
+    height: 14px;
+    margin: 5px auto;
+    width: 55px;
+    cursor: move;
+
 }
 
 .search input.text {
+    background: none repeat scroll 0 0 transparent;
+    border: medium none;
+    color: #BCBDBD;
+    font-weight: bold;
     height: 33px;
     line-height: 33px;
     padding-left: 15px;
-    color: #bcbdbd;
-    font-weight: bold;
-    border: none;
-    background: none;
 }
 
 .search input.submit {
-    width: 44px;
+    background: url("search-btn.png") no-repeat scroll 0 0 transparent;
+    border: medium none;
+    color: #1F2122;
+    cursor: pointer;
     height: 33px;
     text-indent: 9999px;
-    cursor: pointer;
-    border: none;
-    color: #1F2122;
-    background: url(search-btn.png) no-repeat;
+    width: 44px;
 }
 
 #Login {
-    color: #fff;
+    color: #FFFFFF;
     float: right;
     font-size: 11px;
 }
 
 #Navigation {
-    font: bold 13px Tahoma, Geneva, sans-serif;
-    text-transform: uppercase;
-    margin: 4px -490px 0 0;
-    padding: 0;
+    color: #FFFFFF;
     float: right;
-    list-style: none;
-    color: #fff;
-    right: 50%;
-    bottom: 23px;
-    position: absolute;
+    font-family: Ubuntu, Arial, sans-serif;
+    font-weight: normal;
+    list-style: none outside none;
+    margin: 0;
+    padding-top: 12px;
+    text-transform: uppercase;
     z-index: 99999;
 }
 
 #Navigation li {
     float: left;
-    margin-left: -14px;
 }
 
-#Navigation a {
-    color: #7C7A78;
+#Navigation li a {
+    color: #A6CE39;
     display: block;
     float: left;
-    font-size: 15px;
-    font-weight: normal;
-    margin-left: 34px;
+    font-size: 19px;
+    font-weight: 600;
+    margin-left: 23px;
     text-align: center;
     text-decoration: none;
+    text-shadow: 1px 1px 1px #000000;
+}
+
+#Navigation li:first-child a {
+    margin-left: 0;
 }
 
 #Navigation a:hover {
-    color: #69A501;
+    color: #7C7A78;
+    text-shadow: 1px 1px 1px #000000;
 }
 
 #Navigation a.active {
-    color: #69A501;
+    color: #7C7A78;
+    text-shadow: 1px 1px 1px #000000;
 }
 
 #Navigation a.separator {
@@ -235,40 +312,44 @@ h3 {
 }
 
 #Body {
-    width: 100%;
     overflow: visible;
+    width: 100%;
 }
 
 #Content {
-    width: 960px;
     margin: 30px auto;
     overflow: hidden;
     padding-bottom: 20px;
+    width: 960px;
 }
 
 #Content ul {
+    list-style: none outside none;
     margin: 0;
     padding: 0;
-    list-style: none;
 }
 
-#Content ul li {
-    margin: 0;
-    /*padding: 2px 0 2px 14px;*/
-    background: url(arrow.png) no-repeat 0px 6px;
+#Content ul li a:after {
+    color: #A6CE39;
+    font-size: 18px;
+    font-weight: 600;
+    /*margin: 0 0 15px;*/
+    text-shadow: 1px 1px 1px #000000;
+    text-transform: uppercase;
+    content: " ›";
 }
 
-.li-no-style ul li {
-    margin: 0;
-    padding: 0 !important;
-    background: none !important;
+.files li {
+    background: none repeat scroll 0 0 transparent !important;
+    display: block;
     float: left !important;
-    max-width: 280px;
+    margin-bottom: 13px;
+    padding: 0 !important;
+    width: 280px;
 }
 
 .li-no-style a {
-    /*text-decoration: none !important;*/
-    border: none;
+    border: medium none;
     float: left !important;
 }
 
@@ -277,152 +358,172 @@ h3 {
 }
 
 .home #Content {
-    min-height: inherit;
-    margin-top: 0;
+    bottom: 50px;
+    left: 50%;
     margin-bottom: 0;
     margin-left: -480px;
-    left: 50%;
+    margin-top: 0;
+    min-height: inherit;
     position: absolute;
-    bottom: 50px;
 }
 
 .home #Footer {
-    /*position: absolute;*/
-    position: fixed;
-    left: 50%;
     bottom: 0;
+    color: #FFFFFF;
+    left: 50%;
     margin-left: -480px;
-    color: #fff;
-    /*z-index: 100000;*/
+    position: fixed;
 }
 
 .home #Footer p {
-    position: relative;
     display: block;
+    position: relative;
     z-index: 10000;
 }
 
-
 .home #Footer a {
-    color: #000;
+    color: #000000;
     line-height: 14px;
 }
 
 .boxes .grid-4 {
+    background: url("box-back2.png") no-repeat scroll left bottom transparent;
     font-size: 15px;
     padding-bottom: 8px;
-    background: url(box-back2.png) no-repeat left bottom;
 }
 
 .boxes .grid-4 .placeholder {
+    background: url("box-back.png") no-repeat scroll left top transparent;
     height: 105px;
-    padding: 15px 13px 20px 21px;
     overflow: hidden;
-    background: url(box-back.png) no-repeat left top;
+    padding: 15px 13px 20px 21px;
 }
 
 .boxes h3 {
-    font-size: 21px;
-    margin: 0 0 15px 0;
+    color: #A6CE39;
+    font-size: 19px;
+    font-weight: 600;
+    margin: 0 0 5px;
+    text-align: left;
+    text-shadow: 1px 1px 1px #000000;
     text-transform: uppercase;
-    color: #69A501;
 }
 
 .boxes h3 a {
+    border: medium none;
+    color: #A6CE39;
     font-weight: bold;
-    color: #69A501;
-    border: none;
 }
 
 .boxes a {
-    color: #1F2122;
-    text-decoration: none;
     border-bottom: 1px solid #B0CD7B;
-    line-height: 26px;
+    color: #1F2122;
+    line-height: 25px;
+    text-decoration: none;
 }
 
 .boxes a:hover {
-    color: #69A501;
     border-bottom-color: transparent;
+    color: #69A501;
+}
+
+.boxes small {
+    color: #7C7A78;
+    display: inline-block;
+    font-size: 14px;
+    font-style: italic;
+    margin: 0 auto 5px;
 }
 
 .boxes .WidgetNews h4 {
-    font-size: 15px;
+    font-size: 14px;
     margin: 0;
 }
 
 .boxes ul {
-    font-weight: bold;
+    /*font-weight: bold;*/
+    list-style: none outside none;
     margin: 0;
     padding: 0;
-    list-style: none;
-}
-
-.boxes ul li {
-    padding-left: 13px;
-    background: url(arrow.png) no-repeat left center;
 }
 
 .slideshow {
-    position: absolute;
-    top: 134px;
     bottom: 0;
     left: 0;
-    right: 0;
     overflow: hidden;
+    position: absolute;
+    right: 0;
+    top: 108px;
     z-index: -99;
 }
 
 .s1img {
-    top: 0;
     left: 0;
+    top: 0;
 }
 
 #headertxt {
-    width: 960px;
-    left: 50%;
-    top: 50%;
-    margin-top: -165px;
-    margin-left: -480px;
-    text-align: right;
-    position: absolute;
     display: none;
+    left: 50%;
+    margin-left: -480px;
+    margin-top: -165px;
+    position: absolute;
+    text-align: right;
+    top: 50%;
+    width: 960px;
 }
 
 #firstline {
-    width: 233px;
-    height: 233px;
     float: right;
+    height: 233px;
     overflow: hidden;
+    width: 233px;
 }
 
 #firstline img {
     cursor: pointer;
 }
 
-.content {
-    position: relative;
-    top: 0;
-    width: 900px;
-    z-index: 10000;
-    margin: 0 auto;
-    /*margin: 134px auto;*/
-}
-
-.container {
-    padding-top: 134px;
-}
+/*.content {*/
+/*margin: 0 auto;*/
+/*position: relative;*/
+/*top: 0;*/
+/*width: 960px;*/
+/*z-index: 1000;*/
+/*}*/
 
 .container a {
     color: #1F2122;
 }
 
-.toggler { width: 500px; height: 200px; position: relative; }
+.toggler {
+    height: 200px;
+    position: relative;
+    width: 500px;
+}
 
+.content .flat h1 span {
+    color: #7C7A78;
+    text-shadow: 1px 1px 1px #000000;
+    padding: 3px;
+}
+
+.content .flat h2 {
+    margin: 13px 0;
+
+}
+
+.content .flat h2 span {
+    color: #7C7A78;
+    text-shadow: 1px 1px 1px #000000;
+    padding: 3px;
+    margin-left: 17px;
+    font-size: 21px;
+}
 
 .content .flat span {
-    background-color: rgba(255,255,255,0.8);
-    color: #000000;
+    color: #000;
+    background: #fff;
     padding: 3px;
 }
 
@@ -431,7 +532,7 @@ h1 span {
 }
 
 #Footer span {
-    background-color: rgba(255,255,255,0.8);
+    background-color: rgba(255, 255, 255, 0.8);
     color: #000000;
 }
 
@@ -440,25 +541,25 @@ h1 span {
 }
 
 #secondline {
+    bottom: 60px;
     position: absolute;
     right: 55px;
-    bottom: 60px;
 }
 
 #secondline a {
+    background: url("headimg-btn.png") no-repeat scroll 0 0 transparent;
+    color: #FFFFFF;
+    display: block;
+    float: left;
     font-size: 13px;
     font-weight: bold;
-    width: 105px;
-    float: left;
+    line-height: 12px;
     margin: 0 2px;
     padding: 8px 0;
-    line-height: 12px;
-    display: block;
     text-align: center;
-    text-transform: uppercase;
     text-decoration: none;
-    color: #fff;
-    background: url(headimg-btn.png) no-repeat;
+    text-transform: uppercase;
+    width: 105px;
 }
 
 #secondline a:hover {
@@ -466,58 +567,52 @@ h1 span {
 }
 
 #headernav {
+    bottom: 10px;
+    left: 50%;
+    list-style: none outside none;
     margin: 0 0 0 -480px;
     padding: 0;
-    list-style: none;
-    left: 50%;
-    bottom: 10px;
     position: absolute;
     z-index: 999;
 }
 
 #headernav a {
-    margin-right: 4px;
-    padding: 0;
-    width: 15px;
-    height: 15px;
+    background: url("dot.png") no-repeat scroll 0 0 transparent;
     display: block;
     float: left;
+    height: 15px;
+    margin-right: 4px;
+    padding: 0;
     text-align: center;
-    text-indent: -9999px;
-    background: url(dot.png) no-repeat;
     text-decoration: none;
+    text-indent: -9999px;
+    width: 15px;
 }
 
 #headernav a.activeSlide {
-    background: url(dot-active.png) no-repeat;
+    background: url("dot-active.png") no-repeat scroll 0 0 transparent;
 }
 
 #headernav a:focus {
-    outline: none;
+    outline: medium none;
 }
 
 .gallery {
     width: 100%;
-
 }
 
 .gallery #headerimgs {
     top: 134px;
 }
 
-/*Footer*/
-
 #Footer {
-    font-size: 11px;
-    font-weight: bold;
-    width: 960px;
     clear: both;
+    color: #8F9090;
+    font-size: 13px;
+    line-height: 17px;
     margin: 0 auto;
     text-align: right;
-    color: #8F9090;
-    /*	position:absolute;
-     left:50%;
-     bottom:0; */
+    width: 960px;
 }
 
 #Footer a {
@@ -546,39 +641,45 @@ h1 span {
 }
 
 form input[type="text"], form input[type="number"], form input[type="email"], form input[type="password"] {
-    border: 1px dashed #9c9c9c;
+    border: 1px dashed #9C9C9C;
     font-size: 21px;
-    height: 34px;
+    height: 28px;
     line-height: 28px;
-    margin-bottom: 15px;
     padding: 0 5px;
     width: 100%;
-    box-sizing: border-box;
 }
 
 form textarea {
     border: 1px dashed #D5D5D5;
     font-size: 21px;
-    /*height: 34px;*/
     line-height: 28px;
     margin-bottom: 15px;
     padding: 0 5px;
     width: 100%;
-    box-sizing: border-box;
 }
 
 .rooms input, .price input {
-    width: 55px;
-    font-size: 17px !important;
-    height: 27px !important;
-    decoration: none;
-    border: 1px solid #000 !important;
-    background: none repeat scroll 0 0 rgba(0, 0, 0, 0.8);
-    color: #fff;
-    -webkit-border-radius: 3px;
-    -moz-border-radius: 3px;
-    border-radius: 3px;
+    /*background: none repeat scroll 0 0 rgba(0, 0, 0, 0.8);*/
+    /*border: 1px solid #000000 !important;*/
+    /*border-radius: 3px 3px 3px 3px;*/
+    /*color: #FFFFFF;*/
+    /*font-size: 17px !important;*/
+    /*height: 27px !important;*/
     margin-bottom: 8px !important;
+    width: 55px;
+
+    /*width: 169px;*/
+    background: -moz-linear-gradient(center top, #F8F8F8 1%, #E1E1E1 100%) repeat scroll 0 0 transparent;
+    border: 1px solid #BBBBBB !important;
+    border-radius: 4px 4px 4px 4px;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.75);
+    color: #69A501;
+    cursor: default;
+    display: inline-block;
+    height: 21px;
+    outline: medium none;
+    padding: 2px 4px;
+    font-size: 14px;
 
 }
 
@@ -587,18 +688,21 @@ form textarea {
 }
 
 .metro input {
-    font-size: 17px !important;
-    width: 121px;
-    decoration: none;
-    border: 1px solid #000 !important;
-    background: none repeat scroll 0 0 rgba(0, 0, 0, 0.8);
-    color: #fff;
-    margin-right: 5px;
-    margin-bottom: 8px !important;
-    -webkit-border-radius: 3px;
-    -moz-border-radius: 3px;
-    border-radius: 3px;
-    height: 27px !important;
+    background: -moz-linear-gradient(center top, #F8F8F8 1%, #E1E1E1 100%) repeat scroll 0 0 transparent;
+    border: 1px solid #BBBBBB !important;
+    border-radius: 4px 4px 4px 4px;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.75);
+    color: #69A501;
+    cursor: default;
+    display: inline-block;
+    height: 21px;
+    min-width: 150px;
+    outline: medium none;
+    padding: 2px 4px;
+    position: relative;
+    text-align: left;
+    text-decoration: none;
+    vertical-align: middle;
 }
 
 .baloon-right {
@@ -624,10 +728,24 @@ form textarea {
     padding: 5px 5px 0 0;
 }
 
-#inner-content {
+#inner-content h1 {
+    color: #7C7A78;
+    padding-left: 20px;
+    text-shadow: 1px 1px 1px #000000;
+}
+
+#inner-content h1 small {
+    color: #69A501;
+    font-size: 14px;
+    text-shadow: none;
+    font-weight: 400;
+    text-decoration: underline;
+}
+
+#inner-content, #Body .content {
     margin: 0 auto;
+    padding-top: 108px;
     width: 960px;
-    padding-top: 134px;
 }
 
 #inner-content a {
@@ -636,18 +754,23 @@ form textarea {
 
 .content-left {
     float: left;
-    width: 690px;
     padding-right: 20px;
+    width: 690px;
 }
 
 .content-right h2 {
     margin: 0 0 5px;
+    color: #7C7A78;
+    text-shadow: 1px 1px 1px #000000;
+    font-size: 19px;
+    font-weight: 600;
+    text-decoration: none;
 }
 
 .content-right {
     float: left;
-    width: 250px;
     margin-top: 75px;
+    width: 250px;
 }
 
 .social-links {
@@ -657,7 +780,6 @@ form textarea {
 
 table.users {
     width: 100%;
-
 }
 
 table.users th {
@@ -666,11 +788,13 @@ table.users th {
 }
 
 table.flats {
+    padding-bottom: 55px;
     width: 100%;
 }
 
 table.flats th {
-    font-size: 0.7em;
+    color: #7C7A78;
+    font-size: 12px;
     height: 30px;
 }
 
@@ -686,58 +810,57 @@ table.flats-admin {
     text-align: left;
 }
 
-table.flats-admin th{
-    text-align: left;
+table.flats-admin th {
     padding-left: 5px;
+    text-align: left;
 }
 
 tr.even {
-    background-color: rgba(255, 255, 255, 0.3)
+    background-color: rgba(255, 255, 255, 0.3);
 }
 
 tr.even-first {
-    background-color: rgba(255, 255, 255, 0.5)
+    background-color: #fff;
 }
 
 h1 small {
     float: right;
 }
 
-/* Following is required  to show border while transferring.*/
 .ui-effects-transfer {
     border: 2px dashed #69A501;
     z-index: 11000;
 }
 
 .ui-effects-transfer-play {
-    background: none;
-    border: none;
+    background: none repeat scroll 0 0 transparent;
+    border: medium none;
     box-shadow: none;
 }
 
 .ui-effects-transfer-hidden {
-    width: 10px;
     height: 10px;
+    left: 100px;
     position: absolute;
     top: 100px;
-    left: 100px;
+    width: 10px;
 }
 
 ul.admin-functions {
-    height: 21px;
+    background-color: rgba(255, 255, 255, 0.5);
+    height: 34px;
     list-style: none outside none;
     margin: 0;
     padding: 0;
-    height: 34px;
-    background-color: rgba(255, 255, 255, 0.5);
 }
 
 ul.admin-functions li a {
     text-decoration: none;
 }
+
 ul.admin-functions li {
-    list-style: none;
     float: left;
+    list-style: none outside none;
     padding: 8px 0 0 21px;
 }
 
@@ -755,4 +878,15 @@ ul.admin-functions li {
 
 .ui-tabs ul li a {
     padding: 3px 8px;
+}
+
+.order-welcome-info {
+    float: right;
+    list-style: none outside none;
+    margin: 7px 0 0;
+    padding: 0;
+    text-align: right;
+}
+
+.order-welcome-info li a {
 }

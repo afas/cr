@@ -1,11 +1,12 @@
 # encoding: utf-8
 class Flat < ActiveRecord::Base
 
-  acts_as_gmappable :check_process => false
+  acts_as_gmappable :check_process => true
 
   has_many :flat_images
 
-  belongs_to :agent, :class_name => "User"#, :foreign_key => :agent_id
+  belongs_to :agent, :class_name => "User"
+   #, :foreign_key => :agent_id
 
   belongs_to :import
 
@@ -20,16 +21,20 @@ class Flat < ActiveRecord::Base
   end
 
   def gmaps4rails_address
-    #"#{self.street}, #{self.city}, #{self.country}"
-    "#{self.address}"
+    "#{self.country}, #{self.region}, город #{self.city}, #{self.district}, улица #{self.street}, #{self.building}"
+  end
+
+  def small_address
+    "#{self.city}, #{self.district}, #{self.street}, #{self.building}"
+  end
+
+  def small_address
+    self.address
   end
 
   def gmaps4rails_infowindow
     img = self.flat_images.size > 0 ? "<img src='#{self.flat_images.first.image.url(:list)}'/><br/>" : ""
-
-    "#{img}<b>Адрес:</b> #{self.address}<br/><b>Комнат:</b> #{self.rooms_count}<br/><b>Стоимость: </b>#{self.price}<br/><p class='baloon-right'><a href='/flats/#{self.id}'>Полная информация</a></p>"
-    #link_to t('backend.actions.edit'), edit_room_path(@room)
-    #link_to t('backend.actions.back'), rooms_path
+    "#{img}<b>Адрес:</b> #{small_address}<br/><b>Комнат:</b> #{self.rooms_count}<br/><b>Стоимость: </b>#{self.price}<br/><p class='baloon-right'><a href='/flats/#{self.id}'>Полная информация</a></p>"
   end
 
   #def gmaps4rails_marker_picture

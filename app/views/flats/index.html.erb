@@ -1,60 +1,47 @@
 <div id="inner-content" class="li-no-style">
-  <% title("Квартиры") %>
-  <h1>Квартиры
-    <small><%= link_to("+разместить квартиру", new_flat_path) if can?(:create, Flat) %></small>
+  <% title("Результаты поиска") %>
+  <h1>Результаты поиска
+    <small><%= link_to(t("activerecord.attributes.flat.create"), new_flat_path) if can?(:create, Flat) %></small>
   </h1>
 
   <% if @flats.size > 0 %>
-
       <table class="flats" cellspacing="0">
         <tr class='even-first'>
           <th width="11%"></th>
-          <th width="25%"><%= t('activerecord.attributes.flat.metro') %>
-            / <%= t('activerecord.attributes.flat.address') %></th>
+          <th width="25%"><%= t('activerecord.attributes.flat.metro') %> / <%= t('activerecord.attributes.flat.address') %></th>
           <th width="12%"><%= t('activerecord.base.rooms') %></th>
-          <th width="15%"><%= t('activerecord.attributes.flat.remote_type') %></th>
+          <th width="15%"><%= t('activerecord.attributes.flat.remote_type') %>, мин.</th>
           <th width="9%"><%= t('activerecord.attributes.flat.floor') %></th>
-          <th width="15%"><%= t('activerecord.attributes.flat.living_space') %></th>
+          <th width="15%"><%= t('activerecord.attributes.flat.living_space') %>, м2</th>
           <th width="13%"><%= t('activerecord.attributes.flat.price') %>, руб</th>
         </tr>
 
         <% @flats.each_with_index do |flat, i| %>
             <tr <%= "class='even'" if i%2!=0 %>>
-              <td><%= raw flat.flat_images.size > 0 ? "<a href='flats/#{flat.id}'><img src='#{flat.flat_images.first.image.url(:list)}'/></a>" : "" %></td>
+              <td><%= raw flat.flat_images.size > 0 ? "<a href='flats/#{flat.id}'><img src='#{flat.flat_images.first.image.url(:list)}'/></a>" : "<img src='#{FlatImage.new().image.url(:list)}'/>" %></td>
               <td>
-                <b><%= flat.metro %></b><br/><%= flat.address %>
-                <p><%= link_to(t('backend.actions.edit'), edit_flat_path(flat)) if can?(:edit, flat) %><%= link_to(t('backend.actions.destroy'), flat, :confirm => t('backend.actions.are_you_sure'), :method => :delete) if can?(:destroy, flat) %></p>
+                <b><%= flat.metro %></b>, <%= FlatType.by_id(flat.flat_type) %><br/><%= flat.address %>
+                <p><%= link_to(t('backend.actions.edit'), edit_flat_path(flat)) if can?(:edit, flat) %> <%= link_to(t('backend.actions.destroy'), flat, :confirm => t('backend.actions.are_you_sure'), :method => :delete) if can?(:destroy, flat) %></p>
               </td>
               <td>
                 <center><%= RoomCount.by_id(flat.rooms_count) %></center>
               </td>
-              <td><%= "#{RemoteType.by_id(flat.remote_type)}, #{flat.remote_time} минут" if RemoteType.by_id(flat.remote_type) && flat.remote_time %></td>
+              <td><%= "#{RemoteType.by_id(flat.remote_type)}, #{flat.remote_time}" if RemoteType.by_id(flat.remote_type) && flat.remote_time %></td>
               <td>
                 <center><%= flat.floor %> (<%= flat.floor_count %>)</center>
               </td>
               <td>
-                <center><%= flat.living_space %> м</center>
+                <center><%= flat.living_space %></center>
               </td>
               <td><%= flat.price %></td>
-
-              <!--<td><%#= Prepayment.by_id(flat.prepayment) %></td>-->
-              <!--<td><%#= flat.rent_period %></td>-->
-              <!--<td><%#= flat.balkon %></td>-->
-              <!--<td><%#= flat.living_space %></td>-->
-              <!--<td><%#= flat.description %></td>-->
-              <!--<td><%#= flat.rent_type %></td>-->
-              <!--<td><%#= link_to(t('backend.actions.show'), flat) if can?(:show, flat) %></td>-->
             </tr>
         <% end %>
       </table>
   <% else %>
-      <center><h4>По вашему запросу не найдено предложений, измените параметры поиска...</h4></center>
-
+      <h4>По вашему запросу не найдено предложений, измените параметры поиска...</h4>
   <% end %>
-
-  <%= render "search/small_search_list" %>
 </div>
 
 
-<script type="text/javascript">
-</script>
+
+<%= render "search/small_search_list" %>

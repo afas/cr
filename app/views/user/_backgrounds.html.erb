@@ -7,7 +7,7 @@
   <% @welcome_images.each do |welcome_image| %>
       <tr>
         <td><%= image_tag welcome_image.image.url(:list) %></td>
-        <td><%= link_to(t('backend.actions.destroy'), welcome_image, :confirm => t('backend.actions.are_you_sure'), :method => :delete) if can?(:destroy, welcome_image) %></td>
+        <td><%= link_to("X", welcome_image, :confirm => t('backend.actions.are_you_sure'), :method => :delete) if can?(:destroy, welcome_image) %></td>
       </tr>
   <% end %>
 </table>

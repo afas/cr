@@ -1,6 +1,7 @@
 Classicrent::Application.routes.draw do
 
   devise_for :users
+
   resources :user, :controller => "user"
 
   resources :tenders
@@ -33,6 +34,9 @@ Classicrent::Application.routes.draw do
   #  end
   #end
 
+  match '/order' => 'tenders#welcome'
+
+  match '/feedback' => 'statics#feedback', :short_url => "feedback"
   match '/special' => 'statics#special'
 
   resources :statics

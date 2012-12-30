@@ -19,6 +19,13 @@ class User < ActiveRecord::Base
                     :default_url => '/user_images/default.jpg',
                     :url => '/user_images/:id/:style_:basename.:extension'
 
+  def contact_data
+    "#{self.name} #{self.surname} #{self.phone}"
+  end
+
+  def full_name
+    "#{self.name} #{self.surname}"
+  end
 
   def admin?
     if self.role_id == 0 || self.id == 1
