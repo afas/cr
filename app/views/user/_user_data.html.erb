@@ -3,7 +3,7 @@
 <div id="tabs">
   <% unless current_user.nil? %>
       <ul>
-        <% if current_user.current_user.rieltor? || current_user.client? %>
+        <% if current_user.rieltor? || current_user.client? %>
             <li><a href="#tenders">Заявки</a></li>
             <li><a href="#flats">Квартиры</a></li>
         <% end %>
@@ -19,7 +19,7 @@
         <!--<li><a href="#clients">Клиенты</a></li>-->
       </ul>
 
-      <% if current_user.current_user.rieltor? || current_user.client? %>
+      <% if current_user.rieltor? || current_user.client? %>
           <div id="tenders">
             <%= render "user/tenders" %>
           </div>

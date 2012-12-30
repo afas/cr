@@ -1,5 +1,5 @@
 <%= form_for(@welcome_image, :builder => StarsFormBuilder) do |f| %>
-  <%= render 'shared/error_messages', :target => @welcome_image %>
+    <%= render 'shared/error_messages', :target => @welcome_image %>
 
     <% if @welcome_image.image_file_name? %>
         <%= image_tag @welcome_image.image.url(:list) %>
@@ -12,7 +12,7 @@
 
 
 
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+    <div class="actions">
+      <%= f.submit %>
+    </div>
 <% end %>

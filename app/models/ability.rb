@@ -30,7 +30,7 @@ class Ability
         can [:create, :index, :show], Flat
         can [:create, :show, :welcome], Tender
         can :by_metro, Metro
-        can :read, Static
+        can [:read, :feedback], Static
     end
   end
 end

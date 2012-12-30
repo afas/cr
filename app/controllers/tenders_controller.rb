@@ -6,27 +6,27 @@ class TendersController < ApplicationController
   def index
     respond_to do |format|
       format.html # index.html.erb
-      format.xml  { render :xml => @tenders }
+      format.xml { render :xml => @tenders }
     end
   end
 
   # GET /tenders
   # GET /tenders.xml
-  def welcome
-    respond_to do |format|
-      format.html {
-        render :layout => 'order_welcome'
-      }
-      format.xml  { render :xml => @tenders }
-    end
-  end
+  #def welcome
+  #  respond_to do |format|
+  #    format.html {
+  #      render :layout => 'order_welcome'
+  #    }
+  #    format.xml { render :xml => @tenders }
+  #  end
+  #end
 
   # GET /tenders/1
   # GET /tenders/1.xml
   def show
     respond_to do |format|
       format.html # show.html.erb
-      format.xml  { render :xml => @tender }
+      format.xml { render :xml => @tender }
     end
   end
 
@@ -35,7 +35,7 @@ class TendersController < ApplicationController
   def new
     respond_to do |format|
       format.html # new.html.erb
-      format.xml  { render :xml => @tender }
+      format.xml { render :xml => @tender }
     end
   end
 
@@ -49,10 +49,10 @@ class TendersController < ApplicationController
     respond_to do |format|
       if @tender.save
         format.html { redirect_to(root_path, :notice => t("activerecord.attributes.tender.create_succesfull")) }
-        format.xml  { render :xml => @tender, :status => :created, :location => @tender }
+        format.xml { render :xml => @tender, :status => :created, :location => @tender }
       else
         format.html { render :action => "new" }
-        format.xml  { render :xml => @tender.errors, :status => :unprocessable_entity }
+        format.xml { render :xml => @tender.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -65,10 +65,10 @@ class TendersController < ApplicationController
         format.html { redirect_to("/users/edit",
                                   :notice => I18n.t('backend.actions.success_update',
                                                     :model => I18n.t('activerecord.capitalized_models.tender'))) }
-        format.xml  { head :ok }
+        format.xml { head :ok }
       else
         format.html { render :action => "edit" }
-        format.xml  { render :xml => @tender.errors, :status => :unprocessable_entity }
+        format.xml { render :xml => @tender.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -82,7 +82,7 @@ class TendersController < ApplicationController
       format.html { redirect_to(tenders_url,
                                 :notice => I18n.t('backend.actions.success_destroy',
                                                   :model => I18n.t('activerecord.capitalized_models.tender'))) }
-      format.xml  { head :ok }
+      format.xml { head :ok }
     end
   end
 end

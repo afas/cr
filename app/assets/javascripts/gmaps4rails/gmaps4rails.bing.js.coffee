@@ -11,9 +11,11 @@ class @Gmaps4RailsBing extends Gmaps4Rails
   constructor: ->
     super
     @map_options =
-      type:  "road"   # aerial, auto, birdseye, collinsBart, mercator, ordnanceSurvey, road
+      type: "road"
+    # aerial, auto, birdseye, collinsBart, mercator, ordnanceSurvey, road
     @markers_conf =
-      infobox:  "description" #description or htmlContent
+      infobox: "description"
+    #description or htmlContent
 
     @mergeWithDefault("map_options")
     @mergeWithDefault("markers_conf")
@@ -22,7 +24,7 @@ class @Gmaps4RailsBing extends Gmaps4Rails
   #/////////////// Basic Objects         //////////////
   #////////////////////////////////////////////////////
 
-  getMapType: -> 
+  getMapType: ->
     switch @map_options.type
       when "road"           then return Microsoft.Maps.MapTypeId.road
       when "aerial"         then return Microsoft.Maps.MapTypeId.aerial
@@ -31,22 +33,23 @@ class @Gmaps4RailsBing extends Gmaps4Rails
       when "collinsBart"    then return Microsoft.Maps.MapTypeId.collinsBart
       when "mercator"       then return Microsoft.Maps.MapTypeId.mercator
       when "ordnanceSurvey" then return Microsoft.Maps.MapTypeId.ordnanceSurvey
-      else return Microsoft.Maps.MapTypeId.auto
+      else
+        return Microsoft.Maps.MapTypeId.auto
 
   createPoint: (lat, lng) ->
     return new Microsoft.Maps.Point(lat, lng)
 
-  createLatLng:(lat, lng) ->
+  createLatLng: (lat, lng) ->
     return new Microsoft.Maps.Location(lat, lng)
-  
+
   createLatLngBounds: ->
 
   createMap: ->
-    return new Microsoft.Maps.Map(document.getElementById(@map_options.id), { 
-      credentials:  @map_options.provider_key,
-      mapTypeId:    @getMapType(),
-      center:       @createLatLng(@map_options.center_latitude, @map_options.center_longitude),
-      zoom:         @map_options.zoom
+    return new Microsoft.Maps.Map(document.getElementById(@map_options.id), {
+    credentials: @map_options.provider_key,
+    mapTypeId: @getMapType(),
+    center: @createLatLng(@map_options.center_latitude, @map_options.center_longitude),
+    zoom: @map_options.zoom
     })
 
   createSize: (width, height) ->
@@ -57,31 +60,33 @@ class @Gmaps4RailsBing extends Gmaps4Rails
   #////////////////////////////////////////////////////
 
   createMarker: (args) ->
-    markerLatLng = @createLatLng(args.Lat, args.Lng) 
+    markerLatLng = @createLatLng(args.Lat, args.Lng)
     marker
     #// Marker sizes are expressed as a Size of X,Y
-    if args.marker_picture == ""  
+    if args.marker_picture == ""
       marker = new Microsoft.Maps.Pushpin(@createLatLng(args.Lat, args.Lng), {
-        draggable: args.marker_draggable,
-        anchor:    @createImageAnchorPosition(args.Lat, args.Lng),
-        text:      args.marker_title
-        }
-      );
-    else 
+      draggable: args.marker_draggable,
+      anchor: @createImageAnchorPosition(args.Lat, args.Lng),
+      text: args.marker_title
+      }
+      )
+      ;
+    else
       marker = new Microsoft.Maps.Pushpin(@createLatLng(args.Lat, args.Lng), {
-        draggable: args.marker_draggable,
-        anchor:    @createImageAnchorPosition(args.Lat, args.Lng),
-        icon:      args.marker_picture,
-        height:    args.marker_height,
-        text:      args.marker_title,
-        width:     args.marker_width
-        }
-      );
+      draggable: args.marker_draggable,
+      anchor: @createImageAnchorPosition(args.Lat, args.Lng),
+      icon: args.marker_picture,
+      height: args.marker_height,
+      text: args.marker_title,
+      width: args.marker_width
+      }
+      )
+      ;
     @addToMap(marker)
     return marker
 
   #// clear markers
-  clearMarkers: ->  
+  clearMarkers: ->
     for marker in @markers
       @clearMarker marker
 
@@ -117,14 +122,14 @@ class @Gmaps4RailsBing extends Gmaps4Rails
 
   clearClusterer: ->
 
-  #//creates clusters
+    #//creates clusters
   clusterize: ->
-    
-  #////////////////////////////////////////////////////
-  #/////////////////// INFO WINDOW ////////////////////
-  #////////////////////////////////////////////////////
 
-  #// creates infowindows
+    #////////////////////////////////////////////////////
+    #/////////////////// INFO WINDOW ////////////////////
+    #////////////////////////////////////////////////////
+
+    #// creates infowindows
   createInfoWindow: (marker_container) ->
     if marker_container.description?
       #//create the infowindow
@@ -143,7 +148,7 @@ class @Gmaps4RailsBing extends Gmaps4Rails
       # Close the latest selected marker before opening the current one.
       if currentMap.visibleInfoWindow
         currentMap.visibleInfoWindow.setOptions({ visible: false })
-      infoWindow.setOptions({ visible:true })
+      infoWindow.setOptions({ visible: true })
       currentMap.visibleInfoWindow = infoWindow
 
   #////////////////////////////////////////////////////
@@ -151,13 +156,24 @@ class @Gmaps4RailsBing extends Gmaps4Rails
   #////////////////////////////////////////////////////
 
   fitBounds: ->
-    @map.setView({bounds: @boundsObject})
+    @serviceObject.setView({bounds: @boundsObject})
 
   addToMap: (object)->
-    @map.entities.push(object)
+    @serviceObject.entities.push(object)
 
   removeFromMap: (object)->
-    @map.entities.remove(object)
+    @serviceObject.entities.remove(object)
 
   centerMapOnUser: ->
-    @map.setView({ center: @userLocation})
+    @serviceObject.setView({ center: @userLocation})
+
+  updateBoundsWithPolylines: ()->
+
+  updateBoundsWithPolygons: ()->
+
+  updateBoundsWithCircles: ()->
+
+  extendMapBounds: ->
+
+  adaptMapToBounds: ->
+    @fitBounds()

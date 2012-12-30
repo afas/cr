@@ -1,11 +1,12 @@
 <%= form_for(@metro, :builder => StarsFormBuilder) do |f| %>
-  <%= render 'shared/error_messages', :target => @metro %>
+    <%= render 'shared/error_messages', :target => @metro %>
 
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+    <div class="field">
+      <%= f.label :name %>
+      <br/>
+      <%= f.text_field :name %>
+    </div>
+    <div class="actions">
+      <%= f.submit %>
+    </div>
 <% end %>

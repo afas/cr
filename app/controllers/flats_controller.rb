@@ -11,7 +11,6 @@ class FlatsController < ApplicationController
   # GET /flats
   # GET /flats.xml
   def index
-
     conditions = ""
 
     if (params[:flat_rooms_count])
@@ -84,7 +83,7 @@ class FlatsController < ApplicationController
   # GET /flats/1
   # GET /flats/1.xml
   def show
-    @flats_to_map = Flat.where("id = ?",params[:id]).to_gmaps4rails
+    @flats_to_map = Flat.where("id = ?", params[:id]).to_gmaps4rails
 
     respond_to do |format|
       format.html { render :layout => "with_gmaps" }
@@ -96,14 +95,13 @@ class FlatsController < ApplicationController
   # GET /flats/new.xml
   def new
     respond_to do |format|
-      format.html { render :layout => "with_gmaps" }
+      format.html
       format.xml { render :xml => @flat }
     end
   end
 
   # GET /flats/1/edit
   def edit
-    render :layout => "with_wysiwyg"
   end
 
   # POST /flats
@@ -116,7 +114,7 @@ class FlatsController < ApplicationController
                                                     :model => I18n.t('activerecord.capitalized_models.flat'))) }
         format.xml { render :xml => @flat, :status => :created, :location => @flat }
       else
-        format.html { render :action => "new", :layout => "with_gmaps" }
+        format.html { render :action => "new" }
         format.xml { render :xml => @flat.errors, :status => :unprocessable_entity }
       end
     end
@@ -132,7 +130,7 @@ class FlatsController < ApplicationController
                                                     :model => I18n.t('activerecord.capitalized_models.flat'))) }
         format.xml { head :ok }
       else
-        format.html { render :action => "edit", :layout => "with_gmaps" }
+        format.html { render :action => "edit" }
         format.xml { render :xml => @flat.errors, :status => :unprocessable_entity }
       end
     end

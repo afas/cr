@@ -10,7 +10,7 @@
       </tr>
       <% @flats.each_with_index do |flat, i| %>
           <tr <%= "class='even'" if i%2!=0 %>>
-            <td><%= can?(:edit, flat) ?  link_to("#{flat.id}", edit_flat_path(flat)) : link_to("#{flat.id}", flat_path(flat)) %></td>
+            <td><%= can?(:edit, flat) ? link_to("#{flat.id}", edit_flat_path(flat)) : link_to("#{flat.id}", flat_path(flat)) %></td>
             <td><%= flat.price %></td>
             <td><%= flat.updated_at.strftime("%d/%m %H:%M") %></td>
             <td><%= raw "#{flat.address} <b>#{flat.metro}</b> #{FlatType.by_id(flat.flat_type)}" %></td>

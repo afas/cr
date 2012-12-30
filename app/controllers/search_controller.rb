@@ -59,7 +59,7 @@ class SearchController < ApplicationController
     end
 
     respond_to do |format|
-      format.html { render :layout => "with_gmaps" }
+      format.html { render :layout => "with_gmaps_fs" }
       format.json do
         #@data = @flats.collect do |f|
         #  {

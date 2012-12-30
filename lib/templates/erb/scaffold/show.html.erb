@@ -1,10 +1,10 @@
 <%%= title(t('<%= plural_table_name %>.show.title')) %>
 
 <% for attribute in attributes -%>
-<p>
-  <b><%%= t('activerecord.attributes.<%= singular_table_name %>.<%= attribute.name %>') %>:</b>
-  <%%= @<%= singular_table_name %>.<%= attribute.name %> %>
-</p>
+    <p>
+      <b><%%= t('activerecord.attributes.<%= singular_table_name %>.<%= attribute.name %>') %>:</b>
+      <%%= @<%= singular_table_name %>.<%= attribute.name %> %>
+    </p>
 
 <% end -%>
 

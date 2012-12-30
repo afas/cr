@@ -8,7 +8,7 @@
   <meta name="robots" content="index, follow">
   <meta name="language" content="ru">
 
-  <%= stylesheet_link_tag :with_gmaps %>
+  <%= stylesheet_link_tag :with_gmaps_fs %>
   <%= javascript_include_tag :with_gmaps %>
 
   <%= csrf_meta_tag %>
@@ -44,7 +44,6 @@
     <div style="clear: both;"></div>
   </div>
 </div>
-
 <%= yield :scripts %>
 
 <script type="text/javascript">
@@ -60,5 +59,6 @@
         s.parentNode.insertBefore(ga, s);
     })();
 </script>
+
 </body>
 </html>

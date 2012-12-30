@@ -6,7 +6,7 @@ class Flat < ActiveRecord::Base
   has_many :flat_images
 
   belongs_to :agent, :class_name => "User"
-   #, :foreign_key => :agent_id
+  #, :foreign_key => :agent_id
 
   belongs_to :import
 

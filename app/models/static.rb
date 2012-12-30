@@ -11,8 +11,7 @@ class Static < ActiveRecord::Base
                         :special => '233x233#',
                         :inner => '350x200#'
                     },
-                    #:default_url => 'http://www.businesspark-sofia.com/uploads/Circles/CirclesEn/circles1en.png',
-                    :default_url => '/static/circle.png',
+                    :default_url => 'circle.png',
                     :url => '/static/:id/:style_:basename.:extension'
 
   #validates_attachment_presence :preview

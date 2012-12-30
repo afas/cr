@@ -6,7 +6,7 @@ class WelcomeImagesController < ApplicationController
   def index
     respond_to do |format|
       format.html # index.html.erb
-      format.xml  { render :xml => @welcome_images }
+      format.xml { render :xml => @welcome_images }
     end
   end
 
@@ -15,7 +15,7 @@ class WelcomeImagesController < ApplicationController
   def show
     respond_to do |format|
       format.html # show.html.erb
-      format.xml  { render :xml => @welcome_image }
+      format.xml { render :xml => @welcome_image }
     end
   end
 
@@ -24,7 +24,7 @@ class WelcomeImagesController < ApplicationController
   def new
     respond_to do |format|
       format.html # new.html.erb
-      format.xml  { render :xml => @welcome_image }
+      format.xml { render :xml => @welcome_image }
     end
   end
 
@@ -40,10 +40,10 @@ class WelcomeImagesController < ApplicationController
         format.html { redirect_to(@welcome_image,
                                   :notice => I18n.t('backend.actions.success_create',
                                                     :model => I18n.t('activerecord.capitalized_models.welcome_image'))) }
-        format.xml  { render :xml => @welcome_image, :status => :created, :location => @welcome_image }
+        format.xml { render :xml => @welcome_image, :status => :created, :location => @welcome_image }
       else
         format.html { render :action => "new" }
-        format.xml  { render :xml => @welcome_image.errors, :status => :unprocessable_entity }
+        format.xml { render :xml => @welcome_image.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -56,10 +56,10 @@ class WelcomeImagesController < ApplicationController
         format.html { redirect_to(@welcome_image,
                                   :notice => I18n.t('backend.actions.success_update',
                                                     :model => I18n.t('activerecord.capitalized_models.welcome_image'))) }
-        format.xml  { head :ok }
+        format.xml { head :ok }
       else
         format.html { render :action => "edit" }
-        format.xml  { render :xml => @welcome_image.errors, :status => :unprocessable_entity }
+        format.xml { render :xml => @welcome_image.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -73,7 +73,7 @@ class WelcomeImagesController < ApplicationController
       format.html { redirect_to(welcome_images_url,
                                 :notice => I18n.t('backend.actions.success_destroy',
                                                   :model => I18n.t('activerecord.capitalized_models.welcome_image'))) }
-      format.xml  { head :ok }
+      format.xml { head :ok }
     end
   end
 end

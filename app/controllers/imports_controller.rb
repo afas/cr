@@ -7,7 +7,7 @@ class ImportsController < ApplicationController
   def index
     respond_to do |format|
       format.html # index.html.erb
-      format.xml  { render :xml => @imports }
+      format.xml { render :xml => @imports }
     end
   end
 
@@ -16,7 +16,7 @@ class ImportsController < ApplicationController
   def show
     respond_to do |format|
       format.html # show.html.erb
-      format.xml  { render :xml => @import }
+      format.xml { render :xml => @import }
     end
   end
 
@@ -25,7 +25,7 @@ class ImportsController < ApplicationController
   def new
     respond_to do |format|
       format.html # new.html.erb
-      format.xml  { render :xml => @import }
+      format.xml { render :xml => @import }
     end
   end
 
@@ -44,10 +44,10 @@ class ImportsController < ApplicationController
         end
 
         format.html { redirect_to("/users/edit#imports", :notice => I18n.t('backend.actions.success_create', :model => I18n.t('activerecord.capitalized_models.import'))) }
-        format.xml  { render :xml => @import, :status => :created, :location => @import }
+        format.xml { render :xml => @import, :status => :created, :location => @import }
       else
         format.html { render :action => "new" }
-        format.xml  { render :xml => @import.errors, :status => :unprocessable_entity }
+        format.xml { render :xml => @import.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -60,10 +60,10 @@ class ImportsController < ApplicationController
         format.html { redirect_to(@import,
                                   :notice => I18n.t('backend.actions.success_update',
                                                     :model => I18n.t('activerecord.capitalized_models.import'))) }
-        format.xml  { head :ok }
+        format.xml { head :ok }
       else
         format.html { render :action => "edit" }
-        format.xml  { render :xml => @import.errors, :status => :unprocessable_entity }
+        format.xml { render :xml => @import.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -75,7 +75,7 @@ class ImportsController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to("/users/edit#imports", :notice => "Квартиры и отметка об импорте удалены.") }
-      format.xml  { head :ok }
+      format.xml { head :ok }
     end
   end
 end

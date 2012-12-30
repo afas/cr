@@ -1,7 +1,7 @@
 <table>
   <tr>
     <td>
-        <p><%= link_to "Создать спецпредложение", "/statics/new/special" if can?(:create, Static) %></p>
+      <p><%= link_to "Создать спецпредложение", "/statics/new/special" if can?(:create, Static) %></p>
     </td>
   </tr>
   <% @specials.each do |static| %>

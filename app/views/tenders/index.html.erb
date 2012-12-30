@@ -16,7 +16,7 @@
               <td>
                 <%= link_to raw("<b>#{tender.name}</b>"), tender %>
                 <br/>
-                <%= link_to(t('backend.actions.edit'), edit_tender_path(tender)) if can?(:edit, tender) %><%= link_to(t('backend.actions.destroy'), tender, :confirm => t('backend.actions.are_you_sure'), :method => :delete) if can?(:destroy, tender) %>
+                <%= can?(:edit, tender) ? link_to(t('backend.actions.edit'), edit_tender_path(tender)) : "" %><%= link_to(t('backend.actions.destroy'), tender, :confirm => t('backend.actions.are_you_sure'), :method => :delete) if can?(:destroy, tender) %>
               </td>
               <td><%= tender.phone %></td>
               <td><%= TenderOperation.by_id(tender.operation) %></td>

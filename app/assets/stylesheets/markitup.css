@@ -1,30 +1,35 @@
 .markItUp .markItUpButton1 a {
-	background-image:url(bold.png);
+    background-image: url(bold.png);
 }
+
 .markItUp .markItUpButton2 a {
-	background-image:url(italic.png);
+    background-image: url(italic.png);
 }
+
 .markItUp .markItUpButton3 a {
-	background-image:url(stroke.png);
+    background-image: url(stroke.png);
 }
 
 .markItUp .markItUpButton4 a {
-	background-image:url(list-bullet.png); 
+    background-image: url(list-bullet.png);
 }
+
 .markItUp .markItUpButton5 a {
-	background-image:url(list-numeric.png);
+    background-image: url(list-numeric.png);
 }
 
 .markItUp .markItUpButton6 a {
-	background-image:url(picture.png); 
+    background-image: url(picture.png);
 }
+
 .markItUp .markItUpButton7 a {
-	background-image:url(link.png);
+    background-image: url(link.png);
 }
 
 .markItUp .markItUpButton8 a {
-	background-image:url(clean.png);
+    background-image: url(clean.png);
 }
+
 .markItUp .preview a {
-	background-image:url(preview.png);
+    background-image: url(preview.png);
 }

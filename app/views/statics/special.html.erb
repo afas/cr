@@ -1,6 +1,7 @@
 <div id="inner-content" class="li-no-style">
   <%= title(t('statics.index.title')) %>
-  <%= link_to "Создать спецпредложение", "/statics/new/special" if can?(:create, Static) %><br/>
+  <%= link_to "Создать спецпредложение", "/statics/new/special" if can?(:create, Static) %>
+  <br/>
   <table>
     <tr>
       <th><%= t('activerecord.attributes.static.title') %></th>

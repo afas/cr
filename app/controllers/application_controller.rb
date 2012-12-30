@@ -23,7 +23,7 @@ class ApplicationController < ActionController::Base
       unless current_user.nil?
         if current_user.client?
           @flats = Flat.where("owner_id = ?", current_user.id).order("updated_at desc")
-          @tenders = Tender.where("client_status_id <> ?", 3).order("updated_at desc")
+          @tenders = Tender.where("client_status_id <> ? AND owner_id = ?", 3, current_user.id).order("updated_at desc")
         end
         if current_user.rieltor?
           @flats = Flat.where("agent_id = ?", current_user.id).order("updated_at desc")

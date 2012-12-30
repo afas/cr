@@ -32,13 +32,13 @@
   </div>
 
   <!--<div class="balkon">-->
-    <!--<label for="balkon">Балкон</label><br/>-->
-    <%#= collection_select(:flat, :balkon, Balkon.collection, :cut, :name, {:prompt => true, :selected => params[:flat_balkon]}) %>
+  <!--<label for="balkon">Балкон</label><br/>-->
+  <%#= collection_select(:flat, :balkon, Balkon.collection, :cut, :name, {:prompt => true, :selected => params[:flat_balkon]}) %>
   <!--</div>-->
 
   <!--<div class="living_space">-->
-    <!--<label for="living_space">Площадь</label><br/>-->
-    <!--<input type="text" name="living_space" placeholder="" id="living_space" value="<%#= params[:living_space] %>">-->
+  <!--<label for="living_space">Площадь</label><br/>-->
+  <!--<input type="text" name="living_space" placeholder="" id="living_space" value="<%#= params[:living_space] %>">-->
   <!--</div>-->
 
   <div class="price">
@@ -141,7 +141,7 @@
             });
 
 
-    $(function() {
+    $(function () {
         $("#search-panel").draggable();
 
         if (getCookieValue("search-panel") != "hide") {
@@ -151,7 +151,6 @@
             $("#search-button").html("Показать фильтр");
         }
     });
-
 
 
     function runEffect() {
@@ -191,7 +190,6 @@
         runEffect();
         return false;
     });
-
 
 
 </script>
