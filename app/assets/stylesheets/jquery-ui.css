@@ -4,7 +4,6 @@
 
 .ui-helper-hidden-accessible {
     position: absolute !important;
-    clip: rect(1px 1px 1px 1px);
     clip: rect(1px, 1px, 1px, 1px);
 }
 
@@ -95,8 +94,8 @@
 /* Component containers
 ----------------------------------*/
 .ui-widget {
-    font-family: Verdana, Arial, sans-serif;
-    font-size: 1.1em;
+    /*font-family: Verdana, Arial, sans-serif;*/
+    font-size: 1em;
 }
 
 .ui-widget .ui-widget {
@@ -104,7 +103,7 @@
 }
 
 .ui-widget input, .ui-widget select, .ui-widget textarea, .ui-widget button {
-    font-family: Verdana, Arial, sans-serif;
+    /*font-family: Verdana, Arial, sans-serif;*/
     font-size: 1em;
 }
 
@@ -135,9 +134,9 @@
     color: #A6CE39 !important;
     display: block !important;
     float: left !important;
-    font-size: 21px !important;
+    font-size: 20px !important;
     font-weight: 600 !important;
-    margin: 0 14px 5px 0;
+    margin: 0 21px 5px 0;
     padding: 0 !important;
     text-decoration: none !important;
     text-shadow: 1px 1px 1px #000000 !important;

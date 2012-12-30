@@ -167,11 +167,16 @@ form {
   box-shadow: 1px 1px 2px 1px rgba(0, 0, 0, 0.8);
   display: none;
   height: 450px;
-  padding: 3px 21px;
+  padding: 3px 21px 0 13px;
   position: fixed;
-  right: 25px;
+  left: 25px;
   width: 170px;
   z-index: 21000;
+
+  label {
+    line-height: 20px;
+    font-size: 15px;
+  }
 
   .q-search-submit {
     background: none repeat scroll 0 0 transparent;

@@ -9,7 +9,7 @@
         <th width="15%">Статус</th>
       </tr>
       <% @flats.each_with_index do |flat, i| %>
-          <tr <%= "class='even'" if i%2!=0 %>>
+          <tr>
             <td><%= can?(:edit, flat) ? link_to("#{flat.id}", edit_flat_path(flat)) : link_to("#{flat.id}", flat_path(flat)) %></td>
             <td><%= flat.price %></td>
             <td><%= flat.updated_at.strftime("%d/%m %H:%M") %></td>

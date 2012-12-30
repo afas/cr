@@ -1,5 +1,5 @@
 <table class="flats flats-admin" cellspacing="0">
-  <tr class='even-first'>
+  <tr>
     <th width="30%"><%= "ФИО" %></th>
     <th width="25%"><%= "Телефон" %></th>
     <th width="25%"><%= "Роль/Свой" %></th>
@@ -7,7 +7,7 @@
   </tr>
 
   <% @agents.each_with_index do |user, i| %>
-      <tr <%= "class='even'" if i%2 != 0 %>>
+      <tr>
         <td><%= link_to raw("#{user.full_name}"), "/user/#{user.id}/edit" %></td>
         <td><%= "#{user.phone}" %></td>
         <td><%= Role.by_id(user.role_id) %>, <%= user.internal? ? "+" : "-" %></td>

@@ -10,7 +10,7 @@
         <th width="15%">Статус</th>
       </tr>
       <% @tenders.each_with_index do |tender, i| %>
-          <tr <%= "class='even'" if i%2!=0 %>>
+          <tr>
             <td><%= can?(:edit, tender) ? link_to("+ #{tender.id}", edit_tender_path(tender)) : link_to("+ #{tender.id}", tender_path(tender)) %></td>
             <td><%= tender.name %></td>
             <td><%= tender.phone %></td>

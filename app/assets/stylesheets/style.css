@@ -103,7 +103,7 @@ h3 {
     box-shadow: 0 2px 21px rgba(0, 0, 0, 0.5);
     height: 87px;
     margin: 0;
-    padding: 21px 0 0;
+    padding: 10px 0 0;
     position: fixed;
     width: 100%;
     z-index: 1000;
@@ -233,8 +233,8 @@ h3 {
 .drag-me {
     background: url("bg_dotted.png") repeat scroll 0 0 #000000;
     height: 14px;
-    margin: 5px auto;
-    width: 55px;
+    margin: 5px auto 0;
+    width: 70px;
     cursor: move;
 
 }
@@ -285,7 +285,7 @@ h3 {
     color: #A6CE39;
     display: block;
     float: left;
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 500;
     margin-left: 23px;
     text-align: center;
@@ -453,7 +453,7 @@ h3 {
     overflow: hidden;
     position: absolute;
     right: 0;
-    top: 108px;
+    top: 97px;
     z-index: -99;
 }
 
@@ -744,7 +744,7 @@ form textarea {
 
 #inner-content, #Body .content {
     margin: 0 auto;
-    padding-top: 108px;
+    padding-top: 97px;
     width: 960px;
 }
 
@@ -815,12 +815,8 @@ table.flats-admin th {
     text-align: left;
 }
 
-tr.even {
-    background-color: rgba(255, 255, 255, 0.3);
-}
-
-tr.even-first {
-    background-color: #fff;
+#tabs table tr:nth-child(odd) {
+    background-color: rgba(233, 233, 233, 0.8);
 }
 
 h1 small {
@@ -888,5 +884,3 @@ ul.admin-functions li {
     text-align: right;
 }
 
-.order-welcome-info li a {
-}
