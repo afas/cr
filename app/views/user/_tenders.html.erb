@@ -1,8 +1,8 @@
-<% if @tenders.size > 0 %>
+<% unless @tenders.nil? %>
     <table class="flats flats-admin" cellspacing="0">
       <tr class='even-first'>
-        <th width="13%">№</th>
-        <th width="15%">Имя</th>
+        <th width="8%">№</th>
+        <th width="17%">Имя</th>
         <th width="15%">Телефон</th>
         <th width="15%">Тип</th>
         <th width="15%">Агент</th>
@@ -11,7 +11,7 @@
       </tr>
       <% @tenders.each_with_index do |tender, i| %>
           <tr>
-            <td><%= can?(:edit, tender) ? link_to("+ #{tender.id}", edit_tender_path(tender)) : link_to("+ #{tender.id}", tender_path(tender)) %></td>
+            <td><%= can?(:edit, tender) ? link_to("#{tender.id}", edit_tender_path(tender), :target => "_blank") : link_to("+ #{tender.id}", tender_path(tender), :target => "_blank") %></td>
             <td><%= tender.name %></td>
             <td><%= tender.phone %></td>
             <td><%= FlatType.by_id(tender.flat_type) %></td>

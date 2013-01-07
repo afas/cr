@@ -1,4 +1,4 @@
-<h2>Мои объекты</h2>
+<h2>Объекты</h2>
 
 <div id="tabs">
   <% unless current_user.nil? %>
@@ -7,13 +7,16 @@
             <li><a href="#tenders">Заявки</a></li>
             <li><a href="#flats">Квартиры</a></li>
         <% end %>
-        <% if current_user.manager? %>
-            <li><a href="#imports">Импорт</a></li>
-            <li><a href="#specials">Акции</a></li>
-        <% end %>
-        <% if current_user.admin? %>
-            <li><a href="#agents">Агенты</a></li>
-            <li><a href="#backgrounds">Фон</a></li>
+        <% if controller_name == "registrations" %>
+            <% if current_user.manager? %>
+                <li><a href="#imports">Импорт</a></li>
+                <li><a href="#specials">Акции</a></li>
+            <% end %>
+            <% if current_user.admin? %>
+                <li><a href="#backgrounds">Фон</a></li>
+                <li><a href="#agents">Агенты</a></li>
+                <li><a href="#users">Все</a></li>/
+      <% end %>
         <% end %>
         <!--<li><a href="#comments">Комментарии</a></li>-->
         <!--<li><a href="#clients">Клиенты</a></li>-->
@@ -27,21 +30,27 @@
             <%= render "user/flats" %>
           </div>
       <% end %>
-      <% if current_user.manager? %>
-          <div id="imports">
-            <%= render "user/imports" %>
-          </div>
-          <div id="specials">
-            <%= render "user/specials" %>
-          </div>
-      <% end %>
-      <% if current_user.admin? %>
-          <div id="agents">
-            <%= render "user/agents" %>
-          </div>
-          <div id="backgrounds">
-            <%= render "user/backgrounds" %>
-          </div>
+      <% if controller_name == "registrations" %>
+
+          <% if current_user.manager? %>
+              <div id="imports">
+                <%= render "user/imports" %>
+              </div>
+              <div id="specials">
+                <%= render "user/specials" %>
+              </div>
+          <% end %>
+          <% if current_user.admin? %>
+              <div id="backgrounds">
+                <%= render "user/backgrounds" %>
+              </div>
+              <div id="agents">
+                <%= render "user/agents" %>
+              </div>
+              <div id="users">
+                <%= render "user/users" %>
+              </div>
+          <% end %>
       <% end %>
       <!--<li><a href="#comments">Комментарии</a></li>-->
       <!--<li><a href="#clients">Клиенты</a></li>-->

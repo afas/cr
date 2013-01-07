@@ -21,6 +21,9 @@ class UserController < ApplicationController
 
   def edit
     @user = User.find(params[:id])
+
+    @flats = Flat.where("agent_id = ?", @user.id).order("updated_at desc")
+    @tenders = Tender.where("agent_id = ? AND client_status_id <> ?", @user.id, 3).order("updated_at desc")
   end
 
   def update

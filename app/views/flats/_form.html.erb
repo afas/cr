@@ -37,7 +37,6 @@
           <br/>
           <%= f.check_box :approved %>
         </div>
-        <hr>
     <% end %>
 
     <div class="field">
@@ -93,7 +92,7 @@
     <div class="field">
       <%= f.label :street %>
       <br/>
-      <%= f.text_field :street %>
+      <%= f.text_field :street, :class => "auto_street" %>
     </div>
     <div class="field">
       <%= f.label :building %>

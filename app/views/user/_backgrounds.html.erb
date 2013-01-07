@@ -1,13 +1,23 @@
-<table>
+<table class="flats flats-admin" >
+
+  <tbody>
   <tr>
-    <td>
-      <p><%= link_to("Добавить новое изображение фона", new_welcome_image_path) if can?(:create, WelcomeImage) %></p>
-    </td>
+    <th width="20%">Изображение</th>
+    <th width="80%"></th>
   </tr>
+
+
+  <tr>
+    <td colspan="4"><center>
+      <%= link_to("Добавить новое изображение фона", new_welcome_image_path, :target => "_blank") if can?(:create, WelcomeImage) %>
+    </center></td>
+  </tr>
+
   <% @welcome_images.each do |welcome_image| %>
       <tr>
         <td><%= image_tag welcome_image.image.url(:list) %></td>
-        <td><%= link_to("X", welcome_image, :confirm => t('backend.actions.are_you_sure'), :method => :delete) if can?(:destroy, welcome_image) %></td>
+        <td><%= link_to(raw("Удалить"), welcome_image, :confirm => t('backend.actions.are_you_sure'), :method => :delete) if can?(:destroy, welcome_image) %></td>
       </tr>
-  <% end %>
+  <% end unless @welcome_images.nil? %>
+</tbody>
 </table>

@@ -6,12 +6,12 @@
     <th width="20%"><%= "Вошел в систему" %></th>
   </tr>
 
-  <% @agents.each_with_index do |user, i| %>
+  <% @users.each_with_index do |user, i| %>
       <tr>
         <td><%= link_to raw("#{user.full_name}"), "/user/#{user.id}/edit", :target => "_blank" %></td>
         <td><%= "#{user.phone}" %></td>
         <td><%= Role.by_id(user.role_id) %>, <%= user.internal? ? "+" : "-" %></td>
         <td><%= user.current_sign_in_at? ? user.current_sign_in_at.strftime("%d/%m %H:%M") : "не в сети" %></td>
       </tr>
-  <% end unless @agents.nil? %>
+  <% end unless @users.nil? %>
 </table>

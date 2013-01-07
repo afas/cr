@@ -1,20 +1,20 @@
-<% if @flats.size > 0 %>
+<% unless @flats.nil? %>
     <table class="flats flats-admin" cellspacing="0">
       <tr class='even-first'>
-        <th width="13%">№</th>
-        <th width="11%">Стоимость</th>
-        <th width="14%">Изменена</th>
-        <th width="25%">Адрес</th>
-        <th width="20%">Агент</th>
+        <th width="8%">№</th>
+        <th width="15%">Стоимость</th>
+        <th width="15%">Изменена</th>
+        <th width="35%">Адрес</th>
+        <th width="12%">Агент</th>
         <th width="15%">Статус</th>
       </tr>
       <% @flats.each_with_index do |flat, i| %>
           <tr>
-            <td><%= can?(:edit, flat) ? link_to("#{flat.id}", edit_flat_path(flat)) : link_to("#{flat.id}", flat_path(flat)) %></td>
+            <td><%= can?(:edit, flat) ? link_to("#{flat.id}", edit_flat_path(flat), :target => "_blank") : link_to("#{flat.id}", flat_path(flat), :target => "_blank") %></td>
             <td><%= flat.price %></td>
             <td><%= flat.updated_at.strftime("%d/%m %H:%M") %></td>
             <td><%= raw "#{flat.address} <b>#{flat.metro}</b> #{FlatType.by_id(flat.flat_type)}" %></td>
-            <td><%= link_to(flat.agent.full_name, "/user/#{flat.agent.id}/edit") unless flat.agent.nil? %></td>
+            <td><%= link_to(flat.agent.full_name, "/user/#{flat.agent.id}/edit", :target => "_blank") unless flat.agent.nil? %></td>
             <td title="<%= flat.internal_comments %>"><%= RentStatus.by_id(flat.rent_status_id) %></td>
           </tr>
       <% end %>

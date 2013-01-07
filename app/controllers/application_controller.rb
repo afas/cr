@@ -41,7 +41,7 @@ class ApplicationController < ActionController::Base
 
           @welcome_images = WelcomeImage.order("created_at desc")
           @agents = User.where("id <> ? and role_id = ?", current_user.id, 2)
-          #@clients = User.where("id <> ? and role_id", current_user.id, 3)
+          @users = User.where("id <> ? and role_id <> ?", current_user.id, 2)
         end
       end
     end

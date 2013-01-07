@@ -21,7 +21,7 @@ class SearchController < ApplicationController
     end
 
     if (params[:address])
-      conditions += (conditions != "" ? " AND address = '#{params[:address]}'" : "address = '#{params[:address]}'")
+      conditions += (conditions != "" ? " AND street = '#{params[:address]}'" : "street = '#{params[:address]}'")
     end
 
     if (params[:flat_balkon])

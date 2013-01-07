@@ -43,6 +43,31 @@ $(document).ready(function () {
                 }
             });
     }
+
+    if ($(".auto_street").length > 0) {
+        $(".auto_street")
+            .autocomplete({
+                source:function (request, response) {
+                    $.getJSON("/flats/by_street", {
+                        term:extractLast(request.term)
+                    }, response);
+                },
+                search:function () {
+                    var term = extractLast(this.value);
+                    if (term.length < 2) {
+                        return false;
+                    }
+                },
+                select:function (event, ui) {
+                    var terms = split(this.value);
+                    terms.pop();
+                    this.value = ui.item.value;
+                    $(this).attr("object_name", ui.item.object);
+                    $(this).attr("object_id", ui.item.id);
+                    return false;
+                }
+            });
+    }
 });
 
 function split(val) {

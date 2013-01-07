@@ -15,6 +15,12 @@ Classicrent::Application.routes.draw do
 
   resources :welcome_images
 
+  resources :flats do
+    collection do
+      get 'by_street'
+    end
+  end
+
   resources :flats
 
   resources :flat_images

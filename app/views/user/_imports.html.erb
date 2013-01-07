@@ -1,23 +1,24 @@
-<table>
+<table class="flats flats-admin" cellspacing="0">
   <tbody>
   <tr>
-    <td colspan="4"><%= link_to("Импортировать XLS", new_import_path) if can?(:create, Import) %></td>
+    <th width="20%">Файл</th>
+    <th width="35%">Время</th>
+    <th width="15%">Импортировано квартир</th>
+    <th width="30%"></th>
   </tr>
+
   <tr>
-    <th width="30%">Файл</th>
-    <th width="25%">Время</th>
-    <th width="25%">Количество</th>
-    <th width="20%">Х</th>
+    <td colspan="4"><center><%= link_to("Импортировать XLS", new_import_path, :target => "_blank") if can?(:create, Import) %></center></td>
   </tr>
 
   <% @imports.each do |import| %>
       <tr>
         <td><%= import.file_file_name %></td>
         <td><%= Russian::strftime(import.created_at, "%d %B %Y, %H:%m") %></td>
-        <td>Создано <%= import.flats.size %> квартир</td>
-        <td><%= link_to("Удалить", import, :confirm => "Будут удалены все квартиры по результатам данного импорта. Вы уверены?", :method => :delete) if can?(:destroy, import) %></td>
+        <td><%= import.flats.size %></td>
+        <td><%= link_to("Удалить результаты импорта", import, :confirm => "Будут удалены все квартиры по результатам данного импорта. Вы уверены?", :method => :delete) if can?(:destroy, import) %></td>
       </tr>
-  <% end %>
+  <% end unless @imports.nil? %>
   </tbody>
 </table>
 

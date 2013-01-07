@@ -8,6 +8,19 @@ class FlatsController < ApplicationController
     redirect_to new_user_registration_path, :notice => "Внимание! <br/>Для размещения информации о квартире необходимо зарегистрироваться" if current_user.nil?
   end
 
+  def by_street
+    street_name = params[:term].mb_chars.titleize.to_s
+    @tags = Flat.select("DISTINCT street").where("street LIKE '#{street_name}%'")
+    @results = Array.new
+    @tags.each do |t|
+      @results << {:id => t.id, :value => t.street, :object => t.class.to_s}
+    end
+
+    respond_to do |format|
+      format.json { render :json => @results }
+    end
+  end
+
   # GET /flats
   # GET /flats.xml
   def index
@@ -30,7 +43,7 @@ class FlatsController < ApplicationController
     end
 
     if (params[:address])
-      conditions += (conditions != "" ? " AND address = #{params[:address]}" : "address = #{params[:address]}")
+      conditions += (conditions != "" ? " AND street = '#{params[:address]}'" : "street = '#{params[:address]}'")
     end
 
     if (params[:flat_balkon])
