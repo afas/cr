@@ -2,11 +2,11 @@
 class FlatsController < ApplicationController
   load_and_authorize_resource
 
-  before_filter :auth_user, :only => "new"
+  #before_filter :auth_user, :only => "new"
 
-  def auth_user
-    redirect_to new_user_registration_path, :notice => "Внимание! <br/>Для размещения информации о квартире необходимо зарегистрироваться" if current_user.nil?
-  end
+  #def auth_user
+  #  redirect_to new_user_registration_path, :notice => "Внимание! <br/>Для размещения информации о квартире необходимо зарегистрироваться" if current_user.nil?
+  #end
 
   def by_street
     street_name = params[:term].mb_chars.titleize.to_s
