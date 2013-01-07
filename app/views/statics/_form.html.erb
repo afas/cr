@@ -48,6 +48,7 @@
       <% @static.static_images.each do |image| %>
           <p id="static_image_<%= image.id %>">
             <%= image_tag image.image.url(:list) %>
+            <br/>
             <%= link_to "Удалить",
                         static_image_path(:id => image.id, :authenticity_token => form_authenticity_token),
                         :confirm => "Вы уверены?", :method => :delete, :remote => true %>
